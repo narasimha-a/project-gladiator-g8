@@ -8,6 +8,10 @@ public class OnlineExamBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(OnlineExamBackendApplication.class, args);
+
+        System.out.println("Spring Boot Working fine......");
+
+
     }
 
 }
