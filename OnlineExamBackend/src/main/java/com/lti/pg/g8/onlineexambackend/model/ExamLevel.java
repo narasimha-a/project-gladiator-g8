@@ -15,9 +15,10 @@ public class ExamLevel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long examLevelId;
+
     private int passingCriteria;
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true)
     @JoinColumn
     private List<Question> questions;
 

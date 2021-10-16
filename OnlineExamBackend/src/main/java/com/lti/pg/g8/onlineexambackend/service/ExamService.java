@@ -8,6 +8,12 @@ public interface ExamService {
 
     List<Exam> getAllExams();
 
-    Exam addNewExam(Exam exam);
+    Exam addOrUpdate(Exam exam);
+
+    boolean deleteExamById(Long examId);
+
+    Exam getExamById(Long examId);
+
+
 
 }
