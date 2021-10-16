@@ -28,7 +28,7 @@ public class ExamServiceImpl implements ExamService {
     }
 
     @Override
-    public Exam addNewExam(Exam exam) {
+    public Exam addOrUpdate(Exam exam) {
 
         exam.setLevels(exam.getLevels().stream().map(examLevel -> {
 
@@ -44,5 +44,19 @@ public class ExamServiceImpl implements ExamService {
         return this.examRepository.save(exam);
     }
 
+    @Override
+    public boolean deleteExamById(Long examId) {
+
+        this.examRepository.deleteById(examId);
+
+        return true;
+    }
+
+    @Override
+    public Exam getExamById(Long examId) {
+        if(this.examRepository.findById(examId).isPresent())
+            return this.examRepository.findById(examId).get();
+        return null;
+    }
 
 }

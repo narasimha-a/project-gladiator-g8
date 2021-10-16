@@ -21,7 +21,7 @@ public class Exam {
 
     private String examName;
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true)
     @JoinColumn
     private List<ExamLevel> levels;
 
