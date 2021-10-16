@@ -1,9 +1,6 @@
 package com.lti.pg.g8.onlineexambackend.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,23 +10,23 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Exam {
+public class ExamLevel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long examId;
-
-    private String examName;
+    private Long examLevelId;
+    private int passingCriteria;
 
     @OneToMany
     @JoinColumn
-    private List<ExamLevel> levels;
+    private List<Question> questions;
 
     @Override
     public String toString() {
-        return "Exam{" +
-                "id=" + examId +
-                ", examName='" + examName + '\'' +
+        return "ExamLevel{" +
+                "id=" + examLevelId +
+                ", passingCriteria=" + passingCriteria +
+                ", questions=" + questions +
                 '}';
     }
 }

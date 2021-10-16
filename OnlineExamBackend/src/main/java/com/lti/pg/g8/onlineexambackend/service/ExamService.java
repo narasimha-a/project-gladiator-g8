@@ -8,4 +8,6 @@ public interface ExamService {
 
     List<Exam> getAllExams();
 
+    Exam addNewExam(Exam exam);
+
 }
