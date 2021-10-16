@@ -1,2 +1,17 @@
 server:
   port: 8282
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle10gDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: hr
+    password: hr
+    url: jdbc:oracle:thin:@localhost:1521:XE
