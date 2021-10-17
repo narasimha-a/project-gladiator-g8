@@ -16,14 +16,24 @@ public class UserLoginServiceImpl implements UserLoginService{
 	public Boolean checkUserCred(String name, String password) {
 		
 
-		User resUser= this.userreopsitory.findByUserName(name);
-		
-		if(resUser.getUserName() != null && resUser.getPassword().equals(password)) {
+		User resUser= new User();
+		if(this.userreopsitory.findByUserName(name) != null  ) {
+			resUser = this.userreopsitory.findByUserName(name);
+			
+		}
+		if(resUser.getPassword() == password) {
 			return true;
 		}
 		else {
 			return false;
-		}
+			}
+		
+//		if(resUser.getUserName() != null && resUser.getPassword().equals(password)) {
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
 		
 		
 		

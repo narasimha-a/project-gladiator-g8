@@ -1,4 +1,4 @@
-package com.lti.pg.g8.onlineexambackend.repository;
+package com.lti.pg.g8.onlineexambackend.repository.examrepository;
 
 import com.lti.pg.g8.onlineexambackend.model.Exam;
 import org.springframework.data.jpa.repository.JpaRepository;
