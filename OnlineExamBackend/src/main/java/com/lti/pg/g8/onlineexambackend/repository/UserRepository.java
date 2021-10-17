@@ -7,6 +7,6 @@ import com.lti.pg.g8.onlineexambackend.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	Boolean findByUserName(String name);
+	User findByUserName(String name);
 
 }
