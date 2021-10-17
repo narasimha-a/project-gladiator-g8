@@ -54,4 +54,9 @@ public class UserServiceImpl implements UserService {
 		return this.userRepository.findAll();
 	}
 
+	@Override
+	public List<User> getUserListByAddressId(Long addressId) {
+		return this.userRepository.findAllUsersByAddressId(addressId); 
+	}
+
 }

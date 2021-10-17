@@ -1,9 +1,8 @@
 package com.lti.pg.g8.onlineexambackend.service;
 
-import javax.persistence.EntityManager;
+import java.util.List;
+
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Service;
 
@@ -39,6 +38,32 @@ public class AddressServiceImpl implements AddressService {
 	public Address addAddress(Address address) {
 		this.addressRepository.save(address);
 		return null;
+	}
+
+
+
+	@Override
+	public Address getAddressByCity(String city) {
+		Address addr;
+		try {
+			addr = this.addressRepository.getAddressByCity(city);
+		}catch(NoResultException nre) {
+			return null;
+		}
+		return addr;
+	}
+
+
+
+	@Override
+	public List<Address> getAddressByState(String state) {
+		List<Address> addr;
+		try {
+			addr = this.addressRepository.getAddressByState(state);
+		}catch(NoResultException nre) {
+			return null;
+		}
+		return addr;
 	}
 
 }
