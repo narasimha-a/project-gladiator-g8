@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -61,5 +62,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return this.userRepository.findAll();
 	}
+	
+	
 
 }

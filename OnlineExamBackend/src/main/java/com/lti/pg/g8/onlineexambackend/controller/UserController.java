@@ -2,8 +2,6 @@ package com.lti.pg.g8.onlineexambackend.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.pg.g8.onlineexambackend.model.Address;
-import com.lti.pg.g8.onlineexambackend.model.Exam;
 import com.lti.pg.g8.onlineexambackend.model.User;
+import com.lti.pg.g8.onlineexambackend.service.UserLoginService;
+import com.lti.pg.g8.onlineexambackend.service.UserLoginServiceImpl;
 import com.lti.pg.g8.onlineexambackend.service.UserService;
 
 @RestController
@@ -41,4 +39,23 @@ public class UserController {
 		User user1 = userService.addUser(user,city,state);
 		System.out.println(user1);
 	}
+	
+	@GetMapping("/userlogin/{username}/{password}")
+	public void userLogin( @PathVariable (value= "username") String username, @PathVariable(value= "password") String password ) {
+		System.out.println("Welcome to Login Page : )");
+		UserLoginService loginService = new UserLoginServiceImpl();
+		
+		if(loginService.checkUserCred(username, password) != null) {
+			System.out.println("Successful login");
+		}
+		
+		else {
+			System.out.println("Invalid username or password");
+		}
+		
+		
+		
+	}
+	
+	
 }
