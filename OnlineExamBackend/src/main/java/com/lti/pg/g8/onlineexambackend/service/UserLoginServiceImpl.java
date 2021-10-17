@@ -1,5 +1,7 @@
 package com.lti.pg.g8.onlineexambackend.service;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,24 +11,41 @@ import com.lti.pg.g8.onlineexambackend.repository.UserRepository;
 @Service
 public class UserLoginServiceImpl implements UserLoginService{
 
-	@Autowired
-	UserRepository userreopsitory;
 	
+	final UserRepository userreopsitory;
+	
+	
+	
+	public UserLoginServiceImpl(UserRepository userreopsitory) {
+		this.userreopsitory = userreopsitory;
+	}
+
+
+
 	@Override
 	public Boolean checkUserCred(String name, String password) {
 		
 
-		User resUser= new User();
-		if(this.userreopsitory.findByUserName(name) != null  ) {
-			resUser = this.userreopsitory.findByUserName(name);
-			
-		}
-		if(resUser.getPassword() == password) {
-			return true;
-		}
-		else {
-			return false;
+		User resUser;
+		try {
+			resUser = this.userreopsitory.findByUserName(name, password);
+			if(resUser == null) {
+				return false;
 			}
+		}catch(NoResultException nre) {
+			return false;
+		}
+		return true;
+//		if(this.userreopsitory.findByUserName(name,password) != null  ) {
+//			resUser = this.userreopsitory.findByUserName(name);
+//			
+//		}
+//		if(resUser.getPassword() == password) {
+//			return true;
+//		}
+//		else {
+//			return false;
+//			}
 		
 //		if(resUser.getUserName() != null && resUser.getPassword().equals(password)) {
 //			return true;

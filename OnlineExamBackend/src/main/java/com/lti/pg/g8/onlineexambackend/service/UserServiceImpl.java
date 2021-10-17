@@ -15,19 +15,10 @@ import com.lti.pg.g8.onlineexambackend.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	final UserRepository userRepository;
-	
-	
+
 	private AddressService addressService;
-	
-	
-	
-	
-	
-	@PersistenceContext
-	private EntityManager entityManager;
-	
 
 	public UserServiceImpl(UserRepository userRepository, AddressService addressService) {
 		super();
@@ -37,21 +28,18 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public User addUser(User user,String city, String state) {
-//		Address address = entityManager.find(Address.class);
-		
+	public User addUser(User user, String city, String state) {
+
 		Address addr = addressService.getAddressByCityAndState(state, city);
-		if(addr == null) {
-			Address add_addr = new Address(city,state);
+		if (addr == null) {
+			Address add_addr = new Address(city, state);
 			addressService.addAddress(add_addr);
 			user.setAddress(add_addr);
-			entityManager.persist(user);
-		}
-		else {
-			Long addrId = (Long)addr.getAddressid();
-			Address add_addr = new Address(addrId, city,state);
-			user.setAddress(add_addr);
-			entityManager.persist(user);
+			this.userRepository.save(user);
+		} else {
+			Long addrId = (Long) addr.getAddressId();
+			user.setAddress(addr);
+			this.userRepository.save(user);
 		}
 		System.out.println("Recorded inserted successfully");
 		return user;
@@ -59,10 +47,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getUserList() {
-		// TODO Auto-generated method stub
 		return this.userRepository.findAll();
 	}
-	
-	
 
 }

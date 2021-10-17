@@ -17,12 +17,14 @@ import com.lti.pg.g8.onlineexambackend.service.UserService;
 @RestController
 @RequestMapping("/users/")
 public class UserController {
-//	Address address; 
+ 
 	final UserService userService;
+	final UserLoginService userLoginService;
 
-	public UserController(UserService userService) {
+	public UserController(UserService userService, UserLoginService userLoginService) {
 		super();
 		this.userService = userService;
+		this.userLoginService = userLoginService;
 	}
 	
 	@GetMapping("/getUsers")
@@ -37,18 +39,16 @@ public class UserController {
 	
 		System.out.println("inside controller "+user);
 		User user1 = userService.addUser(user,city,state);
-		System.out.println(user1);
+		System.out.println(user1.getUserId());
 	}
 	
 	@GetMapping("/userlogin/{username}/{password}")
 	public void userLogin( @PathVariable (value= "username") String username, @PathVariable(value= "password") String password ) {
 		System.out.println("Welcome to Login Page : )");
-		UserLoginService loginService = new UserLoginServiceImpl();
 		
-		if(loginService.checkUserCred(username, password) != null) {
+		if(userLoginService.checkUserCred(username, password) == true) {
 			System.out.println("Successful login");
 		}
-		
 		else {
 			System.out.println("Invalid username or password");
 		}
