@@ -9,8 +9,8 @@ import com.lti.pg.g8.onlineexambackend.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	@Query("Select u from User u where u.userName = ?1 and u.password = ?2")
-	User findByUserName(String name, String password);
+	@Query("Select u from User u where u.userEmail = ?1")
+	User findByUserEmail(String name);
 }
 
 

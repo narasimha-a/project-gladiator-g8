@@ -2,11 +2,9 @@ package com.lti.pg.g8.onlineexambackend.service;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.lti.pg.g8.onlineexambackend.model.Address;
@@ -25,6 +23,10 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
 		this.addressService = addressService;
 	}
+	
+	private String hashPassword(String plainTextPassword){
+		return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
+	}
 
 	@Override
 	@Transactional
@@ -35,10 +37,12 @@ public class UserServiceImpl implements UserService {
 			Address add_addr = new Address(city, state);
 			addressService.addAddress(add_addr);
 			user.setAddress(add_addr);
+			user.setPassword(hashPassword(user.getPassword()));
 			this.userRepository.save(user);
 		} else {
 			Long addrId = (Long) addr.getAddressId();
 			user.setAddress(addr);
+			user.setPassword(hashPassword(user.getPassword()));
 			this.userRepository.save(user);
 		}
 		System.out.println("Recorded inserted successfully");

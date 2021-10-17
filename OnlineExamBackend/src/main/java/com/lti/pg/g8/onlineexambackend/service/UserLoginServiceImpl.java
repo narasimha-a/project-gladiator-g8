@@ -2,64 +2,52 @@ package com.lti.pg.g8.onlineexambackend.service;
 
 import javax.persistence.NoResultException;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.lti.pg.g8.onlineexambackend.model.User;
 import com.lti.pg.g8.onlineexambackend.repository.UserRepository;
 
 @Service
-public class UserLoginServiceImpl implements UserLoginService{
+public class UserLoginServiceImpl implements UserLoginService {
 
-	
 	final UserRepository userreopsitory;
-	
-	
-	
+
 	public UserLoginServiceImpl(UserRepository userreopsitory) {
 		this.userreopsitory = userreopsitory;
 	}
 
-
-
 	@Override
 	public Boolean checkUserCred(String name, String password) {
-		
 
 		User resUser;
 		try {
-			resUser = this.userreopsitory.findByUserName(name, password);
-			if(resUser == null) {
+			resUser = this.userreopsitory.findByUserEmail(name);
+			System.out.println(resUser);
+			if (resUser == null) {
 				return false;
+			} else {
+
+				System.out.println(BCrypt.checkpw(password, resUser.getPassword()));
+				if (BCrypt.checkpw(password, resUser.getPassword())) {
+					return true;
+				} else {
+					return false;
+				}
 			}
-		}catch(NoResultException nre) {
+		} catch (NoResultException nre) {
 			return false;
 		}
-		return true;
-//		if(this.userreopsitory.findByUserName(name,password) != null  ) {
-//			resUser = this.userreopsitory.findByUserName(name);
-//			
-//		}
-//		if(resUser.getPassword() == password) {
-//			return true;
-//		}
-//		else {
-//			return false;
-//			}
-		
+
 //		if(resUser.getUserName() != null && resUser.getPassword().equals(password)) {
 //			return true;
 //		}
 //		else {
 //			return false;
 //		}
-		
-		
-		
+
 	}
 
-	
-	
 //	@PersistenceContext
 //	private EntityManager entityManager;
 //	
@@ -93,5 +81,3 @@ public class UserLoginServiceImpl implements UserLoginService{
 //	}
 
 }
-
-
