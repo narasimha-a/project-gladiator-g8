@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,6 +15,5 @@ public class ExamLevelDto {
     private Long examLevelId;
     private int passingCriteria;
 
-    private List<QuestionDto> questions;
-
+    private Map<Long, String> selectedOptionsMap;
 }
