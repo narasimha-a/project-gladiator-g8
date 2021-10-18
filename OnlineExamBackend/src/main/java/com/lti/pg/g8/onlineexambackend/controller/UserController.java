@@ -3,6 +3,8 @@ package com.lti.pg.g8.onlineexambackend.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,19 +34,21 @@ public class UserController {
 	}
 
 	@GetMapping("/getUsers")
-	public List<User> getUser() {
+	public ResponseEntity<List<User>> getUser() {
 		System.out.println(" inside controller - calling getEmpList");
-		List<User> userList = userService.getUserList();
-		return userList;
+//		List<User> userList = userService.getUserList();
+		return new ResponseEntity<>(this.userService.getUserList(), HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/addUser/{city}/{state}")
-	public void saveUser(@RequestBody User user, @PathVariable(value = "city") String city,
+	public ResponseEntity<User> saveUser(@RequestBody User user, @PathVariable(value = "city") String city,
 			@PathVariable(value = "state") String state) {
 
 		System.out.println("inside controller " + user);
-		User user1 = userService.addUser(user, city, state);
-		System.out.println(user1.getUserId());
+//		User user1 = userService.addUser(user, city, state);
+//		System.out.println(user1.getUserId());
+		return new ResponseEntity<User>(this.userService.addUser(user, city, state), HttpStatus.CREATED);
+		
 	}
 
 	@GetMapping("/userlogin/{username}/{password}")
@@ -61,21 +65,21 @@ public class UserController {
 	}
 
 	@GetMapping("/address/city/{city}")
-	public List<User> getUserByAddressCity(@PathVariable(value = "city") String city) {
+	public ResponseEntity<List<User>> getUserByAddressCity(@PathVariable(value = "city") String city) {
 		Address addr = addressService.getAddressByCity(city);
-		List<User> userList = userService.getUserListByAddressId(addr.getAddressId());
-		System.out.println(userList);
-		return userList;
+//		List<User> userList = userService.getUserListByAddressId(addr.getAddressId());
+//		System.out.println(userList);
+		return new ResponseEntity<>(this.userService.getUserListByAddressId(addr.getAddressId()), HttpStatus.OK);
 	}
 
 	@GetMapping("/address/state/{state}")
-	public List<List<User>> getUserByAddressState(@PathVariable(value = "state") String state) {
+	public ResponseEntity<List<List<User>>> getUserByAddressState(@PathVariable(value = "state") String state) {
 
 		List<List<User>> userList = addressService.getAddressByState(state).stream()
 				.map(address -> userService.getUserListByAddressId(address.getAddressId()))
 				.collect(Collectors.toList());
 
-		return userList;
+		return new ResponseEntity<>(userList, HttpStatus.OK);
 	}
 
 }
