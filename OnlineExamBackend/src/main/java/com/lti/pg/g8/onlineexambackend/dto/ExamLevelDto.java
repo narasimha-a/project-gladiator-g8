@@ -4,14 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class QuestionDto {
+public class ExamLevelDto {
 
-    private Long id;
-    private String questionStatement;
+    private Long examLevelId;
+    private int passingCriteria;
 
-    private String options;
+    private List<QuestionDto> questions;
 
 }

@@ -1,11 +1,6 @@
 package com.lti.pg.g8.onlineexambackend.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,31 +8,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Address")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class Address {
+
 	@Id
-	@Column(name = "Address_Id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	Long addressId;
-	public Address(String city, String state) {
-		super();
-		this.city = city;
-		this.state = state;
-	}
-	@Column(name = "City")
+
+	@Column(nullable = false)
 	String city;
-	@Column(name = "State")
+
+	@Column(nullable = false)
 	String state;
 
 	@Override
 	public String toString() {
-		return "Address [addressid=" + addressId + ", city=" + city + ", state=" + state + "]";
+		return "Address{" +
+				"addressId=" + addressId +
+				", city='" + city + '\'' +
+				", state='" + state + '\'' +
+				'}';
 	}
-	
-	
-	
 }

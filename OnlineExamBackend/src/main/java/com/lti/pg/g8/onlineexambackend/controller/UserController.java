@@ -3,6 +3,10 @@ package com.lti.pg.g8.onlineexambackend.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.lti.pg.g8.onlineexambackend.dto.ExamDto;
+import com.lti.pg.g8.onlineexambackend.dto.UserLoginDto;
+import com.lti.pg.g8.onlineexambackend.service.ExamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,53 +19,32 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lti.pg.g8.onlineexambackend.model.Address;
 import com.lti.pg.g8.onlineexambackend.model.User;
 import com.lti.pg.g8.onlineexambackend.service.AddressService;
-import com.lti.pg.g8.onlineexambackend.service.UserLoginService;
 import com.lti.pg.g8.onlineexambackend.service.UserService;
 
 @RestController
-@RequestMapping("/users/")
+@RequestMapping("/user")
 public class UserController {
 
-	final UserService userService;
-	final UserLoginService userLoginService;
-	final AddressService addressService;
+	@Autowired
+	UserService userService;
 
-	public UserController(UserService userService, UserLoginService userLoginService, AddressService addressService) {
-		super();
-		this.addressService = addressService;
-		this.userService = userService;
-		this.userLoginService = userLoginService;
-	}
+	@Autowired
+	AddressService addressService;
 
-	@GetMapping("/getUsers")
-	public ResponseEntity<List<User>> getUser() {
-		System.out.println(" inside controller - calling getEmpList");
-//		List<User> userList = userService.getUserList();
-		return new ResponseEntity<>(this.userService.getUserList(), HttpStatus.OK);
-	}
+	@Autowired
+	ExamService examService;
 
-	@PostMapping(value = "/addUser/{city}/{state}")
-	public ResponseEntity<User> saveUser(@RequestBody User user, @PathVariable(value = "city") String city,
-			@PathVariable(value = "state") String state) {
-
+	@PostMapping("")
+	public ResponseEntity<User> addUser(@RequestBody User user) {
 		System.out.println("inside controller " + user);
-//		User user1 = userService.addUser(user, city, state);
-//		System.out.println(user1.getUserId());
-		return new ResponseEntity<User>(this.userService.addUser(user, city, state), HttpStatus.CREATED);
+		return new ResponseEntity<>(this.userService.addUser(user), HttpStatus.CREATED);
 		
 	}
 
-	@GetMapping("/userlogin/{username}/{password}")
-	public void userLogin(@PathVariable(value = "username") String username,
-			@PathVariable(value = "password") String password) {
-		System.out.println("Welcome to Login Page : )");
-
-		if (userLoginService.checkUserCred(username, password) == true) {
-			System.out.println("Successful login");
-		} else {
-			System.out.println("Invalid username or password");
-		}
-
+	@GetMapping("")
+	public ResponseEntity<Boolean> authenticateUser(@RequestBody UserLoginDto userLoginDto){
+		return  new ResponseEntity<>(this.userService.checkUserCred(userLoginDto.getUserName(), userLoginDto.getPassword()),
+				HttpStatus.OK);
 	}
 
 	@GetMapping("/address/city/{city}")
@@ -80,6 +63,11 @@ public class UserController {
 				.collect(Collectors.toList());
 
 		return new ResponseEntity<>(userList, HttpStatus.OK);
+	}
+
+	@GetMapping("/exams")
+	public ResponseEntity<List<ExamDto>> getAllExams(){
+		return new ResponseEntity<>(this.examService.getAllExamsWithoutLevels(), HttpStatus.OK);
 	}
 
 }
