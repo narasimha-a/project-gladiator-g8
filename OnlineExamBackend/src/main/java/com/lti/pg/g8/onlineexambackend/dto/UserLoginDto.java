@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class AddressDto {
+public class UserLoginDto {
 
-	private Long addressId;
-	private String city;
-	private String state;
+    String userName;
+    String password;
+
 }

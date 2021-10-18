@@ -19,13 +19,12 @@ public class AddressServiceImpl implements AddressService {
 		this.addressRepository = addressRepository;
 	}
 
-
-
 	@Override
-	public Address getAddressByCityAndState(String state, String city) {
+	public Address getAddressByCityAndState(String city, String state) {
 		Address addr;
 		try {
 			addr = this.addressRepository.getAddressByCityAndState(city, state);
+			//System.out.println("Address for " + city + " & " + state + " is :"+addr);
 		}catch(NoResultException nre) {
 			return null;
 		}
@@ -36,8 +35,8 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Address addAddress(Address address) {
-		this.addressRepository.save(address);
-		return null;
+
+		return this.addressRepository.save(address);
 	}
 
 

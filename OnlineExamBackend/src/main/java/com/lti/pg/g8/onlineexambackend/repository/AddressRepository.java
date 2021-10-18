@@ -26,5 +26,4 @@ public interface AddressRepository extends JpaRepository<Address, Long>{
 	@Query("Select a from Address a where a.city=?1 and a.state=?2")
 	Address getAddressByCityAndState(String city, String state);
 
-
 }
