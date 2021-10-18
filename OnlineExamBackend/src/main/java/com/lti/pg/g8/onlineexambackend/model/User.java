@@ -2,14 +2,7 @@ package com.lti.pg.g8.onlineexambackend.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,49 +10,51 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "USERS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class User {
+
 	@Id
-	@Column(name = "User_Id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	Long userId;
-	
-	@Column(name = "User_Name")
+
+	@Column(nullable = false)
 	String userName;
-	
-	@Column(name = "User_Email")
+
+	@Column(unique = true, nullable = false)
 	String userEmail;
-	
-	@Column(name = "User_Mobile")
+
+	@Column(unique = true, nullable = false)
 	String userMobile;
 	
-	@Column(name = "User_Dob")
-	Date dateOfBirth;
+	String dateOfBirth;
 	
-	@Column(name = "User_Qualification")
 	String qualification;
-	
-	@Column(name = "User_Year_Of_Graduation")
+
 	String yearOfGraduation;
-	
-	@Column(name = "User_Password")
+
+	@Column(nullable = false)
 	String password;
-	
-	@ManyToOne()
-	@JoinColumn(name = "Address_Id")
+
+	@ManyToOne
+	@JoinColumn(nullable = false)
 	Address address;
-	
-	
 
 	@Override
 	public String toString() {
-		return "User [userid=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userMobile="
-				+ userMobile + ", dateOfBirth=" + dateOfBirth + ", qualification=" + qualification
-				+ ", yearOfGraduation=" + yearOfGraduation + ", password=" + password + "]";
+		return "User{" +
+				"userId=" + userId +
+				", userName='" + userName + '\'' +
+				", userEmail='" + userEmail + '\'' +
+				", userMobile='" + userMobile + '\'' +
+				", dateOfBirth=" + dateOfBirth +
+				", qualification='" + qualification + '\'' +
+				", yearOfGraduation='" + yearOfGraduation + '\'' +
+				", password='" + password + '\'' +
+				", address=" + address +
+				'}';
 	}
-
 }

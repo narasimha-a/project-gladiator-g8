@@ -28,7 +28,7 @@ public class Exam {
     @Override
     public String toString() {
         return "Exam{" +
-                "id=" + examId +
+                "examId=" + examId +
                 ", examName='" + examName + '\'' +
                 '}';
     }
