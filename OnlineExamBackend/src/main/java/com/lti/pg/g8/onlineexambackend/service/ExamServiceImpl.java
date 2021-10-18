@@ -1,5 +1,6 @@
 package com.lti.pg.g8.onlineexambackend.service;
 
+import com.lti.pg.g8.onlineexambackend.dto.ExamDto;
 import com.lti.pg.g8.onlineexambackend.model.Exam;
 import com.lti.pg.g8.onlineexambackend.repository.examrepository.ExamLevelRepository;
 import com.lti.pg.g8.onlineexambackend.repository.examrepository.ExamRepository;
@@ -25,6 +26,14 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public List<Exam> getAllExams() {
         return this.examRepository.findAll();
+    }
+
+    @Override
+    public List<ExamDto> getAllExamsWithoutLevels() {
+
+        return this.examRepository.findAll().stream()
+                .map(exam -> new ExamDto(exam.getExamId(), exam.getExamName()))
+                .collect(Collectors.toList());
     }
 
     @Override

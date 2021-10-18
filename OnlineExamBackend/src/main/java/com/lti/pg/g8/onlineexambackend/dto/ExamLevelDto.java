@@ -9,9 +9,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class LevelDto {
+public class ExamLevelDto {
 
-    private Long id;
+    private Long examLevelId;
     private int passingCriteria;
 
     private List<QuestionDto> questions;
