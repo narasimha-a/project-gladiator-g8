@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.lti.pg.g8.onlineexambackend.dto.ExamDto;
+import com.lti.pg.g8.onlineexambackend.dto.ExamLevelDto;
 import com.lti.pg.g8.onlineexambackend.dto.UserLoginDto;
+import com.lti.pg.g8.onlineexambackend.service.EvaluationService;
 import com.lti.pg.g8.onlineexambackend.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +35,9 @@ public class UserController {
 
 	@Autowired
 	ExamService examService;
+
+	@Autowired
+	EvaluationService evaluationService;
 
 	@PostMapping("")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
@@ -74,5 +79,15 @@ public class UserController {
 //	public ResponseEntity<List<User>> getUserByExam(@PathVariable(value = "examId") Long examId){
 //		return new ResponseEntity<>(this.userService.getUsersByExamId(examId), HttpStatus.OK);
 //	}
+
+	@PostMapping("/{userId}/submitLevel")
+	public ResponseEntity<Integer> submitExamLevel(@RequestBody ExamLevelDto examLevelDto, @PathVariable Long userId){
+
+		int levelResult = this.evaluationService.evaluateExamLevel(examLevelDto);
+
+		//Add result to Submission table
+
+		return new ResponseEntity<>(levelResult, HttpStatus.OK);
+	}
 
 }

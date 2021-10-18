@@ -6,13 +6,13 @@ import com.lti.pg.g8.onlineexambackend.model.Submission;
 
 public interface SubmissionService {
 
-	public abstract List<Submission> getAllSubmissions(); 
+	List<Submission> getAllSubmissions();
 
-	public abstract Submission getSubmissionsById(Long examId); 
+	Submission getSubmissionsById(Long examId);
 	
-	public abstract List<Submission> getSubmissionsByExamId(Long examId); 
+	List<Submission> getSubmissionsByExamId(Long examId);
 
-	public abstract Submission addNewSubmission(Submission submission); 
+	Submission addNewSubmission(Submission submission);
 	
-	public abstract Submission addPercentageToSubmissionBySubmissionId( Long submissionId, Integer percentage); 
+	Submission addPercentageToSubmissionBySubmissionId(Long submissionId, Integer percentage);
 }

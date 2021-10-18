@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 public class QuestionDto {
 
     private Long id;
-    private String questionStatement;
-
-    private String options;
+    private String selectedOptions;
 
 }
