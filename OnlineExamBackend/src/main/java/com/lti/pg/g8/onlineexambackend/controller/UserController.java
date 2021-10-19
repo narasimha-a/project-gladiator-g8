@@ -75,6 +75,11 @@ public class UserController {
 	public ResponseEntity<List<ExamDto>> getAllExams(){
 		return new ResponseEntity<>(this.examService.getAllExamsWithoutLevels(), HttpStatus.OK);
 	}
+	
+//	@GetMapping("/exams/{examId}")
+//	public ResponseEntity<List<User>> getUserByExam(@PathVariable(value = "examId") Long examId){
+//		return new ResponseEntity<>(this.userService.getUsersByExamId(examId), HttpStatus.OK);
+//	}
 
 	@GetMapping("/exams/{examId}")
 	public ResponseEntity<Exam> getExamByExamId(@PathVariable Long examId){

@@ -53,3 +53,18 @@ public class AdminController {
 //    }
 
 }
+
+//{
+//    "userName" : "Jaddu",
+//    "userEmail" : "jaddu8@gmail.com",
+//    "userMobile" : 8578325345,
+//    "dateOfBirth" : "1986-05-19",
+//    "qualification" : "BE",
+//    "yearOfGraduation" : "2008",
+//    "password" : "jaddu@123",
+//    "address" : {
+//        "city" : "trichy",
+//        "state" : "tamilnadu"
+//    }
+//
+//}
