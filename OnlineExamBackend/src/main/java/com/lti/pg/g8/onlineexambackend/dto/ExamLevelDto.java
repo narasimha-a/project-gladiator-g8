@@ -15,6 +15,8 @@ public class ExamLevelDto {
 
     private Long examLevelId;
 
+    private Long submissionId;
+
     private int passingCriteria;
 
     private Map<Long, String> selectedOptionsMap;
