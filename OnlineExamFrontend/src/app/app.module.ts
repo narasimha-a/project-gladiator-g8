@@ -10,10 +10,19 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { ExamEditorComponent } from './exam-editor/exam-editor.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import {MatExpansionModule} from "@angular/material/expansion";
 @NgModule({
   declarations: [
     AppComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    ExamEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +32,14 @@ import {MatButtonModule} from '@angular/material/button';
     MatCardModule,
     MatIconModule,
     MatGridListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
