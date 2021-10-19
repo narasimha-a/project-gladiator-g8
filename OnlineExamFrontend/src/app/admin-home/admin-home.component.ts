@@ -10,6 +10,11 @@ export class AdminHomeComponent implements OnInit {
 
   constructor(private router : Router) { }
 
+  questions : any = [
+    {"qun" : "what is the capital of india ? ", "option" : ["delhi", "mumbai"], isHidden:false},
+    {"qun" : "what is the capital of indi ? ", "option" : ["delhi", "mumbai"], isHidden:true}
+  ]
+
   ngOnInit(): void {
   }
 
