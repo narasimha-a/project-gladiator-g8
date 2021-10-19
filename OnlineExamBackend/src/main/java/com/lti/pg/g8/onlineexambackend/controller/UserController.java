@@ -8,8 +8,8 @@ import javax.annotation.PostConstruct;
 import com.lti.pg.g8.onlineexambackend.dto.ExamDto;
 import com.lti.pg.g8.onlineexambackend.dto.ExamLevelDto;
 import com.lti.pg.g8.onlineexambackend.dto.UserLoginDto;
-import com.lti.pg.g8.onlineexambackend.service.EvaluationService;
-import com.lti.pg.g8.onlineexambackend.service.ExamService;
+import com.lti.pg.g8.onlineexambackend.model.Exam;
+import com.lti.pg.g8.onlineexambackend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.pg.g8.onlineexambackend.model.Address;
 import com.lti.pg.g8.onlineexambackend.model.User;
-import com.lti.pg.g8.onlineexambackend.service.AddressService;
-import com.lti.pg.g8.onlineexambackend.service.UserService;
 
 @RestController
 @RequestMapping("/user")
@@ -40,6 +38,9 @@ public class UserController {
 
 	@Autowired
 	EvaluationService evaluationService;
+
+	@Autowired
+	SubmissionService submissionService;
 
 	@PostMapping("")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
@@ -76,12 +77,27 @@ public class UserController {
 	public ResponseEntity<List<ExamDto>> getAllExams(){
 		return new ResponseEntity<>(this.examService.getAllExamsWithoutLevels(), HttpStatus.OK);
 	}
+	
+//	@GetMapping("/exams/{examId}")
+//	public ResponseEntity<List<User>> getUserByExam(@PathVariable(value = "examId") Long examId){
+//		return new ResponseEntity<>(this.userService.getUsersByExamId(examId), HttpStatus.OK);
+//	}
 
-	@PostMapping("/{userId}/submitLevel")
-	public ResponseEntity<Integer> submitExamLevel(@RequestBody ExamLevelDto examLevelDto, @PathVariable Long userId){
+	@GetMapping("/exams/{examId}")
+	public ResponseEntity<Exam> getExamByExamId(@PathVariable Long examId){
+		return new ResponseEntity<>(this.examService.getExamById(examId), HttpStatus.OK);
+	}
+
+	@PostMapping("/{userId}/exams/{examId}")
+	public ResponseEntity<Long> createNewSubmission(@PathVariable Long userId, @PathVariable Long examId){
+		return new ResponseEntity<>(this.submissionService.createNewSubmission(userId,examId).getSubmissionId(),HttpStatus.OK);
+	}
+
+
+	@PostMapping("/submitLevel")
+	public ResponseEntity<Integer> submitExamLevel(@RequestBody ExamLevelDto examLevelDto){
 
 		int levelResult = this.evaluationService.evaluateExamLevel(examLevelDto);
-
 		//Add result to Submission table
 
 		return new ResponseEntity<>(levelResult, HttpStatus.OK);
