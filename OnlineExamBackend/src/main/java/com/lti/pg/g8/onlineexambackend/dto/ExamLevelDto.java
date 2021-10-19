@@ -4,12 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ExamDto {
+public class ExamLevelDto {
 
     private Long examId;
-    private String examName;
 
+    private Long examLevelId;
+
+    private int passingCriteria;
+
+    private Map<Long, String> selectedOptionsMap;
 }

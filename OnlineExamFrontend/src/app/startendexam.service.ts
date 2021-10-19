@@ -12,11 +12,9 @@ export class StartendexamService {
   constructor(private http:HttpClient) { }
 
   getExamById(examid:number){
-    return this.http.get<exam>(this.baseUrl+'/'+examid); 
+    console.log(this.http.get<exam>(this.baseUrl+'/'+78));
+    return this.http.get<exam>(this.baseUrl+'/'+78); 
   }
 
-  getExamsList(){
-    return this.http.get<exam>(this.baseUrl); 
 
-  }
 }

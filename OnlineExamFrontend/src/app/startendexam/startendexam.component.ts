@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StartendexamService } from '../startendexam.service';
 import { exam } from './model/exam.model';
-import { Observable } from 'rxjs'
+// import { Observable } from 'rxjs'
 
 
 @Component({
@@ -11,26 +11,31 @@ import { Observable } from 'rxjs'
   styleUrls: ['./startendexam.component.css']
 })
 export class StartendexamComponent implements OnInit {
-  currentExam!: Observable<exam>;
+  currentExam!: exam;
   examList: exam[]= []; 
 
   constructor(private startendexam: StartendexamService, private router:Router) { }
 
   ngOnInit(): void {
+    this.getExamById(78);
   }
 
 
   getExamById(examId:number){
-    this.currentExam= this.startendexam.getExamById(examId);
-    //console.log(this.currentExam);
+    
+    this.startendexam.getExamById(examId).subscribe(data =>{
+      this.currentExam= data;
+      console.log(this.currentExam);
+    }, (error) => {console.log("no data found");
+    })
+
+    
+
+    
   }
 
-  getExams(){
-     
-    console.log(this.startendexam.getExamsList());
-
-  }
-
+  
+ 
   
 
 
