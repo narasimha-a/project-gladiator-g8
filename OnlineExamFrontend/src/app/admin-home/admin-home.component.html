@@ -58,7 +58,7 @@
         <div [hidden]="item.isHidden">
             {{item.qun}} 
             <ng-container *ngFor="let opt of item.option;let in = index">
-                <input type="checkbox">{{opt}}<br>
+                <div>{{opt[in]}}</div>
             </ng-container>
             <button  (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false">Next</button>
         </div>
