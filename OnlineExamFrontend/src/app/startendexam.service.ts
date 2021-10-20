@@ -17,13 +17,8 @@ export class StartendexamService {
   constructor(private http:HttpClient) { }
 
   getExamById(examid:number){
-<<<<<<< HEAD
-    
-    return this.http.get<exam>(this.examUrl+'/'+78); 
-=======
-    console.log(this.http.get<exam>(this.baseUrl+'/'+114));
-    return this.http.get<exam>(this.baseUrl+'/'+114); 
->>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
+    console.log(this.http.get<exam>(this.examUrl+'/'+114));
+    return this.http.get<exam>(this.examUrl+'/'+114); 
   }
 
   createUserSubmission(userId:number, examId:number){

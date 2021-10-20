@@ -4,13 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StartendexamService } from '../startendexam.service';
 import { exam } from './model/exam.model';
-import { examlevel } from './model/examlevel.model';
-<<<<<<< HEAD
-import { questions } from './model/questions.model';
-import { submission } from './model/submission.model';
 import { examleveldto } from './model/examleveldto.model';
-=======
->>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
 // import { Observable } from 'rxjs'
 
 
@@ -21,37 +15,15 @@ import { examleveldto } from './model/examleveldto.model';
 })
 export class StartendexamComponent implements OnInit {
   currentExam!: exam;
-<<<<<<< HEAD
-  currentLevel !: examlevel[]; 
-  currentQuestion !: questions[] ;
-  currentExamLevel :number=0;
-
-  newuserSubmission!: submission;
-  submissionTempId!: submission; 
-
-  examList: exam[]= []; 
-  examName:string="";
-
-  options: string[] = [];
-  answers: string[] = [];  
-  optionList: string = "";
-
-=======
   examList: exam[]= [];
   options: string[] = [];
   answers: string[] = [];  
   optionList: string = "";
   qnProgress: number=0;
->>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
+  newuserSubmission!: import("c:/Users/Aravind/Desktop/Training LTI/Project_Gladiator/GitUserModule/project-gladiator-g8/project-gladiator-g8/OnlineExamFrontend/src/app/startendexam/model/submission.model").submission;
   constructor(private startendexam: StartendexamService, private router:Router) { }
   optString!: string;
   ngOnInit(): void {
-<<<<<<< HEAD
-    this.getExamById(78);
-    //this.createUserSubmission(10001 , 1001);
-  }
-
-=======
     this.optString = "[O0,O1,O2,O3]";
     console.log(this.optString.substring(1,this.optString.length-1).split(","));
     this.getExamById(114);
@@ -60,21 +32,12 @@ export class StartendexamComponent implements OnInit {
 
 
 
->>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
   getExamById(examId:number){
     
     this.startendexam.getExamById(examId).subscribe(data =>{
       this.currentExam= data;
-<<<<<<< HEAD
-      this.currentLevel= this.currentExam.levels;
-      this.currentQuestion=this.currentLevel[0].questions;
-      console.log(this.currentExam);
-      console.log(this.currentLevel);
-      console.log(this.currentQuestion[0].options);
-=======
       // this.qnProgress = this.currentExam.levels[0].questions.length 
       // console.log(this.qnProgress);
->>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
     }, (error) => {console.log("no data found");
     })
     
@@ -102,10 +65,6 @@ export class StartendexamComponent implements OnInit {
 
   }
 
-<<<<<<< HEAD
-
-
-=======
   getSplitString = (optString : string) => {
      this.options = optString.substring(1,optString.length-1).split(",");
     //  console.log(this.options);
@@ -125,7 +84,6 @@ export class StartendexamComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
->>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
 
 
 
