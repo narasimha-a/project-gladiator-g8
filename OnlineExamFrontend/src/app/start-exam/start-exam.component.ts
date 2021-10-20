@@ -12,8 +12,8 @@ export class StartExamComponent implements OnInit {
 
   submission:submissionDto = {
     submissionId:0,
-    examId: 148,
-    userId:142,
+    examId: 166,
+    userId:160,
     addressId:141,
     percentages: ""
   };

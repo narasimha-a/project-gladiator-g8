@@ -40,7 +40,7 @@ export class StartendexamComponent implements OnInit {
   ngOnInit(): void {
     this.optString = "[O0,O1,O2,O3]";
     console.log(this.optString.substring(1,this.optString.length-1).split(","));
-    this.getExamById(148);
+    this.getExamById(166);
     console.log(this.getSubmissionId());
     this.getSubmissionId();
   }
@@ -74,7 +74,7 @@ export class StartendexamComponent implements OnInit {
   }
 
   getSubmissionId = () => {
-    this.submissionService.getSubmissionByExamIdAndUserId(148,142).subscribe(sub => {
+    this.submissionService.getSubmissionByExamIdAndUserId(166,160).subscribe(sub => {
       this.submission = sub;
       console.log(this.submission);
       sessionStorage.setItem("submissionId",JSON.stringify(this.submission.submissionId));
@@ -113,10 +113,13 @@ export class StartendexamComponent implements OnInit {
         selectedOptionsMap: this.optionMap
       }
       this.userService.postSubmission(this.examSubmit, 80).subscribe(data => {
+        this.userService.submissionData = data;
+        console.log(this.userService.submissionData);
+        this.router.navigateByUrl('/startExam/exam/report');
         console.log(data);
       })
       console.log(this.examSubmit);
-      this.router.navigate(['/']);
+      
     }
     console.log(this.answers);
   }

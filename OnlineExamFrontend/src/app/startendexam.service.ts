@@ -13,7 +13,7 @@ export class StartendexamService {
 
   getExamById(examid:number){
     console.log(this.http.get<exam>(this.baseUrl+'/'+148));
-    return this.http.get<exam>(this.baseUrl+'/'+148); 
+    return this.http.get<exam>(this.baseUrl+'/'+166); 
   }
 
 
