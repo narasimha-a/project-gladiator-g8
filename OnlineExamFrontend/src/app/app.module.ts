@@ -18,12 +18,16 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { StartExamComponent } from './start-exam/start-exam.component';
+import { ExamReportComponent } from './exam-report/exam-report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartendexamComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    StartExamComponent,
+    ExamReportComponent
   ],
   imports: [
     BrowserModule,

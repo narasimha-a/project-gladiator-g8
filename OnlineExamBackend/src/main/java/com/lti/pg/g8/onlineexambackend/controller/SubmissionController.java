@@ -3,6 +3,7 @@ package com.lti.pg.g8.onlineexambackend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.lti.pg.g8.onlineexambackend.service.SubmissionService;
 
 @RestController
 @RequestMapping("home/exam/submission")
+@CrossOrigin(origins= "*")
 public class SubmissionController {
 	
 	@Autowired
@@ -45,5 +47,10 @@ public class SubmissionController {
 	public Submission addPercentageToSubmissionBySubmissionId(@PathVariable Long submissionId,@PathVariable Integer percentage) {
 		return this.subService.addPercentageToSubmissionBySubmissionId(submissionId, percentage);
 	
+	}
+	
+	@GetMapping("/SubmissionByExamAndUserId/{examId}/{userId}")
+	public Submission getSubmissionByExamAndUserId(@PathVariable Long examId, @PathVariable Long userId) {
+		return this.subService.getSubmissionByExamAndUserId(examId, userId);
 	}
 }

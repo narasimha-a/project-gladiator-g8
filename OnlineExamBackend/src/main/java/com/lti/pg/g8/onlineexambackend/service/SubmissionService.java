@@ -15,4 +15,6 @@ public interface SubmissionService {
 	Submission addNewSubmission(Submission submission);
 	
 	Submission addPercentageToSubmissionBySubmissionId(Long submissionId, Integer percentage);
+	
+	Submission getSubmissionByExamAndUserId(Long examId, Long userId);
 }

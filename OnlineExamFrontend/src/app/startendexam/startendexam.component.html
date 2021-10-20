@@ -76,11 +76,21 @@
             <div class="card-action">
               <ul class="collection answer">
                 <ng-container *ngFor="let option of getSplitString(currentExam.levels[0].questions[qnProgress].options);let i = index">
-                  <li *ngIf="option != null" class="collection-item" (click)="onSelectOption(option)">
-                    {{option}}
+                  
+                  <li *ngIf="option != null" class="collection-item" (click)="onSelectOption(currentExam.levels[0].questions[qnProgress].questionId,option)">
+                    
+                    <div [ngClass]="status">{{option}}</div>
+                    
                   </li>
+                
                 </ng-container>
               </ul>
+              <div *ngIf="qnProgress != (currentExam.levels[0].questions.length)-1">
+                <button class="btn btn-primary" (click)="onSubmit()">Next</button>
+              </div>
+              <div *ngIf="qnProgress == (currentExam.levels[0].questions.length)-1">
+                <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+              </div>
             </div>
           </div>
       

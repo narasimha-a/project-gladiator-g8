@@ -59,4 +59,9 @@ public class SubmissionServiceImpl implements SubmissionService {
 		return sub;
 		//return null;
 	}
+
+	@Override
+	public Submission getSubmissionByExamAndUserId(Long examId, Long userId) {
+		return this.subrepository.findByExamIdAndUserId(examId, userId);
+	}
 }
