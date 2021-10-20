@@ -1,6 +1,8 @@
 package com.lti.pg.g8.onlineexambackend.controller;
 
 import java.util.List;
+
+import com.lti.pg.g8.onlineexambackend.dto.AdminDto;
 import com.lti.pg.g8.onlineexambackend.model.Exam;
 import com.lti.pg.g8.onlineexambackend.model.User;
 import com.lti.pg.g8.onlineexambackend.service.ExamService;
@@ -16,10 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.pg.g8.onlineexambackend.model.Admin;
-import com.lti.pg.g8.onlineexambackend.model.Exam;
-import com.lti.pg.g8.onlineexambackend.service.AdminLoginService;
-import com.lti.pg.g8.onlineexambackend.service.ExamService;
 
 @RestController
 @RequestMapping("/admin")
@@ -27,13 +25,14 @@ public class AdminController {
 
     @Autowired
     ExamService examService;
-    
-    @Autowired
-    AdminLoginService adminLoginService;
-    
+
     @PostMapping("/login")
-    public ResponseEntity<Boolean> validateAdmin(@RequestBody Admin admin){
-    	return new ResponseEntity<>(this.adminLoginService.validateAdmin(admin),HttpStatus.OK);
+    public ResponseEntity<Boolean> validateAdmin(@RequestBody AdminDto adminDto){
+        boolean validAdmin = false;
+        if(adminDto.getAdminName().equals("admin") && adminDto.getPassword().equals("admin@123"))
+            validAdmin = true;
+
+    	return new ResponseEntity<>(validAdmin,HttpStatus.OK);
     }
     
 
