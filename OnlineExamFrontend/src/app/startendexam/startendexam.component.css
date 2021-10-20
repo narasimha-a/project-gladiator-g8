@@ -1,4 +1,22 @@
+<<<<<<< HEAD
 .example-radio-group {
+=======
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .example-container {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #555;
+  }
+
+  .class1{
+    margin-top: -10%;
+  }
+
+  .example-radio-group {
+>>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
     display: flex;
     flex-direction: column;
     margin: 15px 0;
@@ -6,4 +24,28 @@
   
   .example-radio-button {
     margin: 5px;
+<<<<<<< HEAD
   }
+=======
+  }
+
+  input.ng-invalid.ng-dirty{
+    border-bottom-color : #e91e63 !important;
+    box-shadow: 0 1px 0 0 #e91e63 !important;
+}
+
+button.btn-submit{
+    width: 100%;
+}
+
+ul.answer li:hover{
+    background-color: #26a69a;
+    color: #eafaf9;
+    cursor: pointer;
+}
+
+ul li.selected{
+    background-color: #26a69a !important;
+    color: #eafaf9 !important;
+}
+>>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff

@@ -3,5 +3,4 @@ export class questions{
     questionStatement:String="";
     options:string="";
     answers:string="";
-
 }

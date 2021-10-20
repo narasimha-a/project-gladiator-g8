@@ -108,10 +108,7 @@ public class UserController {
 
 		
 	}
-	
-//	@PostMapping("/userlevel")
-//	public ResponseEntity<String> userLevelsCleared(@RequestBpdy)
-//	
+
 	
 
 }

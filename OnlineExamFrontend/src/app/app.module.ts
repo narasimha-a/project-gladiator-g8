@@ -18,6 +18,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+<<<<<<< HEAD
+=======
+import {MatSidenavModule} from '@angular/material/sidenav';
+
+>>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,15 +36,20 @@ import { FormsModule } from '@angular/forms';
     MatCheckboxModule,
     MatRadioModule,
     HttpClientModule,
+<<<<<<< HEAD
     FormsModule,
     
     
     
+=======
+    MatSidenavModule,
+>>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
     MatToolbarModule,
     MatCardModule,
     MatIconModule,
     MatGridListModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   providers: [StartendexamService],
   bootstrap: [AppComponent]
