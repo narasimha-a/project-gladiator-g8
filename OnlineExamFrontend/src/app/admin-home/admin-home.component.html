@@ -1,0 +1,54 @@
+<mat-toolbar>
+    <h1>WELCOME ADMIN !!</h1>
+    <span class="example-spacer"></span>
+    <button mat-icon-button aria-label="Logout" (click) = "adminLogout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+</mat-toolbar>  
+<mat-grid-list cols="3">
+    <mat-grid-tile>
+        <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Add Questions</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <button mat-icon-button (click)="addQuestions()">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">add_circle</mat-icon>
+    
+                </button>
+            </mat-card-content>
+            
+          </mat-card>
+   
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Remove Questions</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                  <button mat-icon-button (click)="removeQuestions()">
+                      <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+      
+                  </button>
+              </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>View Reports</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                  <button mat-icon-button (click)="viewReports()">
+                      <mat-icon aria-hidden="false" aria-label="Example home icon">list</mat-icon>
+      
+                  </button>
+              </mat-card-content>
+          </mat-card>
+   
+    </mat-grid-tile>
+</mat-grid-list>

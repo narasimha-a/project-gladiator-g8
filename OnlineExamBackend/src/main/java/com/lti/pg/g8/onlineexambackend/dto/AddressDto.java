@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ExamDto {
+public class AddressDto {
 
-    private Long examId;
-    private String examName;
-
+	private Long addressId;
+	private String city;
+	private String state;
 }
