@@ -74,7 +74,7 @@ export class StartendexamComponent implements OnInit {
   }
 
   getSubmissionId = () => {
-    this.submissionService.getSubmissionByExamIdAndUserId(166,160).subscribe(sub => {
+    this.submissionService.getSubmissionByExamIdAndUserId(176,181).subscribe(sub => {
       this.submission = sub;
       console.log(this.submission);
       sessionStorage.setItem("submissionId",JSON.stringify(this.submission.submissionId));

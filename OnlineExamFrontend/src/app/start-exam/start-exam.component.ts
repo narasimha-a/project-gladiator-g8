@@ -12,16 +12,30 @@ export class StartExamComponent implements OnInit {
 
   submission:submissionDto = {
     submissionId:0,
-    examId: 166,
-    userId:160,
+    examId: 176,
+    userId:181,
     addressId:141,
     percentages: ""
   };
   constructor(private submissionService:SubmissionService,private router:Router) { }
 
   ngOnInit(): void {
-    
+   
   }
+
+  // if(){
+
+  // }
+
+  // getSubmissionId = () => {
+  //   this.submissionService.getSubmissionByExamIdAndUserId(176,181).subscribe(sub => {
+  //     this.submission = sub;
+  //     console.log(this.submission);
+  //     sessionStorage.setItem("submissionId",JSON.stringify(this.submission.submissionId));
+  //   },(error)=>{
+  //     console.log("No submission id");
+  //   })
+  // }
 
   onClickStartExam = () => {
     this.submissionService.addNewSubmission(this.submission).subscribe(data => {

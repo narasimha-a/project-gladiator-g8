@@ -12,8 +12,8 @@ export class StartendexamService {
   constructor(private http:HttpClient) { }
 
   getExamById(examid:number){
-    console.log(this.http.get<exam>(this.baseUrl+'/'+148));
-    return this.http.get<exam>(this.baseUrl+'/'+166); 
+    console.log(this.http.get<exam>(this.baseUrl+'/'+176));
+    return this.http.get<exam>(this.baseUrl+'/'+176); 
   }
 
 
