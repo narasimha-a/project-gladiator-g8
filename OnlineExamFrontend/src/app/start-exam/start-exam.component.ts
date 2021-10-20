@@ -13,8 +13,9 @@ export class StartExamComponent implements OnInit {
   submission:submissionDto = {
     submissionId:0,
     examId: 148,
-    userId:141,
-    addressId:142
+    userId:142,
+    addressId:141,
+    percentages: ""
   };
   constructor(private submissionService:SubmissionService,private router:Router) { }
 

@@ -24,6 +24,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatExpansionModule} from "@angular/material/expansion";
+import { TSMap } from "typescript-map"
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatSidenavModule,
     MatListModule,
     MatExpansionModule,
+    TSMap
   ],
   providers: [StartendexamService],
   bootstrap: [AppComponent]
