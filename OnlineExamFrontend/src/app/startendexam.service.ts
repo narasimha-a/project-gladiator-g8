@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { exam } from './startendexam/model/exam.model';
-import { ExamLevelDto } from './startendexam/model/examLevelDto.model';
+import { ExamLevelDto } from './startendexam/model/examleveldto.model';
+
 import { submissionDto } from './startendexam/model/submissionDto.model';
 
 @Injectable({

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ExamLevelDto } from './startendexam/model/examLevelDto.model';
+import { ExamLevelDto } from './startendexam/model/examleveldto.model';
+
 import { submissionDto } from './startendexam/model/submissionDto.model';
 
 @Injectable({
@@ -15,7 +16,6 @@ export class UserService {
     // return this.http.get<exam>(this.baseUrl+'/'+114);
     console.log(JSON.stringify(examLevelDto));
     return this.http.post<submissionDto>(this.baseUrl+'/submitLevel',examLevelDto); 
-
   }
 
 }
