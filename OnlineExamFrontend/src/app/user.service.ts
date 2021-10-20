@@ -12,6 +12,6 @@ export class UserService {
 
   postSubmission(examLevelDto: ExamLevelDto, userId:number){
     // return this.http.get<exam>(this.baseUrl+'/'+114);
-    return this.http.post<ExamLevelDto>(this.baseUrl+'/'+userId+'/submitLevel',examLevelDto); 
+    return this.http.post<ExamLevelDto>(this.baseUrl+'/submitLevel',examLevelDto); 
   }
 }

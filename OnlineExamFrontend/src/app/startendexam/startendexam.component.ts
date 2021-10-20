@@ -72,7 +72,7 @@ export class StartendexamComponent implements OnInit {
   }
 
   getSubmissionId = () => {
-    this.submissionService.getSubmissionByExamIdAndUserId(114,80).subscribe(sub => {
+    this.submissionService.getSubmissionByExamIdAndUserId(148,149).subscribe(sub => {
       this.submission = sub;
       console.log(this.submission);
       sessionStorage.setItem("submissionId",JSON.stringify(this.submission.submissionId));
@@ -106,6 +106,7 @@ export class StartendexamComponent implements OnInit {
       this.examSubmit = {
         examId: this.currentExam.examId,
         examLevelId: this.currentExam.levels[0].examLevelId,
+        submissionId: Number(sessionStorage.getItem("submissionId")),
         passingCriteria: this.currentExam.levels[0].passingCriteria,
         selectedOptionsMap: this.optionMap
       }

@@ -8,11 +8,13 @@ import javax.annotation.PostConstruct;
 import com.lti.pg.g8.onlineexambackend.dto.ExamDto;
 import com.lti.pg.g8.onlineexambackend.dto.ExamLevelDto;
 import com.lti.pg.g8.onlineexambackend.dto.UserLoginDto;
-import com.lti.pg.g8.onlineexambackend.service.EvaluationService;
-import com.lti.pg.g8.onlineexambackend.service.ExamService;
+import com.lti.pg.g8.onlineexambackend.model.Exam;
+import com.lti.pg.g8.onlineexambackend.model.Submission;
+import com.lti.pg.g8.onlineexambackend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,14 +23,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.web.bind.annotation.*;
+
+
 import com.lti.pg.g8.onlineexambackend.model.Address;
 import com.lti.pg.g8.onlineexambackend.model.User;
-import com.lti.pg.g8.onlineexambackend.service.AddressService;
-import com.lti.pg.g8.onlineexambackend.service.UserService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins= "*")
 public class UserController {
 
 	@Autowired
@@ -42,6 +45,9 @@ public class UserController {
 
 	@Autowired
 	EvaluationService evaluationService;
+
+	@Autowired
+	SubmissionService submissionService;
 
 	@PostMapping("")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
@@ -84,14 +90,26 @@ public class UserController {
 //		return new ResponseEntity<>(this.userService.getUsersByExamId(examId), HttpStatus.OK);
 //	}
 
-	@PostMapping("/{userId}/submitLevel")
-	public ResponseEntity<Integer> submitExamLevel(@RequestBody ExamLevelDto examLevelDto, @PathVariable Long userId){
+	@GetMapping("/exams/{examId}")
+	public ResponseEntity<Exam> getExamByExamId(@PathVariable Long examId){
+		return new ResponseEntity<>(this.examService.getExamById(examId), HttpStatus.OK);
+	}
+
+	@PostMapping("/{userId}/exams/{examId}")
+	public ResponseEntity<Submission> createNewSubmission(@PathVariable Long userId, @PathVariable Long examId){
+		return new ResponseEntity<>(this.submissionService.createNewSubmission(userId,examId),HttpStatus.OK);
+	}
+
+
+	@PostMapping("/submitLevel")
+	public ResponseEntity<Submission> submitExamLevel(@RequestBody ExamLevelDto examLevelDto){
 
 		int levelResult = this.evaluationService.evaluateExamLevel(examLevelDto);
-
 		//Add result to Submission table
 
-		return new ResponseEntity<>(levelResult, HttpStatus.OK);
+		Submission submission = this.submissionService.addPercentageToSubmissionBySubmissionId(examLevelDto.getSubmissionId(),levelResult);
+
+		return new ResponseEntity<>(submission, HttpStatus.OK);
 	}
 	
 	
