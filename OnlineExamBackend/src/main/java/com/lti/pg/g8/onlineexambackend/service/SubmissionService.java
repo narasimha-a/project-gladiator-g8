@@ -15,4 +15,12 @@ public interface SubmissionService {
 	public abstract Submission addNewSubmission(Submission submission); 
 	
 	public abstract Submission addPercentageToSubmissionBySubmissionId( Long submissionId, Integer percentage); 
+
+	
+
+	
+	Submission getSubmissionByExamAndUserId(Long examId, Long userId);
+
+	Submission createNewSubmission(Long userId, Long examId);
+
 }

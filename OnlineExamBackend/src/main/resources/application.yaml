@@ -9,9 +9,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    username: hr
-    password: hr
-    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: system
+    password: bajidhoni
+    url: jdbc:oracle:thin:@localhost:1522:XE
+
+  
