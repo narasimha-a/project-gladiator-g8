@@ -16,6 +16,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	@Query("Select u from User u join u.address a where a.addressId = ?1")
 	List<User> findAllUsersByAddressId(Long addressId);
+	
+	@Query("Select s.userId from Submission s where s.examId = ?1")
+	List<Long> findAllUsersByExamId(Long examId);
+	
+
 }
 
 

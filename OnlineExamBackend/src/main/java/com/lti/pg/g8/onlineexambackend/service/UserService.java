@@ -11,8 +11,8 @@ public interface UserService {
 	Boolean checkUserCred(String name, String password);
 	List<User> getAllUsers() ;
 	List<User> getUserListByAddressId(Long AddressId);
-
-//	List<User> getUsersByExamId(Long examId);
+	User getUserById(Long userId);
+	List<User> getUsersByExamId(Long examId);
 //	List<User> getUsersByAddressId(Long addressId);
 
 }
