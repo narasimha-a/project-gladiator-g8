@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { exam } from './startendexam/model/exam.model';
-import { submission } from './startendexam/model/submission.model';
-import { examleveldto } from './startendexam/model/examleveldto.model';
+import { ExamLevelDto } from './startendexam/model/examLevelDto.model';
+import { submissionDto } from './startendexam/model/submissionDto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,25 +17,26 @@ export class StartendexamService {
   constructor(private http:HttpClient) { }
 
   getExamById(examid:number){
-    console.log(this.http.get<exam>(this.examUrl+'/'+114));
-    return this.http.get<exam>(this.examUrl+'/'+114); 
+    //console.log(this.http.get<exam>(this.examUrl+'/'+148));
+    return this.http.get<exam>(this.examUrl+'/'+97); 
   }
 
   createUserSubmission(userId:number, examId:number){
 
-    return this.http.get<submission>(this.submissiondtoUrl+ '/' + userId + '/' +"exams" +'/'+ examId);
+    return this.http.get<submissionDto>(this.submissiondtoUrl+ '/' + userId + '/' +"exams" +'/'+ examId);
     
 
   }
 
 
-  sendEvaluationInfo(addexamleveldto:examleveldto){
+  sendEvaluationInfo(addexamleveldto:ExamLevelDto){
     
-    return this.http.post<examleveldto>(this.sendEvaluation, addexamleveldto,this.options );
+    return this.http.post<ExamLevelDto>(this.sendEvaluation, addexamleveldto,this.options );
   }
 
   
   
+
 
 
 

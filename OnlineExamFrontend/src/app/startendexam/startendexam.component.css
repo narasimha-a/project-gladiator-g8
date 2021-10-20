@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-.example-radio-group {
-=======
 .example-spacer {
     flex: 1 1 auto;
   }
@@ -16,7 +13,6 @@
   }
 
   .example-radio-group {
->>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
     display: flex;
     flex-direction: column;
     margin: 15px 0;
@@ -24,10 +20,9 @@
   
   .example-radio-button {
     margin: 5px;
-<<<<<<< HEAD
   }
-=======
-  }
+
+  
 
   input.ng-invalid.ng-dirty{
     border-bottom-color : #e91e63 !important;
@@ -48,4 +43,8 @@ ul li.selected{
     background-color: #26a69a !important;
     color: #eafaf9 !important;
 }
->>>>>>> dbafbb341f8c83e4d5b1df77e48a54a3a62308ff
+
+
+active{
+  background-color: #26a69a !important;
+}

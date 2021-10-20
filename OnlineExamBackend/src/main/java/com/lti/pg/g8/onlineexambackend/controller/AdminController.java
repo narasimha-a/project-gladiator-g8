@@ -1,5 +1,8 @@
 package com.lti.pg.g8.onlineexambackend.controller;
 
+import java.util.List;
+
+import com.lti.pg.g8.onlineexambackend.dto.AdminDto;
 import com.lti.pg.g8.onlineexambackend.model.Exam;
 import com.lti.pg.g8.onlineexambackend.model.User;
 import com.lti.pg.g8.onlineexambackend.service.ExamService;
@@ -9,15 +12,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins= "*")
 public class AdminController {
 
     @Autowired
     ExamService examService;
+
+    @PostMapping("/login")
+    public ResponseEntity<Boolean> validateAdmin(@RequestBody AdminDto adminDto){
+        boolean validAdmin = false;
+        if(adminDto.getAdminName().equals("admin") && adminDto.getPassword().equals("admin@123"))
+            validAdmin = true;
+
+    	return new ResponseEntity<>(validAdmin,HttpStatus.OK);
+    }
+    
 
     @Autowired
     UserService userService;
@@ -42,6 +53,7 @@ public class AdminController {
         return new ResponseEntity<>(this.examService.deleteExamById(examId), HttpStatus.OK);
     }
 
+    
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers(){
         return new ResponseEntity<>(this.userService.getAllUsers(), HttpStatus.OK);

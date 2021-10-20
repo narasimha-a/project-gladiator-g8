@@ -51,7 +51,12 @@ public class SubmissionServiceImpl implements SubmissionService {
 	public Submission addPercentageToSubmissionBySubmissionId(Long submissionId, Integer percentage) {
 		Submission submission=this.submissionRepository.getById(submissionId);
 		String percent=submission.getPercentages();
-		percent += "," + percentage;
+		if(percent == null){
+			percent = Integer.toString(percentage);
+		}
+		else{
+			percent += "," + percentage;
+		}
 		submission.setPercentages(percent);
 		System.out.println(percent);
 		return this.submissionRepository.save(submission);
@@ -69,5 +74,10 @@ public class SubmissionServiceImpl implements SubmissionService {
 		List<Submission> sub=this.submissionRepository.findByexamId(examId);
 		System.out.println(sub);
 		return sub;
+	}
+
+	@Override
+	public Submission getSubmissionByExamAndUserId(Long examId, Long userId) {
+		return this.submissionRepository.findByExamIdAndUserId(examId, userId);
 	}
 }
