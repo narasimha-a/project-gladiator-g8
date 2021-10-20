@@ -1,90 +1,104 @@
 
 export class ExamPayload{
 
-  private _examId: number |undefined;
-  private _examName: string = "";
-  private _levels : ExamLevelPayload[] = [];
+   examId: number |undefined;
+   examName: string = "";
+   levels : ExamLevelPayload[] = [];
+
+  //[new ExamLevelPayload(0, 0, [new Question(0,"",",","")])];
 
 
   constructor(examId: number | undefined, examName: string, levels: ExamLevelPayload[]) {
-    this._examId = examId;
-    this._examName = examName;
-    this._levels = [new ExamLevelPayload(1,70,[])];
+    this.examId = examId;
+    this.examName = examName;
+    levels.forEach((value) =>{
+      let examLevelPayload = new ExamLevelPayload(value.examLevelId, value.passingCriteria, value.questions)
+      this.levels.push(examLevelPayload);
+      console.log(examLevelPayload);
+    })
+    //this.levels = levels;
   }
 
 
-  get examId(): number | undefined {
-    return this._examId;
+  getExamId(){
+    return this.examId;
   }
 
-  set examId(value: number | undefined) {
-    this._examId = value;
+  setExamId(examId : number){
+    this.examId = examId;
   }
 
-  get examName(): string {
-    return this._examName;
+  getExamName(){
+    return this.examName;
   }
 
-  set examName(value: string) {
-    this._examName = value;
+  setExamName(examName : string){
+    this.examName = examName;
   }
 
-  get levels(): ExamLevelPayload[] {
-    return this._levels;
+  getLevels(){
+    return this.levels;
   }
 
-  set levels(value: ExamLevelPayload[]) {
-    this._levels = value;
+  setLevels(levels : ExamLevelPayload[]){
+    this.levels = levels;
   }
+
 
   createNewLevel(): ExamLevelPayload[]{
-    this.levels.push(new ExamLevelPayload(0,0,[]));
+    this.levels.push(new ExamLevelPayload(0,0,
+      [new Question(0,"",",","")]));
     return this.levels;
   }
 }
 
 class ExamLevelPayload {
 
-  private _examLevelId : number | undefined;
-  private _passingCriteria : number | undefined;
+   examLevelId : number | undefined;
+   passingCriteria : number | undefined;
 
-  private _questions : Question[] = [];
+   questions : Question[] = [];
 
 
   constructor(examLevelId: number | undefined, passingCriteria: number | undefined, questions: Question[]) {
-    this._examLevelId = examLevelId;
-    this._passingCriteria = passingCriteria;
-    this._questions = [new Question(3, "Hi","1,1","1"),
-      new Question(4, "Hi","1,1","1")];
+    this.examLevelId = examLevelId;
+    this.passingCriteria = passingCriteria;
+    questions.forEach((value => {
+      let question = new Question(value.questionId, value.questionStatement, value.options, value.answers);
+      this.questions.push(question);
+      console.log(question);
+    }))
+    //this.questions = questions;
   }
 
 
-  get examLevelId(): number | undefined {
-    return this._examLevelId;
+  getExamLevelId(): number | undefined {
+    return this.examLevelId;
   }
 
-  set examLevelId(value: number | undefined) {
-    this._examLevelId = value;
+  setExamLevelId(value: number | undefined) {
+    this.examLevelId = value;
   }
 
-  get passingCriteria(): number | undefined {
-    return this._passingCriteria;
+  getPassingCriteria(): number | undefined {
+    return this.passingCriteria;
   }
 
-  set passingCriteria(value: number | undefined) {
-    this._passingCriteria = value;
+  setPassingCriteria(value: number | undefined) {
+    this.passingCriteria = value;
   }
 
-  get questions(): Question[] {
-    return this._questions;
+  getQuestions(): Question[] {
+    return this.questions;
   }
 
-  set questions(value: Question[]) {
-    this._questions = value;
+  setQuestions(value: Question[]) {
+    this.questions = value;
   }
 
-  createNewQuestion(): Question[]{
-    this.questions.push(new Question(0,"","",""))
+  createNewQuestion(){
+    console.log("in createNewQuestion")
+    this.questions.push(new Question(0,"",",",""))
 
     return this.questions;
   }
@@ -93,51 +107,64 @@ class ExamLevelPayload {
 
 class Question {
 
-  private _questionId : number | undefined;
-  private _questionStatement : string = "";
+   questionId : number | undefined;
+   questionStatement : string = "";
+   options : string = "";
 
-  private _options : string = "";
-
-  private _answers : string = "";
+   answers : string = "";
 
 
   constructor(questionId: number | undefined, questionStatement: string, options: string, answers: string) {
-    this._questionId = questionId;
-    this._questionStatement = questionStatement;
-    this._options = options;
-    this._answers = answers;
+    this.questionId = questionId;
+    this.questionStatement = questionStatement;
+    this.options = options;
+    console.log(options.split(",")[0])
+    this.answers = answers;
   }
 
 
-  get questionId(): number | undefined {
-    return this._questionId;
+  getQuestionId(): number | undefined {
+    return this.questionId;
   }
 
-  set questionId(value: number | undefined) {
-    this._questionId = value;
+  setQuestionId(value: number | undefined) {
+    this.questionId = value;
   }
 
-  get questionStatement(): string {
-    return this._questionStatement;
+  getQuestionStatement(): string {
+    return this.questionStatement;
   }
 
-  set questionStatement(value: string) {
-    this._questionStatement = value;
+  setQuestionStatement(value: string) {
+    this.questionStatement = value;
   }
 
-  get options(): string {
-    return this._options;
+  getOptions(): string[] {
+    return this.options.split(",");
   }
 
-  set options(value: string) {
-    this._options = value;
+  setOptions(values: string) {
+    this.options = values;
   }
 
-  get answers(): string {
-    return this._answers;
+  updateOption(event : any, ind : number){
+    let optionList = this.getOptions();
+    optionList[ind] = event.target.value;
+    this.setOptions(optionList.toString())
+   console.log(this.getOptions())
   }
 
-  set answers(value: string) {
-    this._answers = value;
+  getAnswers(): string {
+    return this.answers;
+  }
+
+  setAnswers(value: string) {
+    this.answers = value;
+  }
+
+  createNewOption() {
+    this.options += ",";
+    console.log(this.options);
+    return this.options;
   }
 }
