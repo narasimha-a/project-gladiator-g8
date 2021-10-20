@@ -9,10 +9,12 @@ import com.lti.pg.g8.onlineexambackend.dto.ExamDto;
 import com.lti.pg.g8.onlineexambackend.dto.ExamLevelDto;
 import com.lti.pg.g8.onlineexambackend.dto.UserLoginDto;
 import com.lti.pg.g8.onlineexambackend.model.Exam;
+import com.lti.pg.g8.onlineexambackend.model.Submission;
 import com.lti.pg.g8.onlineexambackend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +27,7 @@ import com.lti.pg.g8.onlineexambackend.model.User;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins= "*")
 public class UserController {
 
 	@Autowired
@@ -89,20 +92,26 @@ public class UserController {
 	}
 
 	@PostMapping("/{userId}/exams/{examId}")
-	public ResponseEntity<Long> createNewSubmission(@PathVariable Long userId, @PathVariable Long examId){
-		return new ResponseEntity<>(this.submissionService.createNewSubmission(userId,examId).getSubmissionId(),HttpStatus.OK);
+	public ResponseEntity<Submission> createNewSubmission(@PathVariable Long userId, @PathVariable Long examId){
+		return new ResponseEntity<>(this.submissionService.createNewSubmission(userId,examId),HttpStatus.OK);
 	}
 
 
 	@PostMapping("/submitLevel")
-	public ResponseEntity<Integer> submitExamLevel(@RequestBody ExamLevelDto examLevelDto){
+	public ResponseEntity<Submission> submitExamLevel(@RequestBody ExamLevelDto examLevelDto){
 
 		int levelResult = this.evaluationService.evaluateExamLevel(examLevelDto);
 		//Add result to Submission table
+		Submission submission = this.submissionService.addPercentageToSubmissionBySubmissionId(examLevelDto.getSubmissionId(),levelResult);
 
-		return new ResponseEntity<>(levelResult, HttpStatus.OK);
+		return new ResponseEntity<>(submission, HttpStatus.OK);
+
+		
 	}
 	
+//	@PostMapping("/userlevel")
+//	public ResponseEntity<String> userLevelsCleared(@RequestBpdy)
+//	
 	
 
 }

@@ -10,12 +10,14 @@ import { StartendexamComponent } from './startendexam/startendexam.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { StartendexamService } from './startendexam.service';
 
+
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatCheckboxModule,
     MatRadioModule,
     HttpClientModule,
+    FormsModule,
+    
     
     
     MatToolbarModule,

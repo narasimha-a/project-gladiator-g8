@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import com.lti.pg.g8.onlineexambackend.model.Submission;
 import com.lti.pg.g8.onlineexambackend.service.SubmissionService;
 
-@CrossOrigin("*")
+
 @RestController
 @RequestMapping("home/exam/submission")
+@CrossOrigin(origins= "*")
 public class SubmissionController {
 	
 	@Autowired
