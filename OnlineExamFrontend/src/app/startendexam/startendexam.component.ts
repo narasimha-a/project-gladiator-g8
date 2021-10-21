@@ -38,12 +38,14 @@ export class StartendexamComponent implements OnInit {
   examSubmit!: ExamLevelDto;
   optionMap: TSMap<number,string> = new TSMap();
   optMap!: Map<string,string>;
+
+  currentLevel:number=0;
+  percentages:string[]=[];
+
   constructor(private startendexam: StartendexamService, private router:Router,private submissionService:SubmissionService, private userService:UserService) { }
   optString!: string;
   status = '';
 
-  currentLevel:number=0;
-  percentages:string[]=[];
 
 
   
@@ -52,8 +54,7 @@ export class StartendexamComponent implements OnInit {
   ngOnInit(): void {
     this.optString = "[O0,O1,O2,O3]";
    // console.log(this.optString.substring(1,this.optString.length-1).split(","));
-    this.getExamById(97);
-    this.getExamOnLevel();
+    this.getExamById(Number(sessionStorage.getItem("examId")));
     
     console.log("printing this!!!");
     this.getSubmissionId();
@@ -75,7 +76,8 @@ export class StartendexamComponent implements OnInit {
       this.currentExam= data;
       this.numberOfLevels = this.currentExam.levels.length;
       sessionStorage.setItem("numberOfLevels",this.numberOfLevels.toString());
-      //this.getExamOnLevel();
+      sessionStorage.setItem("currentLevel",this.currentLevel.toString());
+      // this.getExamOnLevel();
       //this.currentLevel=this.currentExam.levels;
       console.log(this.currentExam);
       // this.qnProgress = this.currentExam.levels[0].questions.length 
@@ -109,7 +111,7 @@ export class StartendexamComponent implements OnInit {
       })
     }
     else{
-      this.submissionService.getSubmissionByExamIdAndUserId(97,122).subscribe(sub => {
+      this.submissionService.getSubmissionByExamIdAndUserId(Number(sessionStorage.getItem("examId")),Number(sessionStorage.getItem("userId"))).subscribe(sub => {
         this.submission = sub;
         console.log(this.submission);
         sessionStorage.setItem("submissionId",JSON.stringify(this.submission.submissionId));
@@ -127,9 +129,9 @@ export class StartendexamComponent implements OnInit {
     }
 
     console.log(this.currentExam.levels[this.currentLevel].questions[0]);
-    this.percentages = this.submission.percentages.split(",");
+    // this.percentages = this.submission.percentages.split(",");
 
-    this.currentLevel= this.percentages.length;
+    // this.currentLevel= this.percentages.length;
     sessionStorage.setItem("currentLevel",JSON.stringify(this.currentLevel));
 
    
@@ -170,7 +172,7 @@ export class StartendexamComponent implements OnInit {
         passingCriteria: this.currentExam.levels[this.currentLevel].passingCriteria,
         selectedOptionsMap: this.optionMap
       }
-      this.userService.postSubmission(this.examSubmit, 122).subscribe(data => {
+      this.userService.postSubmission(this.examSubmit, Number(sessionStorage.getItem("userId"))).subscribe(data => {
         console.log(data);
       })
       console.log(this.examSubmit);

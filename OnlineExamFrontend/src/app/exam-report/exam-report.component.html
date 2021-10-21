@@ -11,12 +11,12 @@
 			Score: {{currLevelPercentage}}<br>
 		</p>
 			
-				<div *ngIf="currentLevel == numberOfLevels">
+				<div *ngIf="currentLevel == numberOfLevels-1">
 					<p>
 					<button (click)= "returnToHome()"> Test Completed Return To Home Page>> </button>
 					</p>
 				</div>
-				<div *ngIf="currentLevel != numberOfLevels">
+				<div *ngIf="currentLevel != numberOfLevels-1">
 					<p>
 					<button (click)= "incrementExamLevel()"> Next Level>> </button>
 					</p>

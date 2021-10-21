@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { User } from '../models/user';
 import { UserService } from '../user.service';
 import { Address } from '../address';
+import { Router } from '@angular/router';
 
 
 
@@ -16,7 +17,7 @@ import { Address } from '../address';
 export class AddUserComponent implements OnInit{
   user: User = new User();
   isAdded = false;
-  constructor(private userService: UserService, private datePipe: DatePipe){}
+  constructor(private userService: UserService, private datePipe: DatePipe, private router:Router){}
    
   currentDate = new Date();
   userForm!: FormGroup;          
@@ -50,6 +51,8 @@ export class AddUserComponent implements OnInit{
 
 
     this.save();
+
+    this.router.navigate(["/login"]);
   }
 
   save(){

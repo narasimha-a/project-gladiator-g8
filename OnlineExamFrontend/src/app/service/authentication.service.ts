@@ -18,11 +18,14 @@ export class AuthenticationService {
  authenticate(username: string, password: string) { 
    var userlogindto = new UserLoginDto();
    userlogindto.userName=username;
+   var userValue = false;
    userlogindto.password=password;
    
   this.userService.authenticateUser(userlogindto).subscribe(data=> {
     if(data){
       this.currentLoginUser = data;
+      console.log(this.currentLoginUser);
+      console.log(data.userId);
       // sessionStorage.setItem('username', data.userName.toString());
      sessionStorage.setItem('userId',data.userId.toString());
       // console.log("stored");
@@ -36,13 +39,13 @@ export class AuthenticationService {
    }
 
     })
-    if(this.currentLoginUser != null){
-      sessionStorage.setItem("userId",this.currentLoginUser.userId.toString());
-      return true;
-    }else{
-      return false;
-    }
-
+    // if(this.currentLoginUser != null){
+    //   sessionStorage.setItem("userId",this.currentLoginUser.userId.toString());
+    //   return true;
+    // }else{
+    //   return false;
+    // }
+    return false;
 
   }
 

@@ -19,26 +19,8 @@ export class StartendexamService {
 
   getExamById(examid:number){
     //console.log(this.http.get<exam>(this.examUrl+'/'+148));
-    return this.http.get<exam>(this.examUrl+'/'+97); 
+    return this.http.get<exam>(this.examUrl+'/'+sessionStorage.getItem("examId")); 
   }
-
-  // createUserSubmission(userId:number, examId:number){
-
-  //   return this.http.get<submissionDto>(this.submissiondtoUrl+ '/' + userId + '/' +"exams" +'/'+ examId);
-    
-
-  // }
-
-
-  // sendEvaluationInfo(addexamleveldto:ExamLevelDto){
-    
-  //   return this.http.post<ExamLevelDto>(this.sendEvaluation, addexamleveldto,this.options );
-  // }
-
-  
-  
-
-
 
 
 }

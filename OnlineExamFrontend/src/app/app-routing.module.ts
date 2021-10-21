@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { AddUserComponent } from './adduser/adduser.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ChooseExamComponent } from './choose-exam/choose-exam.component';
 const routes: Routes = [
   {path: "adminHome", component: AdminHomeComponent},
   {path:"startExam/exam", component:StartendexamComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'addUser', component: AddUserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  {path:'allExams', component:ChooseExamComponent}
 ]
 
 

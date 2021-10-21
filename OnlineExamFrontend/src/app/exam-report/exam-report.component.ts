@@ -13,8 +13,8 @@ export class ExamReportComponent implements OnInit {
   reportLevel:number=0;
   reportPassingCriteria: number=0;
 
-  currentLevel!:number;
-  numberOfLevels!:number;
+  currentLevel:number=Number(sessionStorage.getItem("currentLevel"));
+  numberOfLevels:number=Number(sessionStorage.getItem("numberOfLevels"));
 
   result!: submissionDto;
   percentage!:string[];
@@ -30,24 +30,19 @@ export class ExamReportComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    
     this.getPercentage();
-    if(sessionStorage.getItem("currentLevel")){
-      this.currentLevel = Number(sessionStorage.getItem("currentLevel"));
-    }
-    if(sessionStorage.getItem("numberOfLevels")){
-      this.numberOfLevels = Number(sessionStorage.getItem("numberOfLevels"));
-    }
-    
-    if(this.currLevelPercentage >=  this.reportPassingCriteria){
-      this.reportLevel =Number(sessionStorage.getItem("currentLevel")) +1;
-      sessionStorage.setItem("currentLevel", this.reportLevel.toString());
+    console.log(this.currentLevel);
+    console.log(this.numberOfLevels);
+    // if(this.currLevelPercentage >=  this.reportPassingCriteria){
+    //   this.reportLevel =Number(sessionStorage.getItem("currentLevel")) +1;
+    //   sessionStorage.removeItem("currentLevel");
+    //   sessionStorage.setItem("currentLevel", this.reportLevel.toString());
       
-    }
-    else{
-      sessionStorage.removeItem("currentLevel");
+    // }
+    // else{
+    //   sessionStorage.removeItem("currentLevel");
 
-    }
+    // }
   }
   
   getPercentage = () => {
@@ -69,12 +64,16 @@ export class ExamReportComponent implements OnInit {
       this.router.navigate(['/']);
     }
     else{
+      this.reportLevel =Number(sessionStorage.getItem("currentLevel")) +1;
+      sessionStorage.removeItem("currentLevel");
+      sessionStorage.setItem("currentLevel", this.reportLevel.toString());
       this.router.navigate(['/startExam']);
     }
     
   }
 
   returnToHome(){
+    sessionStorage.removeItem("currentLevel");
     this.router.navigate(['/'])
   }
 }
