@@ -59,7 +59,7 @@ public class UserController {
 	}
 
 	@GetMapping("")
-	public ResponseEntity<Boolean> authenticateUser(@RequestBody UserLoginDto userLoginDto){
+	public ResponseEntity<User> authenticateUser(@RequestBody UserLoginDto userLoginDto){
 		return  new ResponseEntity<>(this.userService.checkUserCred(userLoginDto.getUserName(), userLoginDto.getPassword()),
 				HttpStatus.OK);
 	}
