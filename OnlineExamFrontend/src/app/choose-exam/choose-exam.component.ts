@@ -36,4 +36,12 @@ export class ChooseExamComponent implements OnInit {
     console.log("after data" + this.allExams);
   }
 
+  OnMatCardClickEvent(exam:examDto){
+
+    sessionStorage.setItem("examId" , exam.examId.toString());
+    this.router.navigate(["/startExam"]);
+   //console.log(exam.examId);
+    }
+
+
 }

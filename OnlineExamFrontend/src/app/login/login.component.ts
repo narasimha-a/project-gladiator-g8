@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.loginservice.authenticate(this.username,this.password);
 
     if(sessionStorage.getItem("userId")){
-      this.router.navigate(['/startExam'])
+      this.router.navigate(['/allExams'])
       this.invalidLogin = false
       console.log("sucessful Login!!");
     }
