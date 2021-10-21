@@ -27,6 +27,8 @@ import {ModifyExamChildComponent} from "./modify-exam-child/modify-exam-child.co
 import {ExamReportComponent} from "./exam-report/exam-report.component";
 import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatRippleModule} from "@angular/material/core";
+import { ViewReportsComponent } from './view-reports/view-reports.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import {MatRippleModule} from "@angular/material/core";
     AdminLoginComponent,
     ModifyExamComponent,
     ModifyExamChildComponent,
-    ExamReportComponent
+    ExamReportComponent,
+    ViewReportsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import {MatRippleModule} from "@angular/material/core";
     HttpClientModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSelectModule
   ],
   providers: [
     {

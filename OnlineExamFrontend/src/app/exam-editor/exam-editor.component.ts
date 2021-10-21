@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ExamPayload} from "./exam-payload";
 import {ExamService} from "../exam.service";
 import {ActivatedRoute} from "@angular/router";
+import {Location} from "@angular/common";
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ExamEditorComponent implements OnInit {
   isDataLoaded = false;
 
 
-  constructor(private examService : ExamService, private route: ActivatedRoute) {
+  constructor(private examService : ExamService, private route: ActivatedRoute, private location: Location) {
     let reqExamId = this.route.snapshot.paramMap.get('examId');
     console.log(reqExamId);
     if(reqExamId === 'newExam'){
@@ -74,6 +75,8 @@ export class ExamEditorComponent implements OnInit {
     console.log(JSON.stringify(this.examPayload))
 
     this.examService.postExam(this.examPayload).subscribe(data=>console.log(data));
+
+    this.location.back();
   }
 
   deleteOption(optionIndex: number) {
