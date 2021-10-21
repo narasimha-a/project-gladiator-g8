@@ -1,7 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-<<<<<<< HEAD
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-=======
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -157,4 +154,3 @@ background-image: linear-gradient(to bottom right,#02b3e4,#02ccba);
 /*html, body { height: 100%; }*/
 /*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
 
->>>>>>> 7bede447c86f5b816689b083ba41d5437f080108

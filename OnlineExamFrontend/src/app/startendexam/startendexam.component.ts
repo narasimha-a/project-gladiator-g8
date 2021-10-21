@@ -2,7 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TSMap } from 'typescript-map';
+//import { TSMap } from 'typescript-map';
 import { StartendexamService } from '../startendexam.service';
 import { SubmissionService } from '../submission.service';
 import {UserService} from '../user.service';
@@ -32,7 +32,7 @@ export class StartendexamComponent implements OnInit {
   optionList: string = "";
   qnProgress: number=0;
   examSubmit!: ExamLevelDto;
-  optionMap: TSMap<number,string> = new TSMap();
+ // optionMap: TSMap<number,string> = new TSMap();
   optMap!: Map<string,string>;
   constructor(private startendexam: StartendexamService, private router:Router,private submissionService:SubmissionService, private userService:UserService) { }
   optString!: string;
@@ -98,9 +98,9 @@ export class StartendexamComponent implements OnInit {
 
   onSubmit = () => {
     console.log(this.qnId);
-    this.optionMap.set(this.qnId,"["+this.option+"]");
+ //   this.optionMap.set(this.qnId,"["+this.option+"]");
     this.qnProgress++;
-    console.log(this.optionMap);
+ //   console.log(this.optionMap);
     
     if(this.qnProgress == this.currentExam.levels[0].questions.length){
       
@@ -110,7 +110,7 @@ export class StartendexamComponent implements OnInit {
         examLevelId: this.currentExam.levels[0].examLevelId,
         submissionId: Number(sessionStorage.getItem("submissionId")),
         passingCriteria: this.currentExam.levels[0].passingCriteria,
-        selectedOptionsMap: this.optionMap
+     //   selectedOptionsMap: this.optionMap
       }
       this.userService.postSubmission(this.examSubmit, 80).subscribe(data => {
         this.userService.submissionData = data;
