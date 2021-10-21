@@ -52,7 +52,8 @@ export class StartendexamComponent implements OnInit {
   ngOnInit(): void {
     this.optString = "[O0,O1,O2,O3]";
    // console.log(this.optString.substring(1,this.optString.length-1).split(","));
-    this.getExamById(176);
+    this.getExamById(97);
+    this.getExamOnLevel();
     
     console.log("printing this!!!");
     this.getSubmissionId();
@@ -60,8 +61,9 @@ export class StartendexamComponent implements OnInit {
 
     if(sessionStorage.getItem("currentLevel")){
       this.currentLevel = Number(sessionStorage.getItem("currentLevel"));
-
     }
+
+
     
   }
 
@@ -73,7 +75,7 @@ export class StartendexamComponent implements OnInit {
       this.currentExam= data;
       this.numberOfLevels = this.currentExam.levels.length;
       sessionStorage.setItem("numberOfLevels",this.numberOfLevels.toString());
-      this.getExamOnLevel();
+      //this.getExamOnLevel();
       //this.currentLevel=this.currentExam.levels;
       console.log(this.currentExam);
       // this.qnProgress = this.currentExam.levels[0].questions.length 
@@ -107,7 +109,7 @@ export class StartendexamComponent implements OnInit {
       })
     }
     else{
-      this.submissionService.getSubmissionByExamIdAndUserId(176,213).subscribe(sub => {
+      this.submissionService.getSubmissionByExamIdAndUserId(97,122).subscribe(sub => {
         this.submission = sub;
         console.log(this.submission);
         sessionStorage.setItem("submissionId",JSON.stringify(this.submission.submissionId));
@@ -168,7 +170,7 @@ export class StartendexamComponent implements OnInit {
         passingCriteria: this.currentExam.levels[this.currentLevel].passingCriteria,
         selectedOptionsMap: this.optionMap
       }
-      this.userService.postSubmission(this.examSubmit, 213).subscribe(data => {
+      this.userService.postSubmission(this.examSubmit, 122).subscribe(data => {
         console.log(data);
       })
       console.log(this.examSubmit);

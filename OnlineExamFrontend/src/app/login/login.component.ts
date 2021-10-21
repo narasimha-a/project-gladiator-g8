@@ -10,8 +10,8 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  username = 'kiran@gmail.com'
-  password = 'kiran@123'
+  username: string = "";
+  password :string = "";
   invalidLogin = false;
 
   
@@ -24,20 +24,34 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
+
     // console.log("checking");
     // console.log(sessionStorage.getItem("userLogin"));
 
-    
-    if (this.loginservice.authenticate(this.username,this.password))
-     {
+    this.loginservice.authenticate(this.username,this.password);
 
-    //  this.loginservice.authenticate(this.username,this.password)
-      this.router.navigate(['/{ sessionStorage.getItem("userId")}/startExam'])
+    if(sessionStorage.getItem("userId")){
+      this.router.navigate(['/startExam'])
       this.invalidLogin = false
       console.log("sucessful Login!!");
-    } else
+    }
+   else{
+  
       this.invalidLogin = true
-     
-  }
+    }
 
+    
+   // if (this.loginservice.authenticate(this.username,this.password))
+     
+
+    //  this.loginservice.authenticate(this.username,this.password)
+      // this.router.navigate(['/{ sessionStorage.getItem("userId")}/startExam'])
+      // this.invalidLogin = false
+      // console.log("sucessful Login!!");
+    // } else
+    //   this.invalidLogin = true
+     
+  
+
+  }
 }

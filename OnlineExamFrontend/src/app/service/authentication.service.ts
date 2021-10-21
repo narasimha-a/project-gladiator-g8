@@ -24,12 +24,15 @@ export class AuthenticationService {
     if(data){
       this.currentLoginUser = data;
       // sessionStorage.setItem('username', data.userName.toString());
-      // sessionStorage.setItem('userId',data.userId.toString());
+     sessionStorage.setItem('userId',data.userId.toString());
       // console.log("stored");
       // this.userLogin=true;
       // sessionStorage.setItem("userLogin", "true");
-      // console.log(this.userLogin+" after true");
+     console.log(this.currentLoginUser);
       //return this.userLogin;
+   }
+   else{
+     
    }
 
     })

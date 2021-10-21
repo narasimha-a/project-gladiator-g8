@@ -19,7 +19,7 @@ export class StartendexamService {
 
   getExamById(examid:number){
     //console.log(this.http.get<exam>(this.examUrl+'/'+148));
-    return this.http.get<exam>(this.examUrl+'/'+176); 
+    return this.http.get<exam>(this.examUrl+'/'+97); 
   }
 
   // createUserSubmission(userId:number, examId:number){
