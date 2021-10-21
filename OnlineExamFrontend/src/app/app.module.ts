@@ -12,10 +12,11 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
-import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from "@angular/material/input";
 import {RouterModule} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,13 +27,18 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExamService } from './exam.service';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { FilterStudentsComponent } from './filter-students/filter-students.component';
+import { GenericListFilterModule } from 'generic-list-filter';
+import { ViewUsersComponent } from './view-users/view-users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ModifyExamComponent,
     AddExamComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    FilterStudentsComponent,
+    ViewUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    
+    GenericListFilterModule
   ],
   providers: [ExamService,
     {

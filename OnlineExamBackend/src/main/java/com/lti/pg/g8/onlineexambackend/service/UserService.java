@@ -16,6 +16,5 @@ public interface UserService {
 	List<User> getUsersByExamId(Long examId);
 //	List<User> getUsersByAddressId(Long addressId);
 	
-	List<SearchStudentsDto> searchStudents();
-
+	
 }

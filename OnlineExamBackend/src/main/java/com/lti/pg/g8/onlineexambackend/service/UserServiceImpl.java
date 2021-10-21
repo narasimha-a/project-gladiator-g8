@@ -101,11 +101,7 @@ public class UserServiceImpl implements UserService {
 		return userList;
 	}
 
-	@Override
-	public List<SearchStudentsDto> searchStudents() {
-		System.out.println("user service");
-		return this.userRepository.searchStudents();
-	}
+	
 	
 	
 

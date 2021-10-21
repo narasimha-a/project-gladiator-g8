@@ -33,7 +33,10 @@ export class AddExamComponent implements OnInit {
   addExamData()
   {
     this.examService.addExam(this.exam)
-    .subscribe(data => console.log(data), error => console.log(error));
+    .subscribe(data => 
+      {
+        console.log(data);
+      }, error => console.log(error));
   this.exam = new Exam();
   
   }
@@ -57,11 +60,10 @@ export class AddExamComponent implements OnInit {
         //additional
         let jsonval1=JSON.parse(this.convertedJson);
         var val;
-        for (let i in jsonval1){
+        for (let i in jsonval1)
+        {
+          this.exam = new Exam();
           let jsonval=jsonval1[i];
-
-          
-
 
           var que=new Question();
           que.questionStatement=jsonval["questionStatement"];
@@ -74,12 +76,14 @@ export class AddExamComponent implements OnInit {
 
           this.exam.examName=jsonval["examName"];
           this.exam.levels?.push(lev);
-    }
+          this.addExamData();
+        }
     //  this.convertedJson=JSON.stringify(val,undefined,4);
 
-      this.addExamData();
+      
       })
     }
+    alert("added successfully")
   }
   //end of file upload
 

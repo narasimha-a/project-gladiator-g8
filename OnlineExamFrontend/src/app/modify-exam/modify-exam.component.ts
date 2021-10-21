@@ -5,6 +5,7 @@ import { ExamService } from "../exam.service";
 import { ModifyExamChildComponent } from "../modify-exam-child/modify-exam-child.component";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
+import {MatTableModule} from "@angular/material/table";
 
 @Component({
   selector: 'app-modify-exam',

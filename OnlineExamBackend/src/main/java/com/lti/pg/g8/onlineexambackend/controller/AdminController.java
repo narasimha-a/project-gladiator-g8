@@ -5,8 +5,13 @@ import java.util.List;
 import com.lti.pg.g8.onlineexambackend.dto.AdminDto;
 import com.lti.pg.g8.onlineexambackend.dto.SearchStudentsDto;
 import com.lti.pg.g8.onlineexambackend.model.Exam;
+import com.lti.pg.g8.onlineexambackend.model.SearchStudents;
 import com.lti.pg.g8.onlineexambackend.model.User;
+import com.lti.pg.g8.onlineexambackend.repository.SearchStudentsRepository;
+import com.lti.pg.g8.onlineexambackend.service.AddressService;
+import com.lti.pg.g8.onlineexambackend.service.EvaluationService;
 import com.lti.pg.g8.onlineexambackend.service.ExamService;
+import com.lti.pg.g8.onlineexambackend.service.SubmissionService;
 import com.lti.pg.g8.onlineexambackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +25,21 @@ public class AdminController {
 
     @Autowired
     ExamService examService;
+    
+    @Autowired
+	UserService userService;
+
+	@Autowired
+	AddressService addressService;
+
+	@Autowired
+	EvaluationService evaluationService;
+
+	@Autowired
+	SubmissionService submissionService;
+	
+	@Autowired
+	SearchStudentsRepository studentRepository;
 
     @PostMapping("/login")
     public ResponseEntity<Boolean> validateAdmin(@RequestBody AdminDto adminDto){
@@ -29,10 +49,7 @@ public class AdminController {
 
     	return new ResponseEntity<>(validAdmin,HttpStatus.OK);
     }
-    
-
-    @Autowired
-    UserService userService;
+   
 
     @GetMapping("/exams")
     public ResponseEntity<List<Exam>> getAllExams(){
@@ -68,9 +85,9 @@ public class AdminController {
 
     
     @GetMapping("/searchStudents")
-   	public ResponseEntity<List<SearchStudentsDto>> searchStudents(){
+   	public ResponseEntity<List<String>> searchStudents(){
 
-   		List<SearchStudentsDto> SearchStudents = this.userService.searchStudents();
+   		List<String> SearchStudents = this.studentRepository.searchStudents();
 
    		return new ResponseEntity<>(SearchStudents, HttpStatus.OK);
    	}

@@ -1,0 +1,45 @@
+.app-btn {
+    height: 32px;
+    width: 110px;
+    background: #f28100; 
+    border: none;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    border-radius: 2px;
+    float: right;
+    
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .container{
+      display: flex;
+  }
+
+  body {background-color: rgb(233, 112, 68);}
+table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+
