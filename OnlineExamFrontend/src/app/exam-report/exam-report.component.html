@@ -1,4 +1,4 @@
-<div *ngIf="currLevelPercentage >= 65">
+<div *ngIf="currLevelPercentage >= reportPassingCriteria">
 <div class="contain">
 	<div class="congrats">
 		<h1>Congrat<span class="hide">ulation</span>s !</h1>
@@ -10,15 +10,27 @@
 		<p>You have successfully cleared your exam. <br>Here are your details<br>
 			Score: {{currLevelPercentage}}<br>
 		</p>
-			<p><button >Take Level 2 Exam</button>
-			</p>
+			
+				<div *ngIf="currentLevel == numberOfLevels">
+					<p>
+					<button (click)= "returnToHome()"> Test Completed Return To Home Page>> </button>
+					</p>
+				</div>
+				<div *ngIf="currentLevel != numberOfLevels">
+					<p>
+					<button (click)= "incrementExamLevel()"> Next Level>> </button>
+					</p>
+				</div>
+				
+			
+		
             
-			</div>
+		</div>
 		<p class="regards">Regards, Team LT</p>
 	</div>
 </div>
 </div>
-<div *ngIf="currLevelPercentage < 65">
+<div *ngIf="currLevelPercentage < reportPassingCriteria">
 	<div class="contain">
 		<div class="congrats">
 			<h1>Sorry<span class="hide">ulation</span> !</h1>
@@ -30,7 +42,7 @@
 			<p>You have failed to clear the exam. <br>Here are your details<br>
 				Score: {{currLevelPercentage}}<br>
 			</p>
-				<p><button >Return to Home Page</button>
+				<p><button (click)="returnToHome()">Return to Home Page</button>
 				</p>
 				
 				</div>
@@ -38,3 +50,4 @@
 		</div>
 	</div>
 	</div>
+	

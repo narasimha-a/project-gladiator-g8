@@ -16,6 +16,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+
+
+
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { StartExamComponent } from './start-exam/start-exam.component';
 import { ExamReportComponent } from './exam-report/exam-report.component';
@@ -68,7 +71,7 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule,
+    
     LayoutModule,
     MatSidenavModule,
     MatListModule,

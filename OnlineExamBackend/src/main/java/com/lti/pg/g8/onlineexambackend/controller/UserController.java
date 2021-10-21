@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,9 +30,10 @@ import org.springframework.web.bind.annotation.*;
 import com.lti.pg.g8.onlineexambackend.model.Address;
 import com.lti.pg.g8.onlineexambackend.model.User;
 
-@CrossOrigin(origins = "*")
+
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins= "*")
 public class UserController {
 
 	@Autowired
@@ -56,7 +58,7 @@ public class UserController {
 		
 	}
 
-	@PostMapping("")
+	@PostMapping("/login")
 	public ResponseEntity<Boolean> authenticateUser(@RequestBody UserLoginDto userLoginDto){
 		return  new ResponseEntity<>(this.userService.checkUserCred(userLoginDto.getUserName(), userLoginDto.getPassword()),
 				HttpStatus.OK);
@@ -106,12 +108,13 @@ public class UserController {
 
 		int levelResult = this.evaluationService.evaluateExamLevel(examLevelDto);
 		//Add result to Submission table
-
 		Submission submission = this.submissionService.addPercentageToSubmissionBySubmissionId(examLevelDto.getSubmissionId(),levelResult);
 
+
 		return new ResponseEntity<>(submission, HttpStatus.OK);
+
 	}
-	
+
 	
 
 }
