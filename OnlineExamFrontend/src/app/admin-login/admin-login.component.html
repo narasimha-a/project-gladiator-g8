@@ -6,10 +6,10 @@
                 <div class="card">
                     <form onsubmit="event.preventDefault()" class="box">
                         <h1>Login</h1>
-                        <p class="text-muted"> Please enter your login and password!</p> 
-                        <input type="text" name="" placeholder="Username" required [(ngModel)]="username"> 
-                        <input type="password" name="" placeholder="Password" required [(ngModel)]="password"> 
-                        <a class="forgot text-muted" href="#">Forgot password?</a> 
+                        <p class="text-muted"> Please enter your login and password!</p>
+                        <input type="text" [(ngModel)]="username" name="username" placeholder="Username" required >
+                        <input type="password" name="password" placeholder="Password" required [(ngModel)]="password">
+                        <a class="forgot text-muted" href="#">Forgot password?</a>
                         <input type="submit" (click)=checkLogin() name="" value="Login" >
                         <div class="col-md-12">
                             <ul class="social-network social-circle">

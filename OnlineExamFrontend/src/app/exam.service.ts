@@ -20,21 +20,20 @@ export class ExamService {
   postExam(reqBody: ExamPayload) {
     return this.httpClient.post(this.baseUrl + "/exams/", reqBody);
   }
-  // private baseUrl = 'http://localhost:8091/admin/exams';
 
-  getExamList(): Observable<Exam[]> {
-    return this.httpSer.get<Exam[]>(this.baseUrl);
+  getExamList(){
+    return this.httpClient.get<Exam[]>(this.baseUrl + "/exams");
   }
 
-  addExam(exam:Exam):Observable<Exam>{
+  addExam(exam:Exam){
     console.log("inside addExam method:exam:");
     console.log(exam);
     console.log(exam.levels)
-    return this.httpSer.post<Exam>(this.baseUrl,exam);
+    return this.httpClient.post<Exam>(this.baseUrl + "/exams/",exam);
   }
 
-  removeExam(exam:Exam): Observable<any> {
+  removeExam(exam:Exam){
     let id=exam.examId;
-    return this.httpSer.delete(this.baseUrl+"/"+id, { responseType: 'text' });
+    return this.httpClient.delete(this.baseUrl+"/exams/"+id, { responseType: 'text' });
   }
 }

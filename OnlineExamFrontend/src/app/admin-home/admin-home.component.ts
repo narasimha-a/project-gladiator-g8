@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-home',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AdminHomeComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, private route: ActivatedRoute) { }
 
   questions : any = [
     {"qun" : "what is the capital of india ? ", "option" : ["delhi", "mumbai"], isHidden:false},
@@ -32,6 +32,10 @@ export class AdminHomeComponent implements OnInit {
 
 
   adminLogout = () => {
-    this.router.navigate(['/']);
+    this.router.navigate(['/admin/login']);
+  }
+
+  navigateToExams() {
+    this.router.navigate(["../exams"],{relativeTo:this.route})
   }
 }

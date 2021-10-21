@@ -1,3 +1,20 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
+
+.admin-home-body{
+  margin: 10vh;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 100px;
+  padding: 10px 10px 10px 10px;
+}
+
+.admin-function-card{
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10vh 10vh 10vh 10vh;
+  text-align: center;
+  min-height: 10vh;
+  max-width: 40vh;
+}

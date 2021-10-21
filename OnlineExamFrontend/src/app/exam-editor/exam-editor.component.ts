@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ExamPayload} from "./exam-payload";
 import {ExamService} from "../exam.service";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -19,19 +20,22 @@ export class ExamEditorComponent implements OnInit {
   isDataLoaded = false;
 
 
-  constructor(private examService : ExamService) {
-
-    // this.examPayload = new ExamPayload(0,"",[{}])
-    // this.isDataLoaded = true;
-
-    this.examService.getExamByExamId(58).subscribe(data=>{
-      console.log(data)
-      this.examPayload = new ExamPayload(data.examId, data.examName, data.levels);
+  constructor(private examService : ExamService, private route: ActivatedRoute) {
+    let reqExamId = this.route.snapshot.paramMap.get('examId');
+    console.log(reqExamId);
+    if(reqExamId === 'newExam'){
+      this.examPayload = new ExamPayload(0,"",[]);
       this.isDataLoaded = true;
-      console.log(this.examPayload);
-      //this.responseString = JSON.stringify(this.examPayload.getLevels()[0].getQuestions()()[0].options);
-    })
-
+    }
+    else if(reqExamId != null){
+      this.examService.getExamByExamId(Number(reqExamId)).subscribe(data=>{
+        console.log(data)
+        this.examPayload = new ExamPayload(data.examId, data.examName, data.levels);
+        this.isDataLoaded = true;
+        console.log(this.examPayload);
+        //this.responseString = JSON.stringify(this.examPayload.getLevels()[0].getQuestions()()[0].options);
+      })
+    }
 
   }
 
@@ -50,7 +54,7 @@ export class ExamEditorComponent implements OnInit {
 
   changeCurrentLevel(currentLevelIndex: number) {
     this.currentLevel = currentLevelIndex;
-
+    this.currentQuestion = 0;
   }
 
   changeCurrentQuestion(currentQuestionIndex: number) {
@@ -76,4 +80,5 @@ export class ExamEditorComponent implements OnInit {
     this.examPayload.getLevels()[this.currentLevel].getQuestions()[this.currentQuestion].setOptions(
       this.examPayload.getLevels()[this.currentLevel].getQuestions()[this.currentQuestion].deleteOption(optionIndex));
   }
+
 }

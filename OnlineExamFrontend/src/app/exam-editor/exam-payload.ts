@@ -1,9 +1,8 @@
+export class ExamPayload {
 
-export class ExamPayload{
-
-   examId: number |undefined;
-   examName: string = "";
-   levels : ExamLevelPayload[] = [];
+  examId: number | undefined;
+  examName: string = "";
+  levels: ExamLevelPayload[] = [];
 
   //[new ExamLevelPayload(0, 0, [new Question(0,"",",","")])];
 
@@ -11,7 +10,11 @@ export class ExamPayload{
   constructor(examId: number | undefined, examName: string, levels: ExamLevelPayload[]) {
     this.examId = examId;
     this.examName = examName;
-    levels.forEach((value) =>{
+    if (levels.length < 1) {
+      this.levels.push(new ExamLevelPayload(0, 0,
+        [new Question(0, "", ",", "")]))
+    }
+    levels.forEach((value) => {
       let examLevelPayload = new ExamLevelPayload(value.examLevelId, value.passingCriteria, value.questions)
       this.levels.push(examLevelPayload);
       console.log(examLevelPayload);
@@ -20,44 +23,44 @@ export class ExamPayload{
   }
 
 
-  getExamId(){
+  getExamId() {
     return this.examId;
   }
 
-  setExamId(examId : number){
+  setExamId(examId: number) {
     this.examId = examId;
   }
 
-  getExamName(){
+  getExamName() {
     return this.examName;
   }
 
-  setExamName(examName : string){
+  setExamName(examName: string) {
     this.examName = examName;
   }
 
-  getLevels(){
+  getLevels() {
     return this.levels;
   }
 
-  setLevels(levels : ExamLevelPayload[]){
+  setLevels(levels: ExamLevelPayload[]) {
     this.levels = levels;
   }
 
 
-  createNewLevel(): ExamLevelPayload[]{
-    this.levels.push(new ExamLevelPayload(0,0,
-      [new Question(0,"",",","")]));
+  createNewLevel(): ExamLevelPayload[] {
+    this.levels.push(new ExamLevelPayload(0, 0,
+      [new Question(0, "", ",", "")]));
     return this.levels;
   }
 }
 
 class ExamLevelPayload {
 
-   examLevelId : number | undefined;
-   passingCriteria : number | undefined;
+  examLevelId: number | undefined;
+  passingCriteria: number | undefined;
 
-   questions : Question[] = [];
+  questions: Question[] = [];
 
 
   constructor(examLevelId: number | undefined, passingCriteria: number | undefined, questions: Question[]) {
@@ -67,7 +70,7 @@ class ExamLevelPayload {
       let question = new Question(value.questionId, value.questionStatement, value.options, value.answers);
       this.questions.push(question);
       console.log(question);
-    }))
+    }));
     //this.questions = questions;
   }
 
@@ -96,9 +99,9 @@ class ExamLevelPayload {
     this.questions = value;
   }
 
-  createNewQuestion(){
+  createNewQuestion() {
     console.log("in createNewQuestion")
-    this.questions.push(new Question(0,"",",",""))
+    this.questions.push(new Question(0, "", ",", ""))
 
     return this.questions;
   }
@@ -107,11 +110,11 @@ class ExamLevelPayload {
 
 class Question {
 
-   questionId : number | undefined;
-   questionStatement : string = "";
-   options : string = "";
+  questionId: number | undefined;
+  questionStatement: string = "";
+  options: string = "";
 
-   answers : string = "";
+  answers: string = "";
 
 
   constructor(questionId: number | undefined, questionStatement: string, options: string, answers: string) {
@@ -147,15 +150,15 @@ class Question {
     this.options = values;
   }
 
-  updateOption(event : any, ind : number){
+  updateOption(event: any, ind: number) {
     let optionList = this.getOptions();
     optionList[ind] = event.target.value;
     this.setOptions(optionList.toString())
-   console.log(this.getOptions())
+    console.log(this.getOptions())
   }
 
-  getAnswers(): string {
-    return this.answers;
+  getAnswers(): string[] {
+    return this.answers.split(",");
   }
 
   setAnswers(value: string) {
@@ -168,8 +171,8 @@ class Question {
     return this.options;
   }
 
-  deleteOption(index : number){
-    this.options = this.getOptions().splice(index,1).toString();
+  deleteOption(index: number) {
+    this.options = this.getOptions().splice(index, 1).toString();
     return this.options;
   }
 
