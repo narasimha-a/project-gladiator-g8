@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { UserLoginDto } from '../user-login-dto';
 import { UserService } from '../user.service';
@@ -9,36 +8,42 @@ import { UserService } from '../user.service';
 })
 export class AuthenticationService {
 
+
+  userLogin=false;
+
+  currentLoginUser: User | undefined ;
+
   constructor(private userService: UserService,) { }
-  currUser! : User;
+
  authenticate(username: string, password: string) { 
-  const result = new Boolean;
    var userlogindto = new UserLoginDto();
    userlogindto.userName=username;
    var userValue = false;
    userlogindto.password=password;
-  
+   
   this.userService.authenticateUser(userlogindto).subscribe(data=> {
     if(data){
-      this.currUser = data;
+      this.currentLoginUser = data;
+      console.log(this.currentLoginUser);
       console.log(data.userId);
-      console.log(this.currUser);
-      // sessionStorage.setItem('username', username);
-      // userValue = true;
-      console.log("stored");
-      
-   } 
-  })
-    
-    console.log(this.currUser);
-    return false;
+      // sessionStorage.setItem('username', data.userName.toString());
+      // sessionStorage.setItem('userId',data.userId.toString());
+      // console.log("stored");
+      // this.userLogin=true;
+      // sessionStorage.setItem("userLogin", "true");
+      // console.log(this.userLogin+" after true");
+      //return this.userLogin;
+   }
 
-    // if (username === username && password === password) {
-    //   sessionStorage.setItem('username', username)
+    })
+    // if(this.currentLoginUser != null){
+    //   sessionStorage.setItem("userId",this.currentLoginUser.userId.toString());
     //   return true;
-    // } else {
+    // }else{
     //   return false;
     // }
+    return false;
+
   }
 
   isUserLoggedIn() {

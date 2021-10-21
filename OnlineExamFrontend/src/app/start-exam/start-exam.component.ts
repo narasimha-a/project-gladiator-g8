@@ -12,9 +12,9 @@ export class StartExamComponent implements OnInit {
   submissionId: number = 0;
   submission:submissionDto = {
     submissionId:0,
-    examId: 176,
-    userId:213,
-    addressId:141,
+    examId: Number(sessionStorage.getItem("examId")),
+    userId:Number(sessionStorage.getItem("userId")),
+    addressId:Number(sessionStorage.getItem("addressId")),
     percentages: ""
   };
   constructor(private submissionService:SubmissionService,private router:Router) { }
