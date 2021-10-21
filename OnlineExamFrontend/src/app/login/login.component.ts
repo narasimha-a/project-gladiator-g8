@@ -9,8 +9,8 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  username = 'Karan'
-  password = 'karan@123'
+  username = 'ashwikum18@gmail.com'
+  password = 'ashwikum@123'
   invalidLogin = false
 
   constructor(private router: Router,
@@ -20,8 +20,10 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
+    
     if (this.loginservice.authenticate(this.username, this.password)
     ) {
+      
       this.router.navigate(['/startExam'])
       this.invalidLogin = false
     } else

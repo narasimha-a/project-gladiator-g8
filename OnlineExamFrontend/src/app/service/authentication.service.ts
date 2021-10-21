@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../models/user';
 import { UserLoginDto } from '../user-login-dto';
 import { UserService } from '../user.service';
 
@@ -8,22 +10,28 @@ import { UserService } from '../user.service';
 export class AuthenticationService {
 
   constructor(private userService: UserService,) { }
-
- authenticate(username: string, password: string):boolean { 
+  currUser! : User;
+ authenticate(username: string, password: string) { 
+  const result = new Boolean;
    var userlogindto = new UserLoginDto();
    userlogindto.userName=username;
+   var userValue = false;
    userlogindto.password=password;
+  
   this.userService.authenticateUser(userlogindto).subscribe(data=> {
     if(data){
-      sessionStorage.setItem('username', username);
+      this.currUser = data;
+      console.log(data.userId);
+      console.log(this.currUser);
+      // sessionStorage.setItem('username', username);
+      // userValue = true;
       console.log("stored");
-      return true;
-   } else {
-     return false;
-   }
+      
+   } 
   })
     
-  return false;
+    console.log(this.currUser);
+    return false;
 
     // if (username === username && password === password) {
     //   sessionStorage.setItem('username', username)

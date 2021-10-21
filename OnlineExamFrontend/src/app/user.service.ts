@@ -30,7 +30,8 @@ export class UserService {
   authenticateUser(user:UserLoginDto){ 
     
     console.log(user);
-    return this.http.post<Boolean>(this.baseUrl+'/login',user);
+    
+    return this.http.post<User>(this.baseUrl+'/login',user);
   }
 
   private handleError(httpError: HttpErrorResponse) {
