@@ -26,7 +26,7 @@ public class Submission {
 	private Long userId; 
 
 	private Long addressId;
-
+//ex : 65,75
 	private String percentages;
 
 //	@ElementCollection

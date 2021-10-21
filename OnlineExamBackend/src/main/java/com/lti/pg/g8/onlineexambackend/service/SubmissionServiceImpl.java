@@ -1,15 +1,15 @@
 package com.lti.pg.g8.onlineexambackend.service;
+
+
 import java.util.List;
 import java.util.Optional;
 
-import com.lti.pg.g8.onlineexambackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lti.pg.g8.onlineexambackend.model.Submission;
 import com.lti.pg.g8.onlineexambackend.repository.SubmissionRepository;
-
-
+import com.lti.pg.g8.onlineexambackend.repository.UserRepository;
 
 @Service
 public class SubmissionServiceImpl implements SubmissionService {
@@ -78,7 +78,6 @@ public class SubmissionServiceImpl implements SubmissionService {
 
 	@Override
 	public Submission getSubmissionByExamAndUserId(Long examId, Long userId) {
-		System.out.println(this.submissionRepository.findByExamIdAndUserId(examId, userId));
 		return this.submissionRepository.findByExamIdAndUserId(examId, userId);
 	}
 }

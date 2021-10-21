@@ -9,27 +9,53 @@ import { SubmissionService } from '../submission.service';
   styleUrls: ['./start-exam.component.css']
 })
 export class StartExamComponent implements OnInit {
-
+  submissionId: number = 0;
   submission:submissionDto = {
     submissionId:0,
-    examId: 166,
-    userId:160,
-    addressId:141,
+    examId: Number(sessionStorage.getItem("examId")),
+    userId:Number(sessionStorage.getItem("userId")),
+    addressId:Number(sessionStorage.getItem("addressId")),
     percentages: ""
   };
   constructor(private submissionService:SubmissionService,private router:Router) { }
 
   ngOnInit(): void {
-    
+    if(sessionStorage.getItem("submissionId")){
+      this.submissionId = Number(sessionStorage.getItem("submissionId"));
+    }
   }
 
+  
+
+  // if(){
+
+  // }
+
+  // getSubmissionId = () => {
+  //   this.submissionService.getSubmissionByExamIdAndUserId(176,181).subscribe(sub => {
+  //     this.submission = sub;
+  //     console.log(this.submission);
+  //     sessionStorage.setItem("submissionId",JSON.stringify(this.submission.submissionId));
+  //   },(error)=>{
+  //     console.log("No submission id");
+  //   })
+  // }
+
+  
+
   onClickStartExam = () => {
-    this.submissionService.addNewSubmission(this.submission).subscribe(data => {
+    if(this.submissionId == 0){
+      this.submissionService.addNewSubmission(this.submission).subscribe(data => {
+        this.router.navigate(['/startExam/exam'])
+        console.log(this.submission);
+      },(error)=>{
+        console.log("Add data failed");
+      })
+    }
+    else{
       this.router.navigate(['/startExam/exam'])
-      console.log(this.submission);
-    },(error)=>{
-      console.log("Add data failed");
-    })
+    }
+    
     
   }
 

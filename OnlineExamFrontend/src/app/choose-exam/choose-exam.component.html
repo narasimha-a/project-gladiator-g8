@@ -1,0 +1,35 @@
+
+<!-- <mat-grid-list cols="2">
+    <mat-card> 
+
+    <mat-grid-tile *ngFor = "let exam of allExams">
+            {{exam.examId}} {{exam.examName}}
+            <mat-button (click)= "chooseExam()" ></mat-button> 
+    </mat-grid-tile>
+
+    
+    
+    <mat-grid-tile>
+     
+    </mat-grid-tile>
+
+  </mat-grid-list> -->
+
+  <mat-grid-list cols="5">
+      <mat-grid-tile  *ngFor = "let exam of allExams" (click)="OnMatCardClickEvent(exam)">
+  <mat-card>
+    <mat-card-title >{{exam.examName}}</mat-card-title>
+    <!-- <mat-card-subtitle>Start</mat-card-subtitle> -->
+  </mat-card>
+</mat-grid-tile>
+
+</mat-grid-list>
+  <!-- <br>
+  <mat-card>
+    <mat-card-title>Actions Buttons</mat-card-title>
+    <mat-card-subtitle>End</mat-card-subtitle>
+    <mat-card-actions align="end">
+      <button mat-button>Like</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card> -->

@@ -4,7 +4,7 @@
     <button mat-icon-button aria-label="Logout">
         Submit
       </button>
-</mat-toolbar>
+</mat-toolbar> 
 <mat-drawer-container class="example-container">
     <mat-drawer mode="side" opened >
         <h2>Level</h2>
@@ -13,10 +13,10 @@
         <form>
             <ng-container *ngFor="let item of currentExam.levels[0].questions;let i = index">
                 <div>
-                    {{item.questionStatement}}
+                    {{item.questionStatement}} 
                     <ng-container *ngFor="let opt of item.options;let in = index">
                         <input type="checkbox">{{opt}}<br>
-                    </ng-container>
+                    </ng-container> 
                 </div>
         </ng-container>
         </form>
@@ -38,9 +38,9 @@
                 <div *ngFor="let item of currentExam.levels[0].questions;let i = index">
                     <div>
                     <p class="questionNo">Question #{{i}}</p>
-
+                    
                     <p>{{item.questionStatement}}</p>
-
+                        
                         <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="optionList">
                             <mat-radio-button class="example-radio-button" *ngFor="let opt of getSplitString(item.options);let in = index"  [value]="opt">
                                  {{opt}}
@@ -48,22 +48,22 @@
                             <button (click) = "storeOption()">next</button>
                         </mat-radio-group>
                     </div>
-                </div>
-
-
-
+                </div>  
+                    
+                
+            
         </div>
     </mat-grid-tile>
-
+    
 </mat-grid-list> -->
-<!--
+<!-- 
 <form>
     <div *ngFor="let item of currentExam.levels[0].questions;let i = index"></div>
     </form>
      -->
 
 
-     <div class="row" *ngIf="currentExam.levels[0].questions && qnProgress != currentExam.levels[0].questions.length">
+     <div class="row" *ngIf="currentExam.levels[currentLevel].questions && qnProgress != currentExam.levels[currentLevel].questions.length">
         <div class="col s8 offset-s2">
           <div class="progress">
             <div class="determinate" [style.width.%]="(qnProgress+1)*10"></div>
@@ -71,28 +71,28 @@
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <span class="card-title">{{qnProgress+1}}</span>
-              <p>{{currentExam.levels[0].questions[qnProgress].questionStatement}}</p>
+              <p>{{currentExam.levels[currentLevel].questions[qnProgress].questionStatement}}</p>
             </div>
             <div class="card-action">
               <ul class="collection answer">
-                <ng-container *ngFor="let option of getSplitString(currentExam.levels[0].questions[qnProgress].options);let i = index">
-
-                  <li *ngIf="option != null" class="collection-item" (click)="onSelectOption(currentExam.levels[0].questions[qnProgress].questionId,option)">
-
-<!--                    <div [ngClass]="status">{{option}}</div>-->
-
+                <ng-container *ngFor="let option of getSplitString(currentExam.levels[currentLevel].questions[qnProgress].options);let i = index">
+                  
+                  <li *ngIf="option != null" class="collection-item" [class.selected] = "option === optionStyle" (click)="onSelectOption(currentExam.levels[currentLevel].questions[qnProgress].questionId,option)">
+                    
+                    <div [ngClass]="status">{{option}}</div>
+                    
                   </li>
-
+                
                 </ng-container>
               </ul>
-              <div *ngIf="qnProgress != (currentExam.levels[0].questions.length)-1">
+              <div *ngIf="qnProgress != (currentExam.levels[currentLevel].questions.length)-1">
                 <button class="btn btn-primary" (click)="onSubmit()">Next</button>
               </div>
-              <div *ngIf="qnProgress == (currentExam.levels[0].questions.length)-1">
+              <div *ngIf="qnProgress == (currentExam.levels[currentLevel].questions.length)-1">
                 <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
               </div>
             </div>
           </div>
-
+      
         </div>
       </div>

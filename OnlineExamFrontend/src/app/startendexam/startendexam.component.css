@@ -22,6 +22,8 @@
     margin: 5px;
   }
 
+  
+
   input.ng-invalid.ng-dirty{
     border-bottom-color : #e91e63 !important;
     box-shadow: 0 1px 0 0 #e91e63 !important;
@@ -41,6 +43,12 @@ ul li.selected{
     background-color: #26a69a !important;
     color: #eafaf9 !important;
 }
+
+ul li.selected:active{
+  background-color: #26a69a !important;
+  color: #eafaf9 !important;
+}
+
 
 active{
   background-color: #26a69a !important;

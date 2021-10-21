@@ -10,10 +10,15 @@ export class SubmissionService {
   baseUrl:string="http://localhost:8282/home/exam/submission";
 
   constructor(private http:HttpClient) { }
+  
 
   addNewSubmission(submission : submissionDto){
     // return this.http.get<exam>(this.baseUrl+'/'+114);
     return this.http.post<submissionDto>(this.baseUrl+'/addSubmission',submission); 
+  }
+
+  getSubmissionBySubmissionId = (submissionId: number) => {
+    return this.http.get<submissionDto>(this.baseUrl+'/SubmissionById/'+submissionId);
   }
 
 
