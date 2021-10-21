@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio';
 import { StartendexamComponent } from './startendexam/startendexam.component';
@@ -19,11 +21,15 @@ import { StartExamComponent } from './start-exam/start-exam.component';
 import { ExamReportComponent } from './exam-report/exam-report.component';
 import { ExamEditorComponent } from './exam-editor/exam-editor.component';
 import {MatInputModule} from "@angular/material/input";
-import {FormsModule} from "@angular/forms";
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatExpansionModule} from "@angular/material/expansion";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddUserComponent } from './adduser/adduser.component';
+import { UserService } from './user.service';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -34,10 +40,21 @@ import {MatExpansionModule} from "@angular/material/expansion";
     StartExamComponent,
     ExamReportComponent,
     ExamEditorComponent,
+    HomeComponent,
+    RegisterComponent,
+    AdminHomeComponent,
+    AddUserComponent,
+    LoginComponent,
+    LogoutComponent,
+ 
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule, 
+    HttpClientModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatRadioModule,
@@ -57,7 +74,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatListModule,
     MatExpansionModule,
   ],
-  providers: [StartendexamService],
+  providers: [StartendexamService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

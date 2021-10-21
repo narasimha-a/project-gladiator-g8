@@ -56,7 +56,7 @@ public class UserController {
 		
 	}
 
-	@GetMapping("")
+	@PostMapping("")
 	public ResponseEntity<Boolean> authenticateUser(@RequestBody UserLoginDto userLoginDto){
 		return  new ResponseEntity<>(this.userService.checkUserCred(userLoginDto.getUserName(), userLoginDto.getPassword()),
 				HttpStatus.OK);

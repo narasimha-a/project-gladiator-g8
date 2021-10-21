@@ -1,12 +1,27 @@
 package com.lti.pg.g8.onlineexambackend.controller;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import com.lti.pg.g8.onlineexambackend.dto.AdminDto;
+=======
+
+>>>>>>> acf96e7ceb92bcf78b7326cf1f90b2e34bf66e5a
 import com.lti.pg.g8.onlineexambackend.model.Exam;
 import com.lti.pg.g8.onlineexambackend.model.User;
 import com.lti.pg.g8.onlineexambackend.service.ExamService;
 import com.lti.pg.g8.onlineexambackend.service.UserService;
+<<<<<<< HEAD
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.util.List;
+
+>>>>>>> acf96e7ceb92bcf78b7326cf1f90b2e34bf66e5a
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +35,13 @@ public class AdminController {
     @Autowired
     ExamService examService;
 
+<<<<<<< HEAD
+=======
+    
+    @Autowired
+    AdminLoginService adminLoginService;
+    
+>>>>>>> acf96e7ceb92bcf78b7326cf1f90b2e34bf66e5a
     @PostMapping("/login")
     public ResponseEntity<Boolean> validateAdmin(@RequestBody AdminDto adminDto){
         boolean validAdmin = false;
@@ -29,9 +51,17 @@ public class AdminController {
     	return new ResponseEntity<>(validAdmin,HttpStatus.OK);
     }
     
+<<<<<<< HEAD
 
     @Autowired
     UserService userService;
+=======
+
+
+    @Autowired
+    UserService userService;
+
+>>>>>>> acf96e7ceb92bcf78b7326cf1f90b2e34bf66e5a
 
     @GetMapping("/exams")
     public ResponseEntity<List<Exam>> getAllExams(){
@@ -53,18 +83,25 @@ public class AdminController {
         return new ResponseEntity<>(this.examService.deleteExamById(examId), HttpStatus.OK);
     }
 
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> acf96e7ceb92bcf78b7326cf1f90b2e34bf66e5a
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers(){
         return new ResponseEntity<>(this.userService.getAllUsers(), HttpStatus.OK);
     }
 
+<<<<<<< HEAD
 //    @GetMapping("/users/{examId}")
 //    public ResponseEntity<List<User>> getAllUsersByExamId(@PathVariable Long examId){
 //
 //        return new ResponseEntity<>(this.userService.)
 //    }
 
+=======
+>>>>>>> acf96e7ceb92bcf78b7326cf1f90b2e34bf66e5a
 }
 
 //{
@@ -79,5 +116,5 @@ public class AdminController {
 //        "city" : "trichy",
 //        "state" : "tamilnadu"
 //    }
-//
-//}
+
+
