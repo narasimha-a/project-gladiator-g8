@@ -3,7 +3,6 @@ package com.lti.pg.g8.onlineexambackend.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
 
 import com.lti.pg.g8.onlineexambackend.dto.ExamDto;
 import com.lti.pg.g8.onlineexambackend.dto.ExamLevelDto;
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.web.bind.annotation.*;
 
 
 import com.lti.pg.g8.onlineexambackend.model.Address;
@@ -58,11 +56,8 @@ public class UserController {
 		
 	}
 
-<<<<<<< HEAD
-	@GetMapping("")
-=======
+
 	@PostMapping("/login")
->>>>>>> 79ba73b80f86386c1098e19da50b81b4b7566aaf
 	public ResponseEntity<User> authenticateUser(@RequestBody UserLoginDto userLoginDto){
 		return  new ResponseEntity<>(this.userService.checkUserCred(userLoginDto.getUserName(), userLoginDto.getPassword()),
 				HttpStatus.OK);

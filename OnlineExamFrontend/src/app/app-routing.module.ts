@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'admin/exams/getExamData',component:ModifyExamComponent},
   // {path:'admin/exams/addExamData',component:AddExamComponent},
   {path:'admin/exams/updateExam',component:ModifyExamChildComponent},
-  {path:"startExam",component:StartExamComponent} ,
+  {path:":userId/startExam",component:StartExamComponent} ,
   {path:"startExam/exam/report", component:ExamReportComponent},
   {path: "admin/home", component: AdminHomeComponent},
   {path: "admin/examEditor", component: ExamEditorComponent},

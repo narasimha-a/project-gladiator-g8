@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from '../models/user';
 import { UserLoginDto } from '../user-login-dto';
 import { UserService } from '../user.service';
 
@@ -7,30 +8,39 @@ import { UserService } from '../user.service';
 })
 export class AuthenticationService {
 
+
+  userLogin=false;
+
+  currentLoginUser: User | undefined ;
+
   constructor(private userService: UserService,) { }
 
- authenticate(username: string, password: string):boolean { 
+ authenticate(username: string, password: string) { 
    var userlogindto = new UserLoginDto();
    userlogindto.userName=username;
    userlogindto.password=password;
+   
   this.userService.authenticateUser(userlogindto).subscribe(data=> {
     if(data){
-      sessionStorage.setItem('username', username);
-      console.log("stored");
-      return true;
-   } else {
-     return false;
+      this.currentLoginUser = data;
+      // sessionStorage.setItem('username', data.userName.toString());
+      // sessionStorage.setItem('userId',data.userId.toString());
+      // console.log("stored");
+      // this.userLogin=true;
+      // sessionStorage.setItem("userLogin", "true");
+      // console.log(this.userLogin+" after true");
+      //return this.userLogin;
    }
-  })
-    
-  return false;
 
-    // if (username === username && password === password) {
-    //   sessionStorage.setItem('username', username)
-    //   return true;
-    // } else {
-    //   return false;
-    // }
+    })
+    if(this.currentLoginUser != null){
+      sessionStorage.setItem("userId",this.currentLoginUser.userId.toString());
+      return true;
+    }else{
+      return false;
+    }
+
+
   }
 
   isUserLoggedIn() {
