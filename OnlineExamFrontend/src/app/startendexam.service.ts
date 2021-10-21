@@ -19,21 +19,21 @@ export class StartendexamService {
 
   getExamById(examid:number){
     //console.log(this.http.get<exam>(this.examUrl+'/'+148));
-    return this.http.get<exam>(this.examUrl+'/'+97); 
+    return this.http.get<exam>(this.examUrl+'/'+176); 
   }
 
-  createUserSubmission(userId:number, examId:number){
+  // createUserSubmission(userId:number, examId:number){
 
-    return this.http.get<submissionDto>(this.submissiondtoUrl+ '/' + userId + '/' +"exams" +'/'+ examId);
+  //   return this.http.get<submissionDto>(this.submissiondtoUrl+ '/' + userId + '/' +"exams" +'/'+ examId);
     
 
-  }
+  // }
 
 
-  sendEvaluationInfo(addexamleveldto:ExamLevelDto){
+  // sendEvaluationInfo(addexamleveldto:ExamLevelDto){
     
-    return this.http.post<ExamLevelDto>(this.sendEvaluation, addexamleveldto,this.options );
-  }
+  //   return this.http.post<ExamLevelDto>(this.sendEvaluation, addexamleveldto,this.options );
+  // }
 
   
   

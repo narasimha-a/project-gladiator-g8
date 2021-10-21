@@ -22,10 +22,11 @@ import { submissionDto } from './model/submissionDto.model';
 export class StartendexamComponent implements OnInit {
   currentExam!: exam;
 
-
+  optionStyle!:string;
   examList: exam[]= [];
   options: string[] = [];
   option!: string;
+  numberOfLevels!: number;
   answerOption!:string;
   qnId!:number;
   ansOptions: string[] = [];
@@ -51,12 +52,11 @@ export class StartendexamComponent implements OnInit {
   ngOnInit(): void {
     this.optString = "[O0,O1,O2,O3]";
    // console.log(this.optString.substring(1,this.optString.length-1).split(","));
-    this.getExamById(97);
+    this.getExamById(176);
     
     console.log("printing this!!!");
-    //console.log(this.getSubmissionId());
     this.getSubmissionId();
-    this.getExamOnLevel();
+    
 
     if(sessionStorage.getItem("currentLevel")){
       this.currentLevel = Number(sessionStorage.getItem("currentLevel"));
@@ -71,7 +71,9 @@ export class StartendexamComponent implements OnInit {
     
     this.startendexam.getExamById(examId).subscribe(data =>{
       this.currentExam= data;
-
+      this.numberOfLevels = this.currentExam.levels.length;
+      sessionStorage.setItem("numberOfLevels",this.numberOfLevels.toString());
+      this.getExamOnLevel();
       //this.currentLevel=this.currentExam.levels;
       console.log(this.currentExam);
       // this.qnProgress = this.currentExam.levels[0].questions.length 
@@ -96,13 +98,24 @@ export class StartendexamComponent implements OnInit {
   }
 
   getSubmissionId = () => {
-    this.submissionService.getSubmissionByExamIdAndUserId(97,101).subscribe(sub => {
-      this.submission = sub;
-      console.log(this.submission);
-      sessionStorage.setItem("submissionId",JSON.stringify(this.submission.submissionId));
-    },(error)=>{
-      console.log("No submission id");
-    })
+    if(sessionStorage.getItem("submissionId")){
+      this.submissionService.getSubmissionBySubmissionId(Number(sessionStorage.getItem("submissionId"))).subscribe(sub => {
+        this.submission = sub;
+        console.log(this.submission);
+      },(error)=>{
+        console.log("No data found");
+      })
+    }
+    else{
+      this.submissionService.getSubmissionByExamIdAndUserId(176,213).subscribe(sub => {
+        this.submission = sub;
+        console.log(this.submission);
+        sessionStorage.setItem("submissionId",JSON.stringify(this.submission.submissionId));
+      },(error)=>{
+        console.log("No submission id");
+      })
+    }
+    
   }
 
   getExamOnLevel(){
@@ -127,6 +140,7 @@ export class StartendexamComponent implements OnInit {
  
   onSelectOption = (qnId:number,choice:string) => {
     this.option = choice;
+    this.optionStyle = choice;
     this.qnId = qnId;
     this.status = 'active';
     console.log(this.option);
@@ -154,11 +168,12 @@ export class StartendexamComponent implements OnInit {
         passingCriteria: this.currentExam.levels[this.currentLevel].passingCriteria,
         selectedOptionsMap: this.optionMap
       }
-      this.userService.postSubmission(this.examSubmit, 103).subscribe(data => {
+      this.userService.postSubmission(this.examSubmit, 213).subscribe(data => {
         console.log(data);
       })
       console.log(this.examSubmit);
-      this.router.navigate(['/startExam/exam/report', { queryParams: {passingCriteria:this.examSubmit.passingCriteria}}]);
+      console.log(this.examSubmit.passingCriteria);
+      this.router.navigate(['/startExam/exam/report'], { queryParams: {passingCriteria:this.examSubmit.passingCriteria}});
     }
     console.log(this.answers);
   }

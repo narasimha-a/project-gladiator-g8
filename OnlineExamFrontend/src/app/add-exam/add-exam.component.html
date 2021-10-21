@@ -1,0 +1,121 @@
+<h2>File Upload & Image Preview</h2>
+<p class="lead">No Plugins <b>Just Javascript</b></p>
+
+<!-- Upload  -->
+<form id="file-upload-form" class="uploader">
+  <input id="file-upload" type="file" name="fileUpload" accept=".xls,.xlsx" 
+  (change)="fileUpload($event)"
+  
+  />
+
+  <label for="file-upload" id="file-drag">
+    <img id="file-image" src="#" alt="Preview" class="hidden">
+    <div id="start">
+      <i class="fa fa-download" aria-hidden="true"></i>
+      <div>Select a file or drag here</div>
+      <div id="notimage" class="hidden">Please select an image</div>
+      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+    </div>
+    <div id="response" class="hidden">
+      <div id="messages"></div>
+      <progress class="progress" id="file-progress" value="0">
+        <span>0</span>%
+      </progress>
+    </div>
+  </label>
+</form>
+<br><br>
+<div>
+    <pre>
+        {{convertedJson}}
+    </pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<form (ngSubmit)="addExamData()">
+    <label for="examName">Exam Name</label>
+    <select [(ngModel)]="exam.examName" id="examName" name="examName">
+
+        <option disabled>Select Exam</option>
+        <option *ngFor="let exam of exams">{{exam}}</option>
+    </select>
+
+    <br><br>
+
+    <label for="level">Enter total number of Level</label>
+    <input name="level" id="level" type="number" value="3">
+
+    <br><br>
+
+
+    <p>Enter Exam details for each level:</p>
+    <div *ngFor="let l of numSequence(1)">
+        <label for="passingCriteria">Enter Passing Criteria:</label>
+        <input name="passingCriteria" id="passingCriteria" type="number" [(ngModel)]="passingCriteria">
+
+        <br><br>
+
+        <label for="noq">Enter total number of questions</label>
+        <input name="noq" id="noq" type="number" value="1">
+
+        <br><br>
+        <p>Enter Question details:</p>
+        <div *ngFor="let l of numSequence(2)">
+            <label for="questionStatement">Enter Question:</label>
+            <input type="text" name="questionStatement" id="questionStatement"  [(ngModel)]="questionStatement">
+
+            <p>Enter Options:</p>
+            <label for="Option1">Option 1:</label>
+            <input type="text" name="Option1" id="Option1" ><br><br>
+
+            <label for="Option2">Option 2:</label>
+            <input type="text" name="Option2" id="Option2" ><br><br>
+
+            <label for="Option3">Option 3:</label>
+            <input type="text" name="Option3" id="Option3" ><br><br>
+
+            <label for="Option4">Option 4:</label>
+            <input type="text" name="Option4" id="Option4" ><br><br>
+
+            <label for="answer">Correct answer:</label>
+            <input type="text" name="Option3" id="answer" ><br><br>
+            <br><br><br>
+        </div>
+
+
+    </div>
+
+</form>
+-->

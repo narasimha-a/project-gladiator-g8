@@ -1,0 +1,41 @@
+<!-- <div>
+    <mat-toolbar class="mat-primary">
+      <span class="main-title"><strong>View all Exams</strong></span>
+    </mat-toolbar>
+    
+    <mat-card>
+  
+      <mat-card-title class="mat-card-title">
+        <p><b>Contacts</b></p>
+      </mat-card-title>
+  
+  
+      <mat-card-content>
+  
+        <mat-accordion >
+          <mat-expansion-panel *ngFor="let ex of exam" class="mat-expansion-panel" hideToggle>
+  
+            <mat-expansion-panel-header>
+              <mat-panel-title class="mat-expansion-panel-text"><strong>{{ex.examName}}</strong></mat-panel-title>
+            </mat-expansion-panel-header>
+            
+              <div style="flex: auto; flex-direction: row;">
+  
+                <button mat-stroked-button (click)="deleteExam(ex)">
+                  <span>Delete</span>
+                </button>
+  
+                <span class="row-spacer"></span>
+  
+                <button mat-raised-button routerLink="./updateExam" color="primary"
+                        (click)="edit(ex)"><span>Edit</span></button>
+  
+              </div>
+          </mat-expansion-panel>
+  
+        </mat-accordion>
+  
+      </mat-card-content>
+  
+    </mat-card>
+  </div> -->

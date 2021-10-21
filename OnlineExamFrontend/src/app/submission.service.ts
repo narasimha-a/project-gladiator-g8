@@ -17,6 +17,10 @@ export class SubmissionService {
     return this.http.post<submissionDto>(this.baseUrl+'/addSubmission',submission); 
   }
 
+  getSubmissionBySubmissionId = (submissionId: number) => {
+    return this.http.get<submissionDto>(this.baseUrl+'/SubmissionById/'+submissionId);
+  }
+
 
 
   getSubmissionByExamIdAndUserId = (examId:number,userId:number) => {

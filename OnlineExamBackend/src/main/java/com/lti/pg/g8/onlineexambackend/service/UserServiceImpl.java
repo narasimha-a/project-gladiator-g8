@@ -57,6 +57,24 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+//	@Override
+//	public Boolean checkUserCred(String name, String password) {
+//		User resUser;
+//		try {
+//			resUser = this.userRepository.findByUserEmail(name);
+//			System.out.println(resUser);
+//			if (resUser == null) {
+//				return false;
+//			} else {
+//
+//				System.out.println(BCrypt.checkpw(password, resUser.getPassword()));
+//				return BCrypt.checkpw(password, resUser.getPassword());
+//			}
+//		} catch (NoResultException nre) {
+//			return false;
+//		}
+//	}
+	
 	@Override
 	public User checkUserCred(String name, String password) {
 		User resUser;

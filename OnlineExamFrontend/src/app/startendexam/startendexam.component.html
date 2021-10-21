@@ -77,7 +77,7 @@
               <ul class="collection answer">
                 <ng-container *ngFor="let option of getSplitString(currentExam.levels[currentLevel].questions[qnProgress].options);let i = index">
                   
-                  <li *ngIf="option != null" class="collection-item" (click)="onSelectOption(currentExam.levels[currentLevel].questions[qnProgress].questionId,option)">
+                  <li *ngIf="option != null" class="collection-item" [class.selected] = "option === optionStyle" (click)="onSelectOption(currentExam.levels[currentLevel].questions[qnProgress].questionId,option)">
                     
                     <div [ngClass]="status">{{option}}</div>
                     

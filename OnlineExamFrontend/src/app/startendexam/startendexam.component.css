@@ -44,6 +44,11 @@ ul li.selected{
     color: #eafaf9 !important;
 }
 
+ul li.selected:active{
+  background-color: #26a69a !important;
+  color: #eafaf9 !important;
+}
+
 
 active{
   background-color: #26a69a !important;
