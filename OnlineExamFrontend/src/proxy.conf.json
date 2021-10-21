@@ -1,0 +1,6 @@
+{
+    "/admin/exams": {
+      "target": "http://localhost:8091",
+      "secure": false
+    }
+  }

@@ -1,0 +1,26 @@
+
+
+.colbg{
+    background-color: azure;
+    
+}
+
+.btnbg {
+    background-color: whitesmoke; /* Green */
+    border: 1px solid red;
+    border-radius: 12px;
+    margin: 5%;
+    margin-left: 25%;
+    
+    width: 50%;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+.btnbg:hover{
+    background-color: #26a69a;
+}

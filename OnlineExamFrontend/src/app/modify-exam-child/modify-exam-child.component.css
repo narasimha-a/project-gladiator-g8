@@ -1,0 +1,6 @@
+.validInput{
+    border: lightgreen solid 2px;
+  }
+  .invalidInput{
+    border: red solid 2px;
+  }

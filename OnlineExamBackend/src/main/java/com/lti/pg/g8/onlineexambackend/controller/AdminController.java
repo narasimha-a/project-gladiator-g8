@@ -3,6 +3,7 @@ package com.lti.pg.g8.onlineexambackend.controller;
 import java.util.List;
 
 import com.lti.pg.g8.onlineexambackend.dto.AdminDto;
+import com.lti.pg.g8.onlineexambackend.dto.SearchStudentsDto;
 import com.lti.pg.g8.onlineexambackend.model.Exam;
 import com.lti.pg.g8.onlineexambackend.model.User;
 import com.lti.pg.g8.onlineexambackend.service.ExamService;
@@ -65,6 +66,14 @@ public class AdminController {
 //        return new ResponseEntity<>(this.userService.)
 //    }
 
+    
+    @GetMapping("/searchStudents")
+   	public ResponseEntity<List<SearchStudentsDto>> searchStudents(){
+
+   		List<SearchStudentsDto> SearchStudents = this.userService.searchStudents();
+
+   		return new ResponseEntity<>(SearchStudents, HttpStatus.OK);
+   	}
 }
 
 //{

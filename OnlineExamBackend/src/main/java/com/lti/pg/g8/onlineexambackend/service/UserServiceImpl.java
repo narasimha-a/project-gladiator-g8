@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lti.pg.g8.onlineexambackend.model.Submission;
+import com.lti.pg.g8.onlineexambackend.dto.SearchStudentsDto;
 import com.lti.pg.g8.onlineexambackend.model.Address;
 import com.lti.pg.g8.onlineexambackend.model.User;
 import com.lti.pg.g8.onlineexambackend.repository.SubmissionRepository;
@@ -99,5 +100,13 @@ public class UserServiceImpl implements UserService {
 				.collect(Collectors.toList());
 		return userList;
 	}
+
+	@Override
+	public List<SearchStudentsDto> searchStudents() {
+		System.out.println("user service");
+		return this.userRepository.searchStudents();
+	}
+	
+	
 
 }
