@@ -2,6 +2,7 @@ package com.lti.pg.g8.onlineexambackend.service;
 
 import java.util.List;
 
+import com.lti.pg.g8.onlineexambackend.dto.SearchStudentsDto;
 import com.lti.pg.g8.onlineexambackend.model.User;
 
 public interface UserService {
@@ -14,5 +15,7 @@ public interface UserService {
 	User getUserById(Long userId);
 	List<User> getUsersByExamId(Long examId);
 //	List<User> getUsersByAddressId(Long addressId);
+	
+	List<SearchStudentsDto> searchStudents();
 
 }

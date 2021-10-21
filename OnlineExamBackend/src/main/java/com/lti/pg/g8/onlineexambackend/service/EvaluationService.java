@@ -20,10 +20,11 @@ class EvaluationServiceImpl implements EvaluationService{
 
     @Override
     public int evaluateExamLevel(ExamLevelDto examLevelDto) {
+    	System.out.println(examLevelDto);
         int validAnswerCount;
 
         ExamLevel examLevel = this.examLevelRepository.getById(examLevelDto.getExamLevelId());
-
+        
         validAnswerCount = (int) examLevel.getQuestions().stream()
                 .filter(question -> examLevelDto.getSelectedOptionsMap().get(question.getQuestionId()).equals(question.getAnswers()))
                 .count();

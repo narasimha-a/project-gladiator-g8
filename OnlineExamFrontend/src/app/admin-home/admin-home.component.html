@@ -52,3 +52,15 @@
    
     </mat-grid-tile>
 </mat-grid-list>
+
+<form>
+    <ng-container *ngFor="let item of questions;let i = index">
+        <div [hidden]="item.isHidden">
+            {{item.qun}} 
+            <ng-container *ngFor="let opt of item.option;let in = index">
+                <div>{{opt[in]}}</div>
+            </ng-container>
+            <button  (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false">Next</button>
+        </div>
+    </ng-container>
+</form>

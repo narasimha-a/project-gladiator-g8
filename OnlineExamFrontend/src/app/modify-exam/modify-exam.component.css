@@ -1,0 +1,32 @@
+.mat-card-title{
+    margin: 5px 10px 5px 10px;
+    color: rebeccapurple;
+  }
+  .mat-expansion-panel{
+    box-shadow: black;
+    margin: 5px 10px 5px 10px;
+    border: black solid 1px;
+  }
+  
+  .mat-expansion-panel-text{
+    color: #2d2d2d;
+  }
+  
+  .row-spacer{
+    margin: 0 5px 0 5px;
+    flex: 1 1 auto;
+  }
+  
+  .main-title{
+    margin: 5px 10px 5px 10px;
+    font-size: 38px;
+  }
+  
+  .mat-card-title{
+    font-size: 34px;
+  }
+  
+  .mat-input-element{
+    margin-left: 10px;
+    margin-right: 10px;
+  }

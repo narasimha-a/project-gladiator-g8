@@ -75,4 +75,10 @@ public class SubmissionServiceImpl implements SubmissionService {
 		System.out.println(sub);
 		return sub;
 	}
+
+	@Override
+	public Submission getSubmissionByExamAndUserId(Long examId, Long userId) {
+		System.out.println(this.submissionRepository.findByExamIdAndUserId(examId, userId));
+		return this.submissionRepository.findByExamIdAndUserId(examId, userId);
+	}
 }
