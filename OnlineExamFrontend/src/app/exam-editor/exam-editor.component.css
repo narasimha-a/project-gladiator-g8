@@ -19,7 +19,7 @@
 }
 
 .editor-body > .sidebar{
-  background-color: yellow;
+  background-color: azure;
   flex: 25%;
   min-height: 50vh;
 }
@@ -61,6 +61,18 @@ mat-expansion-panel{
 
 textarea{
   font-weight: bold;
+}
+
+.option-div > mat-checkbox, .option-delete{
+  margin-left: 20px ;
+  margin-right: 20px;
+  top: 30%;
+  bottom: 40%;
+  transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 

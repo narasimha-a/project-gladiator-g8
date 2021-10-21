@@ -14,7 +14,7 @@
       <span><b>Levels</b></span>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let level of examPayload.levels; let levelIndex = index"
-                            [expanded]="currentLevel === levelIndex" (opened)="changeCurrentLevel(levelIndex)">
+                             [expanded]="currentLevel === levelIndex" (opened)="changeCurrentLevel(levelIndex)">
           <mat-expansion-panel-header>
             Level {{levelIndex + 1}}
           </mat-expansion-panel-header>
@@ -37,18 +37,26 @@
     <div class="question-form">
       <mat-form-field class="question-statement" appearance="outline">
         <mat-label>Question Statement</mat-label>
-        <textarea matInput type="text" [(ngModel)]="examPayload.levels[currentLevel].questions[currentQuestion].questionStatement" placeholder="Enter Question Statement here..."></textarea>
+        <textarea matInput type="text"
+                  [(ngModel)]="examPayload.levels[currentLevel].questions[currentQuestion].questionStatement"
+                  placeholder="Enter Question Statement here..."></textarea>
       </mat-form-field>
       <div>
         <ul class="options-container">
-          <li *ngFor="let option of examPayload.levels[currentLevel].questions[currentQuestion].getOptions(); let optionIndex=index">
-<!--            {{option}}-->
-            <mat-form-field class="option" appearance="outline">
+          <li *ngFor="let option of examPayload.levels[currentLevel].questions[currentQuestion].getOptions();
+          let optionIndex=index">
+            <div class="option-div">
+              <mat-form-field class="option" appearance="outline">
               <textarea matInput type="text"
                         (change)="examPayload.levels[currentLevel].questions[currentQuestion].updateOption($event, optionIndex)"
                         [value]="examPayload.levels[currentLevel].questions[currentQuestion].getOptions()[optionIndex]"
                         placeholder="Option {{optionIndex + 1}}"></textarea>
-            </mat-form-field>
+              </mat-form-field>
+              <mat-checkbox></mat-checkbox>
+              <button mat-mini-fab class="option-delete" (click)="deleteOption(optionIndex)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
           </li>
           <li>
             <button mat-flat-button color="accent" (click)="createOption()">add Option</button>

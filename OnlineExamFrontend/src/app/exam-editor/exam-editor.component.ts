@@ -21,8 +21,8 @@ export class ExamEditorComponent implements OnInit {
 
   constructor(private examService : ExamService) {
 
-    //this.examPayload = new ExamPayload(0,"",[])
-    //this.isDataLoaded = true;
+    // this.examPayload = new ExamPayload(0,"",[{}])
+    // this.isDataLoaded = true;
 
     this.examService.getExamByExamId(58).subscribe(data=>{
       console.log(data)
@@ -70,5 +70,10 @@ export class ExamEditorComponent implements OnInit {
     console.log(JSON.stringify(this.examPayload))
 
     this.examService.postExam(this.examPayload).subscribe(data=>console.log(data));
+  }
+
+  deleteOption(optionIndex: number) {
+    this.examPayload.getLevels()[this.currentLevel].getQuestions()[this.currentQuestion].setOptions(
+      this.examPayload.getLevels()[this.currentLevel].getQuestions()[this.currentQuestion].deleteOption(optionIndex));
   }
 }

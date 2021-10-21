@@ -19,30 +19,32 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {HttpClientModule} from "@angular/common/http";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 @NgModule({
   declarations: [
     AppComponent,
     AdminHomeComponent,
     ExamEditorComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatIconModule,
-    MatGridListModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    LayoutModule,
-    MatSidenavModule,
-    MatListModule,
-    MatExpansionModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatIconModule,
+        MatGridListModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        LayoutModule,
+        MatSidenavModule,
+        MatListModule,
+        MatExpansionModule,
+        HttpClientModule,
+        MatCheckboxModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

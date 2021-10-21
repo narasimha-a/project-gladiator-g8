@@ -167,4 +167,10 @@ class Question {
     console.log(this.options);
     return this.options;
   }
+
+  deleteOption(index : number){
+    this.options = this.getOptions().splice(index,1).toString();
+    return this.options;
+  }
+
 }
