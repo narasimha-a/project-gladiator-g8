@@ -12,16 +12,16 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ChooseExamComponent } from './choose-exam/choose-exam.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
-import {ViewReportsComponent} from "./view-reports/view-reports.component";
 import {UserHomeComponent} from "./user-home/user-home.component";
 import {UserExamComponent} from "./user-exam/user-exam.component";
+import {FilterStudentsComponentComponent} from "./filter-students-component/filter-students-component.component";
 
 const routes: Routes = [
   {path:"admin/login",component:AdminLoginComponent},
-  {path:"admin/user-home", component: AdminHomeComponent},
+  {path:"admin/home", component: AdminHomeComponent},
   {path:'admin/exams',component:ModifyExamComponent},
   {path:"admin/exams/:examId", component: ExamEditorComponent},
-  {path:"admin/viewReports", component: ViewReportsComponent},
+  {path:"admin/searchStudents", component: FilterStudentsComponentComponent},
 
   {path:"user/exams/exam",component:UserExamComponent},
 

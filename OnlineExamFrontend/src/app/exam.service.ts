@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ExamPayload} from "./exam-editor/exam-payload";
-import { Observable } from 'rxjs';
 import { Exam } from './exam';
 import {UserExamPayload} from "./user-exam/user-exam-payload";
 
@@ -40,5 +39,10 @@ export class ExamService {
 
   getExamWithOutAnswersByExamId(examId: number) {
     return this.httpClient.get<UserExamPayload>(this.baseUrl + "/user/exams/" + examId);
+  }
+
+  searchStudents(){
+    console.log("inside searchstudents")
+    return this.httpClient.get<String[]>(this.baseUrl+"/admin/searchStudents");
   }
 }

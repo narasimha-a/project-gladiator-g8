@@ -40,6 +40,9 @@ import { UserExamComponent } from './user-exam/user-exam.component';
 import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import { ExamReportDialogComponent } from './user-exam/exam-report-dialog/exam-report-dialog.component';
 import {MatRippleModule} from "@angular/material/core";
+import {GenericListFilterModule} from "generic-list-filter";
+import { FilterStudentsComponentComponent } from './filter-students-component/filter-students-component.component';
+import {ExamService} from "./exam.service";
 
 
 @NgModule({
@@ -61,7 +64,9 @@ import {MatRippleModule} from "@angular/material/core";
     ModifyExamComponent,
     ViewReportsComponent,
     UserExamComponent,
-    ExamReportDialogComponent
+    ExamReportDialogComponent,
+    FilterStudentsComponentComponent
+
   ],
   imports: [
     BrowserModule,
@@ -82,6 +87,7 @@ import {MatRippleModule} from "@angular/material/core";
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    GenericListFilterModule,
 
     LayoutModule,
     MatSidenavModule,
@@ -91,7 +97,7 @@ import {MatRippleModule} from "@angular/material/core";
     MatDialogModule,
     MatRippleModule
   ],
-  providers: [StartendexamService,UserService,{
+  providers: [StartendexamService,UserService,ExamService,{
     provide: MatDialogRef,
     useValue:[]
   }],

@@ -7,6 +7,8 @@ export interface UserLoginPayload {
   password: string
 }
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.userService.authenticateUser(this.userLoginPayload).subscribe(data=>{
       if(data!=null){
         sessionStorage.setItem("userId", data.userId.toString());
+        sessionStorage.setItem("addressId",String(data.address.addressId))
         this.router.navigate(["../home"], {relativeTo: this.route})
       }
     });

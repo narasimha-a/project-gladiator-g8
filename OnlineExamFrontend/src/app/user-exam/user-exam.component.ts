@@ -38,14 +38,15 @@ export class UserExamComponent implements OnInit {
     // console.log(reqExamId);
 
     this.examPayload = new UserExamPayload(-1, "", [])
+    let examID = sessionStorage.getItem("examId");
 
-    this.examService.getExamWithOutAnswersByExamId(108).subscribe(data => {
+    this.examService.getExamWithOutAnswersByExamId(Number(examID)).subscribe(data => {
       console.log(data)
       this.examPayload = new UserExamPayload(data.examId, data.examName, data.levels);
       this.isDataLoaded = true;
       console.log(sessionStorage.getItem("submissionId"))
       console.log(this.examPayload);
-      this.currentLevelSubmissionPayload = new LevelSubmissionPayload(108,
+      this.currentLevelSubmissionPayload = new LevelSubmissionPayload(Number(examID),
         this.examPayload.levels[this.currentLevel].examLevelId,
         Number(sessionStorage.getItem("submissionId")),
         this.examPayload.levels[this.currentLevel].passingCriteria,
@@ -109,7 +110,7 @@ export class UserExamComponent implements OnInit {
               data: 1
             });
 
-            dialogRef.afterClosed().subscribe(result => {
+            dialogRef.afterClosed().subscribe(() => {
               console.log('The dialog was closed');
               if(this.currentLevel != this.examPayload.levels.length-1)
                 this.currentLevel += 1;
@@ -121,7 +122,7 @@ export class UserExamComponent implements OnInit {
               data: 2
             });
 
-            dialogRef.afterClosed().subscribe(result => {
+            dialogRef.afterClosed().subscribe(() => {
               console.log('The dialog was closed');
               this.router.navigate(["./user/home"])
             });
@@ -133,7 +134,7 @@ export class UserExamComponent implements OnInit {
             data: 3
           });
 
-          dialogRef.afterClosed().subscribe(result => {
+          dialogRef.afterClosed().subscribe(() => {
             console.log('The dialog was closed');
             this.router.navigate(["./user/home"])
           });

@@ -11,6 +11,10 @@ export class SubmissionService {
 
   constructor(private http:HttpClient) { }
 
+  createNewSubmission(){
+    return this.http.post<submissionDto>("http://localhost:8282/user/" + sessionStorage.getItem("userId") + "/exams/" + sessionStorage.getItem("examId"),{})
+  }
+
 
   addNewSubmission(submission : submissionDto){
     // return this.http.get<exam>(this.baseUrl+'/'+114);

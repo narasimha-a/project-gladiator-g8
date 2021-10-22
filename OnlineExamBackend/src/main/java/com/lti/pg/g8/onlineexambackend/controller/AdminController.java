@@ -9,8 +9,10 @@ import com.lti.pg.g8.onlineexambackend.dto.AdminDto;
 
 import com.lti.pg.g8.onlineexambackend.model.Exam;
 import com.lti.pg.g8.onlineexambackend.model.User;
+import com.lti.pg.g8.onlineexambackend.repository.SearchStudentsRepository;
 import com.lti.pg.g8.onlineexambackend.service.AdminLoginService;
 import com.lti.pg.g8.onlineexambackend.service.ExamService;
+import com.lti.pg.g8.onlineexambackend.service.SearchStudentsService;
 import com.lti.pg.g8.onlineexambackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +34,9 @@ public class AdminController {
     ExamService examService;
     @Autowired
     AdminLoginService adminLoginService;
+
+    @Autowired
+    SearchStudentsService searchStudentsService;
     
     @PostMapping("/login")
     public ResponseEntity<Boolean> validateAdmin(@RequestBody AdminDto adminDto){
@@ -74,6 +79,14 @@ public class AdminController {
 //
 //        return new ResponseEntity<>(this.userService.)
 //    }
+
+    @GetMapping("/searchStudents")
+    public ResponseEntity<List<String>> searchStudents(){
+
+        List<String> SearchStudents = this.searchStudentsService.SearchStudentsMethod();
+
+        return new ResponseEntity<>(SearchStudents, HttpStatus.OK);
+    }
 
 
 }

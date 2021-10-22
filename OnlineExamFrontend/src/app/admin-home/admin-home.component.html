@@ -14,7 +14,7 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card mat-ripple class="admin-function-card">
+  <mat-card mat-ripple class="admin-function-card" [routerLink]="['../searchStudents']" (click)="navigateToSearch()">
     <mat-card-title>Report</mat-card-title>
     <mat-card-subtitle>View user reports based on filters</mat-card-subtitle>
   </mat-card>

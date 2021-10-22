@@ -1,10 +1,8 @@
 export class Address {
 
-   " addressId":number;
-
+  "addressId": number;
 
 	"city":String ;
 
-	
-	"state":String; 
+	"state":String;
 }
