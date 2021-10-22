@@ -5,5 +5,5 @@ export class ExamLevelDto{
     examLevelId!:number;
     passingCriteria!:number;
     submissionId!: number;
-    selectedOptionsMap !: TSMap<number,string>;
+   selectedOptionsMap !: TSMap<number,string>;
 }
