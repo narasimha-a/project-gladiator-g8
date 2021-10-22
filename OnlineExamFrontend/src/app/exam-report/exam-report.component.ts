@@ -37,14 +37,14 @@ export class ExamReportComponent implements OnInit {
     //   this.reportLevel =Number(sessionStorage.getItem("currentLevel")) +1;
     //   sessionStorage.removeItem("currentLevel");
     //   sessionStorage.setItem("currentLevel", this.reportLevel.toString());
-      
+
     // }
     // else{
     //   sessionStorage.removeItem("currentLevel");
 
     // }
   }
-  
+
   getPercentage = () => {
     this.submissionService.getSubmissionBySubmissionId(Number(sessionStorage.getItem("submissionId"))).subscribe(sub => {
       this.result = sub;
@@ -55,9 +55,9 @@ export class ExamReportComponent implements OnInit {
     },(error)=>{
       console.log("No data found");
     })
-    
-    console.log("Inside report"+this.result.percentages);
-  } 
+
+    // console.log("Inside report"+this.result.percentages);
+  }
 
   incrementExamLevel(){
     if(Number(sessionStorage.getItem("currentLevel")) == Number(sessionStorage.getItem("numberOfLevels"))){
@@ -69,7 +69,7 @@ export class ExamReportComponent implements OnInit {
       sessionStorage.setItem("currentLevel", this.reportLevel.toString());
       this.router.navigate(['/startExam']);
     }
-    
+
   }
 
   returnToHome(){

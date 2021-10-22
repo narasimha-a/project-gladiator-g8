@@ -1,0 +1,16 @@
+.row-spacer{
+  flex: 1 1 auto;
+}
+
+.register-button{
+  background-color: #dba020;
+  color: black;
+  width: 200px;
+  height: 50px;
+}
+
+.login-button{
+  background-color: red;
+  width: 200px;
+  height: 50px;
+}

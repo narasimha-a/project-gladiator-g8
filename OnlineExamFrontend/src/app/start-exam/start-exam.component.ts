@@ -20,12 +20,13 @@ export class StartExamComponent implements OnInit {
   constructor(private submissionService:SubmissionService,private router:Router) { }
 
   ngOnInit(): void {
+    console.log(sessionStorage.getItem("submissionId"))
     if(sessionStorage.getItem("submissionId")){
       this.submissionId = Number(sessionStorage.getItem("submissionId"));
     }
   }
 
-  
+
 
   // if(){
 
@@ -41,22 +42,23 @@ export class StartExamComponent implements OnInit {
   //   })
   // }
 
-  
+
 
   onClickStartExam = () => {
     if(this.submissionId == 0){
       this.submissionService.addNewSubmission(this.submission).subscribe(data => {
-        this.router.navigate(['/startExam/exam'])
+        this.router.navigate(['./user/exams/exam'])
+        console.log(data)
+        sessionStorage.setItem("submissionId",data.submissionId.toString());
         console.log(this.submission);
       },(error)=>{
         console.log("Add data failed");
       })
     }
     else{
-      this.router.navigate(['/startExam/exam'])
+      this.router.navigate(['./user/exams/exam'])
     }
-    
-    
+
   }
 
 }

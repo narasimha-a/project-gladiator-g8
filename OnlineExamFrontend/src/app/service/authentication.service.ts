@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { User } from '../models/user';
-import { UserLoginDto } from '../user-login-dto';
-import { UserService } from '../user.service';
+import {Injectable} from '@angular/core';
+import {User} from '../models/user';
+import {UserLoginDto} from '../user-login-dto';
+import {UserService} from '../user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,42 +9,32 @@ import { UserService } from '../user.service';
 export class AuthenticationService {
 
 
-  userLogin=false;
+  userLogin = false;
 
-  currentLoginUser: User | undefined ;
+  currentLoginUser: User | undefined;
 
-  constructor(private userService: UserService,) { }
+  constructor(private userService: UserService,) {
+  }
 
- authenticate(username: string, password: string) { 
-   var userlogindto = new UserLoginDto();
-   userlogindto.userName=username;
-   var userValue = false;
-   userlogindto.password=password;
-   
-  this.userService.authenticateUser(userlogindto).subscribe(data=> {
-    if(data){
-      this.currentLoginUser = data;
-      console.log(this.currentLoginUser);
-      console.log(data.userId);
-      // sessionStorage.setItem('username', data.userName.toString());
-     sessionStorage.setItem('userId',data.userId.toString());
-      // console.log("stored");
-      // this.userLogin=true;
-      // sessionStorage.setItem("userLogin", "true");
-     console.log(this.currentLoginUser);
-      //return this.userLogin;
-   }
-   else{
-     
-   }
+  authenticate(username: string, password: string) {
+    const userinfo = new UserLoginDto();
+    userinfo.userName = username;
+    const userValue = false;
+    userinfo.password = password;
+
+    this.userService.authenticateUser(userinfo).subscribe(data => {
+      if (data) {
+        this.currentLoginUser = data;
+        console.log(this.currentLoginUser);
+        console.log(data.userId);
+        sessionStorage.setItem('userId', data.userId.toString());
+        console.log(this.currentLoginUser);
+      } else {
+
+      }
 
     })
-    // if(this.currentLoginUser != null){
-    //   sessionStorage.setItem("userId",this.currentLoginUser.userId.toString());
-    //   return true;
-    // }else{
-    //   return false;
-    // }
+
     return false;
 
   }

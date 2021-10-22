@@ -13,7 +13,6 @@ export class ModifyExamComponent implements OnInit {
   exam: Exam[] | undefined;
 
   constructor(private examService: ExamService, private router: Router,
-              private dialogRef: MatDialog,
               private route: ActivatedRoute
   ) {
   }

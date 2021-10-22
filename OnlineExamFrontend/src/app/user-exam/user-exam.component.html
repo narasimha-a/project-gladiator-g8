@@ -1,0 +1,46 @@
+<div *ngIf="isDataLoaded" class="mat-card">
+  <mat-toolbar class="mat-primary">
+    <span>
+      <mat-card-title>{{examPayload.examName}}</mat-card-title>
+    </span>
+    <span class="row-spacer"></span>
+    <button mat-raised-button (click)="submit()" color="warn">
+      Submit
+    </button>
+  </mat-toolbar>
+
+  <div class="editor-body">
+    <div class="sidebar">
+      <span matCardTitle><b>Levels</b></span>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let level of examPayload.levels; let levelIndex = index"
+                             [expanded]="currentLevel === levelIndex" (opened)="changeCurrentLevel(levelIndex)" [disabled]="currentLevel != levelIndex">
+          <mat-expansion-panel-header>
+            Level {{levelIndex + 1}}
+          </mat-expansion-panel-header>
+          <ul class="questions-container">
+            <li *ngFor="let question of level.questions; let questionIndex = index">
+              <button mat-mini-fab (click)="changeCurrentQuestion(questionIndex)">
+                {{questionIndex + 1}}
+              </button>
+            </li>
+          </ul>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="question-form">
+      <mat-card class="question-div">
+        <label id="question-statement">{{examPayload.levels[currentLevel].questions[currentQuestion].questionStatement}}</label>
+        <mat-radio-group aria-labelledby="question-statement" class="options-radio-group"
+                         #selectedOption
+                         [(ngModel)]="examPayload.levels[currentLevel].questions[currentQuestion].selectedAnswer">
+          <mat-radio-button class="option-radio-button" color="primary"
+                            *ngFor="let option of examPayload.levels[currentLevel].questions[currentQuestion].getOptions()"
+                            [value]="option">
+            {{option}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-card>
+    </div>
+  </div>
+</div>

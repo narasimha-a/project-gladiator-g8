@@ -22,13 +22,13 @@ export class ChooseExamComponent implements OnInit {
 
     this.getAllExams();
     //console.log(this.allExams[0]?.examName);
-    
+
   }
 
   getAllExams(){
     this.chooseexamandid.getExamNameAndId().subscribe( data => {
      this.allExams=data;
-     
+
      console.log(this.allExams + "inside data");
 
 
@@ -39,7 +39,7 @@ export class ChooseExamComponent implements OnInit {
   OnMatCardClickEvent(exam:examDto){
 
     sessionStorage.setItem("examId" , exam.examId.toString());
-    this.router.navigate(["/startExam"]);
+    this.router.navigate(["./startExam"]);
    //console.log(exam.examId);
     }
 

@@ -5,7 +5,7 @@ import { submissionDto } from './startendexam/model/submissionDto.model';
 import { Observable, throwError } from 'rxjs';
 import { User } from './models/user';
 import { UserLoginDto } from './user-login-dto';
-import { catchError } from 'rxjs/operators';
+import {LevelSubmissionPayload} from "./user-exam/level-submission-payload";
 @Injectable({
   providedIn: 'root'
 })
@@ -14,21 +14,20 @@ export class UserService {
   submissionData!: submissionDto;
   constructor(private http:HttpClient) { }
 
-  postSubmission(examLevelDto: ExamLevelDto, userId:number){
+  postSubmission(examLevelDto: LevelSubmissionPayload, userId:number){
     // return this.http.get<exam>(this.baseUrl+'/'+114);
     console.log(JSON.stringify(examLevelDto));
-    return this.http.post<submissionDto>(this.baseUrl+'/submitLevel',examLevelDto); 
+    return this.http.post<submissionDto>(this.baseUrl+'/submitLevel',examLevelDto);
 
   }
-  
+
   addUser(user: User): Observable<User>{
 
     console.log(user);
     return this.http.post<User>(this.baseUrl, user);
   }
-  
-  authenticateUser(user:UserLoginDto){ 
-    
+
+  authenticateUser(user:UserLoginDto){
     console.log(user);
     return this.http.post<User>(this.baseUrl+'/login',user);
   }
@@ -47,20 +46,4 @@ export class UserService {
     //Return an observable with a user-facing error message.
     return throwError('Something bad happened; please try again later.');
   }
-
-
-
-
-
-
-  //  authenticateUser(userlogindto) => {
-  //   console.log(user);
-  //   return this.http.get<UserLoginDto>(this.baseUrl, user);
-  // }
-
-  
-
-
-  
-
 }

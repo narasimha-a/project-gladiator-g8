@@ -1,35 +1,15 @@
-<div class="container">
-    <div class="login-wrap">
-      User Name : <input type="text" name="username" [(ngModel)]="username">
-      Password : <input type="password" name="password" [(ngModel)]="password">
-    </div>
-    <button (click)="checkLogin()" class="btn btn-success">
-      Login
-    </button>
-  </div>
+<mat-card class="login-card">
+  <mat-card-title style="color: purple"><b>User Login</b></mat-card-title>
+  <mat-card-content class="login-content">
+    <mat-form-field appearance="outline">
+      <mat-label>User email</mat-label>
+      <input matInput placeholder="Enter your email id.." [(ngModel)]="userLoginPayload.userName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput placeholder="Enter your password.." [(ngModel)]="userLoginPayload.password">
+    </mat-form-field>
+    <button mat-raised-button color="primary" style="width: 200px;height: 50px" (click)="validateUser()">Login</button>
+  </mat-card-content>
+</mat-card>
 
-
-  <!-- <div class="wrapper fadeInDown">
-    <div id="formContent">
-      
-      <h2 class="active"> Sign In </h2>
-      <h2 class="inactive underlineHover">Sign Up </h2>
-  
-    
-      <div class="fadeIn first">
-        <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-      </div>
-  
-      <div>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
-      </div>
-  
-     
-      <div id="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
-      </div>
-  
-    </div>
-  </div> -->

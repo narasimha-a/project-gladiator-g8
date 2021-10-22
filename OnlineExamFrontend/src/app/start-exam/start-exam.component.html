@@ -1,23 +1,29 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <mat-card-title>Online Exam</mat-card-title>
+      <span class="row-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
 <div class="pbg">
 <div class="container">
     <div class="row">
-        <h2 class="gen">General Instructions</h2>
+        <h1 class="gen">General Instructions</h1>
         <div class="col-9 colbg" >
-        
-            <li>
-                <ul>Test questions are in a sequential manner. You can't navigate between the questions so think twice before clicking next</ul>
-                <ul>The exam difficulty level increases based on the levels like level 1 will be easy, level 2 moderate and so on..</ul>
-                <ul>There will be a passing criteria on different levels and you can access the next level if you meet the passing criteria.</ul>
-                <ul></ul>
-            </li>
+          <ul class="instructions">
+            <li>Test questions are in a sequential manner. You can't navigate between the questions so think twice before clicking next</li>
+            <li>The exam difficulty level increases based on the levels like level 1 will be easy, level 2 moderate and so on..</li>
+            <li>There will be a passing criteria on different levels and you can access the next level if you meet the passing criteria.</li>
+          </ul>
         </div>
-        
+
 
     </div>
     <div class="row pbg" >
         <div class="col-6"></div>
-        <div class="col-4">
-            <button class="btnbg" (click)="onClickStartExam()"><h5>Start Exam</h5></button>
+        <div class="col-3">
+            <button class="btnbg" (click)="onClickStartExam()"><h1><b>Start Exam</b></h1></button>
         </div>
         <div class="col-2"></div>
     </div>

@@ -5,12 +5,12 @@
 		<div class="done">
             <img src="../../assets/tick.jpg" width="100%" height="100%">
 			</div>
-            
+
 		<div class="text">
 		<p>You have successfully cleared your exam. <br>Here are your details<br>
 			Score: {{currLevelPercentage}}<br>
 		</p>
-			
+
 				<div *ngIf="currentLevel == numberOfLevels-1">
 					<p>
 					<button (click)= "returnToHome()"> Test Completed Return To Home Page>> </button>
@@ -21,10 +21,10 @@
 					<button (click)= "incrementExamLevel()"> Next Level>> </button>
 					</p>
 				</div>
-				
-			
-		
-            
+
+
+
+
 		</div>
 		<p class="regards">Regards, Team LT</p>
 	</div>
@@ -33,18 +33,18 @@
 <div *ngIf="currLevelPercentage < reportPassingCriteria">
 	<div class="contain">
 		<div class="congrats">
-			<h1>Sorry<span class="hide">ulation</span> !</h1>
+			<h1>Sorry<span class="hide">salutation</span> !</h1>
 			<div class="done">
 				<img src="../../assets/cross.jpg" width="100%" height="100%">
 				</div>
-				
+
 			<div class="text">
 			<p>You have failed to clear the exam. <br>Here are your details<br>
 				Score: {{currLevelPercentage}}<br>
 			</p>
 				<p><button (click)="returnToHome()">Return to Home Page</button>
 				</p>
-				
+
 				</div>
 			<p class="regards">Regards, Team LT</p>
 		</div>

@@ -33,7 +33,8 @@
           <mat-action-row>
             <mat-form-field appearance="outline">
               <mat-label>Passing Criteria</mat-label>
-              <input matInput type="text" placeholder="Ex: 65" [(ngModel)]="examPayload.levels[currentLevel].passingCriteria">
+              <input matInput type="text" placeholder="Ex: 65"
+                     [(ngModel)]="examPayload.levels[currentLevel].passingCriteria">
             </mat-form-field>
           </mat-action-row>
         </mat-expansion-panel>
@@ -58,10 +59,10 @@
                         [value]="examPayload.levels[currentLevel].questions[currentQuestion].getOptions()[optionIndex]"
                         placeholder="Option {{optionIndex + 1}}"></textarea>
               </mat-form-field>
-<!--              <mat-checkbox (change)="checkBoxChanged(optionIndex)"></mat-checkbox>-->
-              <button mat-mini-fab class="option-delete" (click)="deleteOption(optionIndex)">
-                <mat-icon>delete</mat-icon>
-              </button>
+              <!--              <mat-checkbox (change)="checkBoxChanged(optionIndex)"></mat-checkbox>-->
+<!--              <button mat-mini-fab class="option-delete" (click)="deleteOption(optionIndex)">-->
+<!--                <mat-icon>delete</mat-icon>-->
+<!--              </button>-->
             </div>
           </li>
           <li>

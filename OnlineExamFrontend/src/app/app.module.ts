@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { UserHomeComponent } from './user-home/user-home.component';
 import { RegisterComponent } from './register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio';
@@ -16,8 +16,6 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-
-
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { StartExamComponent } from './start-exam/start-exam.component';
@@ -34,6 +32,14 @@ import { UserService } from './user.service';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ChooseExamComponent } from './choose-exam/choose-exam.component';
+import {AdminLoginComponent} from "./admin-login/admin-login.component";
+import {ModifyExamComponent} from "./modify-exam/modify-exam.component";
+import {ViewReportsComponent} from "./view-reports/view-reports.component";
+import {MatSelectModule} from "@angular/material/select";
+import { UserExamComponent } from './user-exam/user-exam.component';
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import { ExamReportDialogComponent } from './user-exam/exam-report-dialog/exam-report-dialog.component';
+import {MatRippleModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -44,15 +50,18 @@ import { ChooseExamComponent } from './choose-exam/choose-exam.component';
     StartExamComponent,
     ExamReportComponent,
     ExamEditorComponent,
-    HomeComponent,
+    UserHomeComponent,
     RegisterComponent,
     AdminHomeComponent,
     AddUserComponent,
     LoginComponent,
     LogoutComponent,
     ChooseExamComponent,
-
-
+    AdminLoginComponent,
+    ModifyExamComponent,
+    ViewReportsComponent,
+    UserExamComponent,
+    ExamReportDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -78,8 +87,14 @@ import { ChooseExamComponent } from './choose-exam/choose-exam.component';
     MatSidenavModule,
     MatListModule,
     MatExpansionModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatRippleModule
   ],
-  providers: [StartendexamService,UserService],
+  providers: [StartendexamService,UserService,{
+    provide: MatDialogRef,
+    useValue:[]
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
