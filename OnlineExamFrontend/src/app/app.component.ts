@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,19 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 })
 export class AppComponent {
   title = 'OnlineExamFrontend';
-  isChkd:boolean=false;
-  options:string[]= ['option 1','option 2','option 3','option 4'];
+  hideLoginRegister = false;
 
- 
+
+  constructor(private router: Router, private route: ActivatedRoute) {
+  }
+
+  register() {
+    this.router.navigate(["./user/register"],{relativeTo: this.route});
+    this.hideLoginRegister = true;
+  }
+
+  login() {
+    this.router.navigate(["./user/login"],{relativeTo: this.route});
+    this.hideLoginRegister = true;
+  }
 }

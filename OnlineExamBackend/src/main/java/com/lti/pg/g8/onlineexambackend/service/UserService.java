@@ -9,7 +9,7 @@ public interface UserService {
 
 //	List<User>getAllUsers();
 	User addUser(User user);
-	Boolean checkUserCred(String name, String password);
+	User checkUserCred(String name, String password);
 	List<User> getAllUsers() ;
 	List<User> getUserListByAddressId(Long AddressId);
 	User getUserById(Long userId);

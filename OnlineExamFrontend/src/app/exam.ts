@@ -7,6 +7,4 @@ export class Exam {
     examName: String | undefined;
     levels: ExamLevel[] =[] ;
 
-    
-
 }

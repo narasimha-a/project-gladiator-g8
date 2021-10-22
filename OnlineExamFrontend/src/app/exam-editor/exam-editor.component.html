@@ -1,32 +1,80 @@
-<div class="mat-card">
+<div *ngIf="isDataLoaded" class="mat-card">
   <mat-toolbar class="mat-primary">
     <span>
       <input mat-card-title [(ngModel)]="examPayload.examName" name="examName" placeholder="Ex: Java">
     </span>
+    <span class="row-spacer"></span>
+    <button mat-raised-button (click)="submit()" color="warn">
+      Submit
+    </button>
   </mat-toolbar>
 
   <div class="editor-body">
     <div class="sidebar">
       <span><b>Levels</b></span>
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let level of examPayload.levels; let levelIndex = index">
+        <mat-expansion-panel *ngFor="let level of examPayload.levels; let levelIndex = index"
+                             [expanded]="currentLevel === levelIndex" (opened)="changeCurrentLevel(levelIndex)">
           <mat-expansion-panel-header>
             Level {{levelIndex + 1}}
           </mat-expansion-panel-header>
           <ul class="questions-container">
-              <li class="li-question" *ngFor="let question of level.questions; let questionIndex = index" >
+            <li *ngFor="let question of level.questions; let questionIndex = index">
+              <button mat-mini-fab (click)="changeCurrentQuestion(questionIndex)">
                 {{questionIndex + 1}}
-              </li>
+              </button>
+            </li>
             <li>
-              <button mat-mini-fab class="li-add-question" (click)="createQuestion(levelIndex)">
+              <button mat-mini-fab (click)="createQuestion(levelIndex)">
                 <mat-icon>add</mat-icon>
               </button>
             </li>
           </ul>
+          <mat-action-row>
+            <mat-form-field appearance="outline">
+              <mat-label>Passing Criteria</mat-label>
+              <input matInput type="text" placeholder="Ex: 65"
+                     [(ngModel)]="examPayload.levels[currentLevel].passingCriteria">
+            </mat-form-field>
+          </mat-action-row>
         </mat-expansion-panel>
-        <button (click)="createLevel()">add Level</button>
+        <button mat-raised-button color="accent" (click)="createLevel()">add Level</button>
       </mat-accordion>
     </div>
-    <div class="input">editor</div>
+    <div class="question-form">
+      <mat-form-field class="question-statement" appearance="outline">
+        <mat-label>Question Statement</mat-label>
+        <textarea matInput type="text"
+                  [(ngModel)]="examPayload.levels[currentLevel].questions[currentQuestion].questionStatement"
+                  placeholder="Enter Question Statement here..."></textarea>
+      </mat-form-field>
+      <div>
+        <ul class="options-container">
+          <li *ngFor="let option of examPayload.levels[currentLevel].questions[currentQuestion].getOptions();
+          let optionIndex=index">
+            <div class="option-div">
+              <mat-form-field class="option" appearance="outline">
+              <textarea matInput type="text"
+                        (change)="examPayload.levels[currentLevel].questions[currentQuestion].updateOption($event, optionIndex)"
+                        [value]="examPayload.levels[currentLevel].questions[currentQuestion].getOptions()[optionIndex]"
+                        placeholder="Option {{optionIndex + 1}}"></textarea>
+              </mat-form-field>
+              <!--              <mat-checkbox (change)="checkBoxChanged(optionIndex)"></mat-checkbox>-->
+<!--              <button mat-mini-fab class="option-delete" (click)="deleteOption(optionIndex)">-->
+<!--                <mat-icon>delete</mat-icon>-->
+<!--              </button>-->
+            </div>
+          </li>
+          <li>
+            <button mat-flat-button color="accent" (click)="createOption()">add Option</button>
+          </li>
+        </ul>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Answers</mat-label>
+        <input matInput placeholder="Enter comma separated answers here.."
+               [(ngModel)]="examPayload.levels[currentLevel].questions[currentQuestion].answers">
+      </mat-form-field>
+    </div>
   </div>
 </div>

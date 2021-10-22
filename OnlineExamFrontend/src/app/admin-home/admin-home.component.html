@@ -1,66 +1,69 @@
-<mat-toolbar>
-    <h1>WELCOME ADMIN !!</h1>
-    <span class="example-spacer"></span>
-    <button mat-icon-button aria-label="Logout" (click) = "adminLogout()">
-        <mat-icon>logout</mat-icon>
-      </button>
-</mat-toolbar>  
-<mat-grid-list cols="3">
-    <mat-grid-tile>
-        <mat-card class="example-card">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Add Questions</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <button mat-icon-button (click)="addQuestions()">
-                    <mat-icon aria-hidden="false" aria-label="Example home icon">add_circle</mat-icon>
-    
-                </button>
-            </mat-card-content>
-            
-          </mat-card>
-   
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card class="example-card">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Remove Questions</mat-card-title>
-              </mat-card-header>
-              <mat-card-content>
-                  <button mat-icon-button (click)="removeQuestions()">
-                      <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
-      
-                  </button>
-              </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-        <mat-card class="example-card">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>View Reports</mat-card-title>
-              </mat-card-header>
-              <mat-card-content>
-                  <button mat-icon-button (click)="viewReports()">
-                      <mat-icon aria-hidden="false" aria-label="Example home icon">list</mat-icon>
-      
-                  </button>
-              </mat-card-content>
-          </mat-card>
-   
-    </mat-grid-tile>
-</mat-grid-list>
+<mat-toolbar color="primary">
+  <h1>WELCOME ADMIN !!</h1>
+  <span class="example-spacer"></span>
+  <button mat-icon-button aria-label="Logout" (click)="adminLogout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
 
-<form>
-    <ng-container *ngFor="let item of questions;let i = index">
-        <div [hidden]="item.isHidden">
-            {{item.qun}} 
-            <ng-container *ngFor="let opt of item.option;let in = index">
-                <div>{{opt[in]}}</div>
-            </ng-container>
-            <button  (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false">Next</button>
-        </div>
-    </ng-container>
-</form>
+<div class="admin-home-body">
+  <mat-card mat-ripple class="admin-function-card" [routerLink]="['./exams']" (click)="navigateToExams()">
+    <mat-card-content>
+      <mat-card-title>Exams</mat-card-title>
+      <mat-card-subtitle>Create New Exams or Edit existing exams</mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card mat-ripple class="admin-function-card">
+    <mat-card-title>Report</mat-card-title>
+    <mat-card-subtitle>View user reports based on filters</mat-card-subtitle>
+  </mat-card>
+</div>
+
+<!--<mat-grid-list cols="3">-->
+<!--  <mat-grid-tile>-->
+<!--    <mat-card class="example-card">-->
+<!--      <mat-card-header>-->
+<!--        <div mat-card-avatar class="example-header-image"></div>-->
+<!--        <mat-card-title>Add Questions</mat-card-title>-->
+<!--      </mat-card-header>-->
+<!--      <mat-card-content>-->
+<!--        <button mat-icon-button (click)="addQuestions()">-->
+<!--          <mat-icon aria-hidden="false" aria-label="Example user-home icon">add_circle</mat-icon>-->
+
+<!--        </button>-->
+<!--      </mat-card-content>-->
+
+<!--    </mat-card>-->
+
+<!--  </mat-grid-tile>-->
+<!--  <mat-grid-tile>-->
+<!--    <mat-card class="example-card">-->
+<!--      <mat-card-header>-->
+<!--        <div mat-card-avatar class="example-header-image"></div>-->
+<!--        <mat-card-title>Remove Questions</mat-card-title>-->
+<!--      </mat-card-header>-->
+<!--      <mat-card-content>-->
+<!--        <button mat-icon-button (click)="removeQuestions()">-->
+<!--          <mat-icon aria-hidden="false" aria-label="Example user-home icon">delete</mat-icon>-->
+
+<!--        </button>-->
+<!--      </mat-card-content>-->
+<!--    </mat-card>-->
+<!--  </mat-grid-tile>-->
+<!--  <mat-grid-tile>-->
+<!--    <mat-card class="example-card">-->
+<!--      <mat-card-header>-->
+<!--        <div mat-card-avatar class="example-header-image"></div>-->
+<!--        <mat-card-title>View Reports</mat-card-title>-->
+<!--      </mat-card-header>-->
+<!--      <mat-card-content>-->
+<!--        <button mat-icon-button (click)="viewReports()">-->
+<!--          <mat-icon aria-hidden="false" aria-label="Example user-home icon">list</mat-icon>-->
+
+<!--        </button>-->
+<!--      </mat-card-content>-->
+<!--    </mat-card>-->
+
+<!--  </mat-grid-tile>-->
+<!--</mat-grid-list>-->

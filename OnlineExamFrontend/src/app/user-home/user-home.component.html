@@ -1,0 +1,18 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Online Exam</span>
+      <span class="row-spacer"></span>
+      <button mat-raised-button color="warn" (click)="logout()">Log Out</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<mat-grid-list cols="3">
+  <mat-grid-tile *ngFor="let exam of allExams" (click)="OnMatCardClickEvent(exam)">
+    <mat-card class="exam-card" matRipple>
+      <mat-card-title>{{exam.examName}}</mat-card-title>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>

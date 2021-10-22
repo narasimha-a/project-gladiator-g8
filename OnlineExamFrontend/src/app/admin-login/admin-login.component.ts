@@ -20,8 +20,8 @@ export class AdminLoginComponent implements OnInit {
   checkLogin():void {
     if (this.username=="admin" && this.password=="admin@123")
     {
-      this.router.navigate(['admin/home']);
-    } 
+      this.router.navigate(['admin/user-home']);
+    }
     else
     {
       alert("Invalid credentials");

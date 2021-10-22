@@ -1,13 +1,22 @@
 package com.lti.pg.g8.onlineexambackend.controller;
 
+
 import java.util.List;
 
 import com.lti.pg.g8.onlineexambackend.dto.AdminDto;
-import com.lti.pg.g8.onlineexambackend.dto.SearchStudentsDto;
+
+
+
 import com.lti.pg.g8.onlineexambackend.model.Exam;
 import com.lti.pg.g8.onlineexambackend.model.User;
+import com.lti.pg.g8.onlineexambackend.service.AdminLoginService;
 import com.lti.pg.g8.onlineexambackend.service.ExamService;
 import com.lti.pg.g8.onlineexambackend.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +26,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-
+    @Autowired
+    UserService userService;
     @Autowired
     ExamService examService;
-
+    @Autowired
+    AdminLoginService adminLoginService;
+    
     @PostMapping("/login")
     public ResponseEntity<Boolean> validateAdmin(@RequestBody AdminDto adminDto){
         boolean validAdmin = false;
@@ -30,10 +42,6 @@ public class AdminController {
     	return new ResponseEntity<>(validAdmin,HttpStatus.OK);
     }
     
-
-    @Autowired
-    UserService userService;
-
     @GetMapping("/exams")
     public ResponseEntity<List<Exam>> getAllExams(){
         return new ResponseEntity<>(this.examService.getAllExams(), HttpStatus.OK);
@@ -54,7 +62,8 @@ public class AdminController {
         return new ResponseEntity<>(this.examService.deleteExamById(examId), HttpStatus.OK);
     }
 
-    
+
+
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers(){
         return new ResponseEntity<>(this.userService.getAllUsers(), HttpStatus.OK);
@@ -66,14 +75,7 @@ public class AdminController {
 //        return new ResponseEntity<>(this.userService.)
 //    }
 
-    
-    @GetMapping("/searchStudents")
-   	public ResponseEntity<List<SearchStudentsDto>> searchStudents(){
 
-   		List<SearchStudentsDto> SearchStudents = this.userService.searchStudents();
-
-   		return new ResponseEntity<>(SearchStudents, HttpStatus.OK);
-   	}
 }
 
 //{
@@ -88,5 +90,5 @@ public class AdminController {
 //        "city" : "trichy",
 //        "state" : "tamilnadu"
 //    }
-//
-//}
+
+

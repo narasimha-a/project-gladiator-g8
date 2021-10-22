@@ -1,30 +1,44 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from "@angular/common/http";
+import {ExamPayload} from "./exam-editor/exam-payload";
 import { Observable } from 'rxjs';
 import { Exam } from './exam';
+import {UserExamPayload} from "./user-exam/user-exam-payload";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExamService {
 
-  private baseUrl = 'http://localhost:8091/admin/exams';
+  baseUrl = "http://localhost:8282";
 
-  constructor(private httpSer: HttpClient) { }
+  constructor(private httpClient : HttpClient) { }
 
-  getExamList(): Observable<Exam[]> {
-    return this.httpSer.get<Exam[]>(this.baseUrl);
+  getExamByExamId(examId : number){
+    return this.httpClient.get<ExamPayload>(this.baseUrl + "/admin/exams/" + examId);
   }
 
-  addExam(exam:Exam):Observable<Exam>{
+  postExam(reqBody: ExamPayload) {
+    return this.httpClient.post(this.baseUrl + "/admin/exams/", reqBody);
+  }
+
+  getExamList(){
+    return this.httpClient.get<Exam[]>(this.baseUrl + "/admin/exams");
+  }
+
+  addExam(exam:Exam){
     console.log("inside addExam method:exam:");
     console.log(exam);
     console.log(exam.levels)
-    return this.httpSer.post<Exam>(this.baseUrl,exam);
+    return this.httpClient.post<Exam>(this.baseUrl + "/admin/exams/",exam);
   }
 
-  removeExam(exam:Exam): Observable<any> {
-    var id=exam.examId;
-    return this.httpSer.delete(this.baseUrl+"/"+id, { responseType: 'text' });
+  removeExam(exam:Exam){
+    let id=exam.examId;
+    return this.httpClient.delete(this.baseUrl+"/admin/exams/"+id, { responseType: 'text' });
+  }
+
+  getExamWithOutAnswersByExamId(examId: number) {
+    return this.httpClient.get<UserExamPayload>(this.baseUrl + "/user/exams/" + examId);
   }
 }

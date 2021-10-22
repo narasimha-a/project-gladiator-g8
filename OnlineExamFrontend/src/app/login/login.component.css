@@ -1,0 +1,13 @@
+.login-card{
+  top: 15%;
+  left: 30%;
+  width: 30%;
+  border: 1px solid black;
+  align-items: center;
+}
+.login-content{
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}

@@ -11,9 +11,19 @@ export class SubmissionService {
 
   constructor(private http:HttpClient) { }
 
+
   addNewSubmission(submission : submissionDto){
     // return this.http.get<exam>(this.baseUrl+'/'+114);
-    return this.http.post<submissionDto>(this.baseUrl+'/addSubmission',submission); 
+    return this.http.post<submissionDto>(this.baseUrl+'/addSubmission',{
+      "examId":submission.examId,
+      "userId":submission.userId,
+      "addressId":submission.addressId,
+      "percentages":submission.percentages
+    });
+  }
+
+  getSubmissionBySubmissionId = (submissionId: number) => {
+    return this.http.get<submissionDto>(this.baseUrl+'/SubmissionById/'+submissionId);
   }
 
 

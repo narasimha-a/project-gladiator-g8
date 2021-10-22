@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>Submission Report</h1>
+<div *ngIf="isEligible <= 2" mat-dialog-content>Congratulations, you've cleared one Level</div>
+<div *ngIf="isEligible > 2" mat-dialog-content>Sorry, you've not cleared the Level</div>
+<div mat-dialog-actions>
+  <button *ngIf="isEligible<2" mat-button mat-dialog-close>OK</button>
+  <button *ngIf="isEligible>=2" mat-button mat-dialog-close>Home</button>
+</div>

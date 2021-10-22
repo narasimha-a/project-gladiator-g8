@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <h1>View Reports</h1>
+</mat-toolbar>
+
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Choose Exam</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let exam of exams">
+        {{exam.examName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

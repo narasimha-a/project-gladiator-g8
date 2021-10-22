@@ -1,68 +1,100 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatCardModule} from "@angular/material/card";
-import {MatListModule} from "@angular/material/list";
-import {MatExpansionModule} from "@angular/material/expansion";
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
-import {MatTableModule} from "@angular/material/table";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {RouterModule} from "@angular/router";
-import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ModifyExamComponent } from './modify-exam/modify-exam.component';
-import { AddExamComponent } from './add-exam/add-exam.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { RegisterComponent } from './register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatRadioModule} from '@angular/material/radio';
+import { StartendexamComponent } from './startendexam/startendexam.component';
+import {  HttpClientModule } from '@angular/common/http';
+import { StartendexamService } from './startendexam.service';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { StartExamComponent } from './start-exam/start-exam.component';
+import { ExamReportComponent } from './exam-report/exam-report.component';
+import { ExamEditorComponent } from './exam-editor/exam-editor.component';
+import {MatInputModule} from "@angular/material/input";
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import {MatExpansionModule} from "@angular/material/expansion";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ExamService } from './exam.service';
-import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AddUserComponent } from './adduser/adduser.component';
+import { UserService } from './user.service';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ChooseExamComponent } from './choose-exam/choose-exam.component';
+import {AdminLoginComponent} from "./admin-login/admin-login.component";
+import {ModifyExamComponent} from "./modify-exam/modify-exam.component";
+import {ViewReportsComponent} from "./view-reports/view-reports.component";
+import {MatSelectModule} from "@angular/material/select";
+import { UserExamComponent } from './user-exam/user-exam.component';
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import { ExamReportDialogComponent } from './user-exam/exam-report-dialog/exam-report-dialog.component';
+import {MatRippleModule} from "@angular/material/core";
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    StartendexamComponent,
+    AdminHomeComponent,
+    StartExamComponent,
+    ExamReportComponent,
+    ExamEditorComponent,
+    UserHomeComponent,
+    RegisterComponent,
+    AdminHomeComponent,
+    AddUserComponent,
+    LoginComponent,
+    LogoutComponent,
+    ChooseExamComponent,
+    AdminLoginComponent,
     ModifyExamComponent,
-    AddExamComponent,
-    AdminLoginComponent
+    ViewReportsComponent,
+    UserExamComponent,
+    ExamReportDialogComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
+    MatRadioModule,
+    HttpClientModule,
+    MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
+    MatIconModule,
+    MatGridListModule,
+    MatButtonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+
+    LayoutModule,
+    MatSidenavModule,
     MatListModule,
     MatExpansionModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule ,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    
+    MatSelectModule,
+    MatDialogModule,
+    MatRippleModule
   ],
-  providers: [ExamService,
-    {
-      provide:MatDialogRef,
-      useValue:[]
-    }
-  ],
+  providers: [StartendexamService,UserService,{
+    provide: MatDialogRef,
+    useValue:[]
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
