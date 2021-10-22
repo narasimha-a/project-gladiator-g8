@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+  <p style="width: 95%;">Filter Student Details</p>
+
+  <app-filter  style="margin-top: 1%;"
+               [list]="filterList"
+               (onFilterChange)="filterChange($event)" >
+  </app-filter>
+</div>
+
+<div>
+  <table class="gridtable">
+    <span><b>STUDENTS INFORMATION</b></span>
+    <table class="gridtable" >
+      <tr >
+        <th>NAME</th><th>EMAIL-ID</th><th>MOBIE NUMBER</th><th>CITY</th><th>STATE</th><th>Exam Name</th>
+      </tr>
+      <tr *ngFor = " let student of studentsInfo">
+        <td>
+          {{student.userName}}
+        </td>
+
+        <td>
+          {{student.userEmail}}
+        </td>
+        <td>
+          {{student.userMobile}}
+        </td>
+        <td>
+          {{student.city}}
+        </td>
+        <td>
+          {{student.state}}
+        </td>
+        <td>
+          {{student.examName}}
+        </td>
+      </tr>
+    </table>
+  </table>
+
+</div>

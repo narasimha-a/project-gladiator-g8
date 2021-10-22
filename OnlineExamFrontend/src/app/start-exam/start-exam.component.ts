@@ -46,12 +46,12 @@ export class StartExamComponent implements OnInit {
 
   onClickStartExam = () => {
     if(this.submissionId == 0){
-      this.submissionService.addNewSubmission(this.submission).subscribe(data => {
+      this.submissionService.createNewSubmission().subscribe(data => {
         this.router.navigate(['./user/exams/exam'])
         console.log(data)
         sessionStorage.setItem("submissionId",data.submissionId.toString());
         console.log(this.submission);
-      },(error)=>{
+      },()=>{
         console.log("Add data failed");
       })
     }

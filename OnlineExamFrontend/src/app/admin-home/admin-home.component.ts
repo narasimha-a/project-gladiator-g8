@@ -38,4 +38,8 @@ export class AdminHomeComponent implements OnInit {
   navigateToExams() {
     this.router.navigate(["../exams"],{relativeTo:this.route})
   }
+
+  navigateToSearch() {
+    this.router.navigate(["../searchStudents"],{relativeTo:this.route})
+  }
 }
