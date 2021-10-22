@@ -11,34 +11,34 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-adduser',
   templateUrl: './adduser.component.html',
-  styleUrls: ['./adduser.component.css'], 
+  styleUrls: ['./adduser.component.css'],
   providers: [DatePipe]
 })
 export class AddUserComponent implements OnInit{
   user: User = new User();
   isAdded = false;
   constructor(private userService: UserService, private datePipe: DatePipe, private router:Router){}
-   
+
   currentDate = new Date();
-  userForm!: FormGroup;          
+  userForm!: FormGroup;
   ngOnInit() {
     this.userForm = new FormGroup({
       userName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      userEmail: new FormControl('', [Validators.required, Validators.minLength(3)]),   
-      userMobile: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      userEmail: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      userMobile: new FormControl('', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
       dateOfBirth: new FormControl(this.datePipe.transform(this.currentDate, 'yyyy-MM-dd')),
-      qualification: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      yearOfGraduation: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      address: new FormControl('', [Validators.required, Validators.minLength(3)]),  
-     
+      qualification: new FormControl('', [Validators.required]),
+      yearOfGraduation: new FormControl('', [Validators.required,  Validators.pattern("^[0-9]{4}$")]),
+      password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{5,}')]),
+      address: new FormControl('', [Validators.required,  Validators.minLength(7)]),
+
     });
   }
 
   onSubmit(){
     this.user.userName = this.userForm.value.userName;
     this.user.userEmail = this.userForm.value.userEmail;
-    this.user.userMobile = this.userForm.value.userMobile; 
+    this.user.userMobile = this.userForm.value.userMobile;
     this.user.dateOfBirth = this.userForm.value.dateOfBirth;
     this.user.qualification = this.userForm.value.qualification;
     this.user.yearOfGraduation = this.userForm.value.yearOfGraduation;

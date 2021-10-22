@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AdminLoginComponent implements OnInit {
 
-  username = 'admin'
-  password = 'admin@123'
+  username = ''
+  password = ''
   invalidLogin = true
 
   constructor(private router: Router) { }
